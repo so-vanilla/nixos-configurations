@@ -1,0 +1,59 @@
+{
+  pkgs,
+  zen-browser-pkg,
+}:
+let
+  frompkgs = with pkgs; [
+    brightnessctl
+    cargo
+    clang-tools
+    clojure
+    clojure-lsp
+    cmake
+    copilot-node-server
+    deno
+    discord
+    efm-langserver
+    gcc
+    ghq
+    gnumake
+    gopls
+    graphviz
+    hyprcursor
+    hyprland-qtutils
+    jdt-language-server
+    killall
+    leiningen
+    libnotify
+    lua
+    lua-language-server
+    markdown-oxide
+    networkmanagerapplet
+    nil
+    nixfmt-rfc-style
+    nodePackages.bash-language-server
+    nodejs_22
+    pyright
+    python3
+    rust-analyzer
+    rustc
+    rustfmt
+    slack
+    texlab
+    texliveFull
+    thunderbird
+    traceroute
+    trash-cli
+    whois
+    wl-clipboard
+    zoom-us
+  ];
+  zen-browser = [
+    zen-browser-pkg
+  ];
+in
+[
+  {
+    home.packages = frompkgs ++ zen-browser;
+  }
+]

@@ -1,0 +1,3 @@
+{
+  programs.gradle.enable = true;
+}

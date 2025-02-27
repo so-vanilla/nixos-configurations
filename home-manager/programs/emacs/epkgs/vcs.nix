@@ -1,0 +1,6 @@
+{
+  epkgs
+}:
+with epkgs; [
+  magit
+]
