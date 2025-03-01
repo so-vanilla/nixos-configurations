@@ -2,6 +2,7 @@
   epkgs
 }:
 with epkgs; [
+  clj-deps-new
   clojure-mode
   cider
   go-mode

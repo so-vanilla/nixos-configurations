@@ -479,7 +479,10 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :url "https://github.com/clojure-emacs/clojure-mode"
     :config
     (leaf cider
-      :url "https://github.com/clojure-emacs/cider"))
+      :url "https://github.com/clojure-emacs/cider")
+
+    (leaf clj-deps-new
+      :url "https://github.com/jpe90/emacs-clj-deps-new"))
 
   (leaf elisp-mode
     :tag "builtin")
