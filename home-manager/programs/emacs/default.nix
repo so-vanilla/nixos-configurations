@@ -4,7 +4,7 @@
 {
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-pgtk;
+    package = pkgs.emacs-unstable-pgtk;
     extraPackages = import ./epkgs { inherit pkgs; };
   };
   home.file.".emacs.d/init.el".source = ./init.el;
