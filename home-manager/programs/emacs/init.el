@@ -349,6 +349,8 @@ _r_: row(table)
                :time-grid t)
         (:name "Work"
                :tag "work")
+        (:name "Project"
+               :tag "project")
         (:name "Search"
                :file-path "~/org/todo.org")
         (:name "Emacs"
