@@ -44,9 +44,12 @@ let
     thunderbird
     traceroute
     trash-cli
+    unzip
     whois
     wl-clipboard
+    zip
     zoom-us
+gimp
   ];
   zen-browser = [
     zen-browser-pkg
