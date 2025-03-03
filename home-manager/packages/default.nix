@@ -10,7 +10,7 @@ let
     clojure
     clojure-lsp
     cmake
-    copilot-node-server
+    copilot-language-server
     deno
     discord
     efm-langserver
