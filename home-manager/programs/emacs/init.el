@@ -519,7 +519,7 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
   (leaf copilot
     :url "https://github.com/copilot-emacs/copilot.el"
     :hook
-    ((prog-mode . copilot-mode))
+    ((prog-mode-hook . copilot-mode))
     :bind
     ((copilot-completion-map
       ("<tab>" . copilot-accept-completion))))
