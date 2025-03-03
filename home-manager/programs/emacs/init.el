@@ -517,8 +517,7 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 (leaf *ai-assistant
   (leaf copilot
     :url "https://github.com/copilot-emacs/copilot.el"
-    :hook
-    ((prog-mode-hook . copilot-mode))
+    :global-minor-mode global-copilot-mode
     :bind
     ((copilot-completion-map
       ("<tab>" . copilot-accept-completion))))
