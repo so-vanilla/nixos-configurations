@@ -104,6 +104,11 @@
 		                :weight 'normal
 		                :width 'normal))
 
+  (leaf warning
+    :tag "builtin"
+    :custom
+    ((warning-minimum-level . :error)))
+
   (leaf mule-cmds
     :tag "builtin"
     :bind
