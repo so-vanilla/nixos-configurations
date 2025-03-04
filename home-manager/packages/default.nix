@@ -33,6 +33,7 @@ let
     nixfmt-rfc-style
     nodePackages.bash-language-server
     nodejs_22
+    playerctl
     pyright
     python3
     rust-analyzer
