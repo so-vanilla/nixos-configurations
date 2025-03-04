@@ -392,7 +392,7 @@ _I_: insert as item
       ("q" nil))))
 
   (leaf org-journal
-    :tag "builtin"
+    :url "https://github.com/bastibe/org-journal"
     :custom
     ((org-journal-dir . "~/org/journal/")
      (org-journal-file-format . "%Y-%m-%d.org"))
