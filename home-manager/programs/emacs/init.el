@@ -116,6 +116,17 @@
      (mule-keymap
       ("C-\\" . nil))))
 
+  (leaf battery
+    :tag "builtin"
+    :global-minor-mode display-battery-mode)
+
+  (leaf time
+    :tag "builtin"
+    :global-minor-mode display-time-mode
+    :custom
+    ((display-time-24hr-format . t)
+     (display-time-default-load-average . nil)))
+
   (leaf text-mode
     :tag "builtin"
     :custom
