@@ -542,7 +542,13 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
   :config
   (leaf doom-modeline
     :url "https://github.com/seagle0128/doom-modeline"
-    :global-minor-mode t)
+    :global-minor-mode t
+    :custom
+    ((doom-modeline-battery . t)
+     (doom-modeline-time . t))
+    :config
+    (leaf nerd-icons
+      :url "https://github.com/rainstormstudio/nerd-icons.el"))
 
   (leaf catppuccin-theme
     :url "https://github.com/catppuccin/emacs"
