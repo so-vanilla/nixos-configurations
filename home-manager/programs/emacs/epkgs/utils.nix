@@ -3,4 +3,5 @@
 }:
 with epkgs; [
   direnv
+  mistty
 ]
