@@ -290,7 +290,32 @@ _C-n_: down
     (add-to-list 'completion-at-point-functions #'cape-dabbrev)
     (add-to-list 'completion-at-point-functions #'cape-file)
     (add-to-list 'completion-at-point-functions #'cape-elisp-block)
-    (add-to-list 'completion-at-point-functions #'cape-elisp-symbol)))
+    (add-to-list 'completion-at-point-functions #'cape-elisp-symbol))
+
+  (leaf tempel
+    :url "https://github.com/minad/tempel"
+    :global-minor-mode global-tempel-abbrev-mode
+    :hook
+    ((prog-mode-hook . tempel-setup-capf)
+     (text-mode-hook . tempel-setup-capf)
+     (conf-mode-hook . tempel-setup-capf))
+    :custom
+    ((tempel-trigger-prefix . "<"))
+    :init
+    (defun tempel-setup-capf ()
+      (setq-local completion-at-point-functions
+                  (cons #'tempel-complete completion-at-point-functions)))
+    :bind
+    ((tempel-map
+      ("M-<down>" . nil)
+      ("M-<up>" . nil)
+      ("M-{" . nil)
+      ("M-}" . nil)
+      ("C-]" . tempel-next)
+      ("C-[" . tempel-previous)))
+    :config
+    (leaf tempel-collection
+      :url "https://github.com/Crandel/tempel-collection")))
 
 (leaf org
   :tag "builtin"
