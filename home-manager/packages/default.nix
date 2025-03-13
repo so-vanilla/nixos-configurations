@@ -4,6 +4,7 @@
 }:
 let
   frompkgs = with pkgs; [
+    bitwarden-cli
     brightnessctl
     cargo
     clang-tools
