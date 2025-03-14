@@ -86,14 +86,36 @@
 	    (back-to-indentation)
 	    (when (= orig-point (point))
 	      (move-beginning-of-line 1))))
+    (defun my-undo ()
+      (interactive)
+      (undo)
+      (hydra-undo/body))
+    (defun my-redo ()
+      (interactive)
+      (undo-redo)
+      (hydra-undo/body))
     :custom
     ((wl-copy-process . nil)
      (interprogram-cut-function . 'wl-copy)
      (interprogram-paste-function . 'wl-paste)
      (indent-tabs-mode . nil))
     :bind
-    (("C-x r" . undo-redo)
-     ("C-a" . my-move-beginning-of-line)))
+    (("C-x u" . my-undo)
+     ("C-x r" . my-redo)
+     ("C-a" . my-move-beginning-of-line))
+    :hydra
+    ((hydra-undo
+      (:hint nil)
+      "
+^Undo^
+^^-----------
+_u_: undo
+_r_: redo
+"
+      ("u" undo)
+      ("r" undo-redo)
+      ("C-m" nil :exit t)
+      ("q" nil :exit t))))
 
   (leaf faces
     :tag "builtin"
@@ -316,6 +338,14 @@ _C-n_: down
     :config
     (leaf tempel-collection
       :url "https://github.com/Crandel/tempel-collection")))
+
+(leaf *programming-assistant
+  :config
+  (leaf flymake
+    :tag "builtin"
+    :bind
+    (("M-n" . flymake-goto-next-error)
+     ("M-p" . flymake-goto-prev-error))))
 
 (leaf org
   :tag "builtin"
