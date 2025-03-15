@@ -9,7 +9,7 @@
 
   general = {
     gaps_in = 5;
-    gaps_out = 20;
+    gaps_out = 8;
     border_size = 2;
     "col.active_border" = "0xfff5c2e7";
     "col.inactive_border" = "0xff313244";
@@ -18,7 +18,7 @@
   };
 
   decoration = {
-    rounding = 10;
+    rounding = 8;
     blur = {
       enabled = true;
       size = 3;
