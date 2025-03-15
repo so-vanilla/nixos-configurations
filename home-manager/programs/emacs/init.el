@@ -185,7 +185,30 @@ _r_: redo
 
   (leaf puni
     :url "https://github.com/AmaiKinono/puni"
-    :global-minor-mode puni-global-mode))
+    :global-minor-mode puni-global-mode
+    :bind
+    ((puni-mode-map
+      ("M-C-d" . puni-backward-kill-word)
+      ("M-C-p" . hydra-puni/body)))
+    :hydra
+    ((hydra-puni
+      (:hint nil)
+      "
+^Delete^        ^Move^
+^^--------------^^-------------------
+_C-w_: squeeze  _]_: slurp-forward
+_s_: splice     _}_: barf-forward
+                _[_: slurp-backward
+                _{_: barf-backward}
+"
+      ("C-w" puni-squeeze)
+      ("s" puni-splice)
+      ("]" puni-slurp-forward)
+      ("}" puni-barf-forward)
+      ("[" puni-slurp-backward)
+      ("{" puni-barf-backward)
+      ("C-m" nil :exit t)
+      ("q" nil :exit t)))))
 
 (leaf *window
   :config
@@ -322,7 +345,7 @@ _C-n_: down
      (text-mode-hook . tempel-setup-capf)
      (conf-mode-hook . tempel-setup-capf))
     :custom
-    ((tempel-trigger-prefix . "<"))
+    ((tempel-trigger-prefix . ";"))
     :init
     (defun tempel-setup-capf ()
       (setq-local completion-at-point-functions
@@ -593,7 +616,8 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     ((prog-mode-hook . copilot-mode))
     :bind
     ((copilot-completion-map
-      ("<tab>" . copilot-accept-completion))))
+      ("<tab>" . copilot-accept-completion-by-word)
+      ("C-<tab>" . copilot-accept-completion-by-line))))
 
   (leaf copilot-chat
     :url "https://github.com/chep/copilot-chat.el"))
