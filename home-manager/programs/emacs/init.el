@@ -152,7 +152,12 @@ _r_: redo
   (leaf text-mode
     :tag "builtin"
     :custom
-    (text-mode-ispell-word-completion . nil)))
+    (text-mode-ispell-word-completion . nil))
+
+  (leaf help
+    :tag "builtin"
+    :bind
+    (("C-h K" . describe-keymap))))
 
 (leaf *cursor
   :config
