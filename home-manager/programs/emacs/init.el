@@ -689,4 +689,79 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :custom
     ((parrot-num-rotations . nil))))
 
+(leaf *originals
+  :config
+  (leaf *bw
+    :custom
+    ((bw-password . (getenv "BW_PASSWORD")))
+    :init
+    (defun bw--unlock (password)
+      "This function gets session key from bitwarden cli."
+      (if (string= password "")
+          (message "Password is empty")
+        (let* ((command (concat "bw unlock " password))
+               (output (shell-command-to-string command)))
+          (if (string= output "Invalid master password.")
+              (message "Password is invalid")
+            (let* ((lines (split-string output "\n"))
+                   (target-line (nth 3 lines))
+                   (words (split-string target-line "\""))
+                   (session-key (nth 1 words)))
+              session-key)))))
+
+    (defun bw-unlock ()
+      (interactive)
+      (cond ((boundp 'bw-session-key)
+             (message "Bitwarden is already unlocked"))
+            ((not(boundp 'bw-password))
+             (message "Password is not set"))
+            (t
+             (let ((session-key (bw--unlock bw-password)))
+               (if session-key
+                   (progn
+                     (setq bw-session-key session-key)
+                     (message "Bitwarden is unlocked")
+                     session-key)
+                 nil)))))
+
+    (defun bw--lock ()
+      (let ((command "bw lock"))
+        (shell-command-to-string command)))
+
+    (defun bw-lock ()
+      (interactive)
+      (progn
+        (bw--lock)
+        (message "Bitwarden is locked")
+        (makunbound 'bw-session-key)))
+
+    (defun bw--list-items (session-key)
+      "This function return json as a list frombitwarden cli."
+      (let* ((command (concat "bw list items --session " session-key))
+             (output (shell-command-to-string command)))
+        (json-read-from-string output)))
+
+    (defun bw--select-item (handler)
+      (if (not (boundp 'bw-session-key))
+          (message "Bitwarden is not unlocked")
+        (let* ((items (bw--list-items bw-session-key))
+               (item-names (mapcar (lambda (item) (cdr (assoc 'name item))) items))
+               (item-usernames (mapcar (lambda (item) (cdr (or (assoc 'username (assoc 'login item)) '(name . "")))) items))
+               (item-string (cl-mapcar (lambda (name username) (concat name " :: " username)) item-names item-usernames))
+               (item-alist (cl-mapcar (lambda (key item) (cons key item)) item-string items))
+               (selected (completing-read "Select item: " item-string))
+               (item (cdr (assoc selected item-alist)))
+               (p-or-u (completing-read "Password or Username: " '("password" "username")))
+               (value (cond ((string= p-or-u "password") (cdr (assoc 'password (assoc 'login item))))
+                            ((string= p-or-u "username") (cdr (assoc 'username (assoc 'login item)))))))
+          (funcall handler value))))
+
+    (defun bw-add-to-kill-ring ()
+      (interactive)
+      (bw--select-item 'kill-new))
+
+    (defun bw-yank ()
+      (interactive)
+      (bw--select-item 'insert))))
+
 (provide 'init)
