@@ -33,6 +33,7 @@
       flake = {
         nixosConfigurations = {
           chocolate = import ./hosts/ENVYx360-13 { inherit inputs; };
+          vanilla = import ./hosts/ThinkPadX13{ inherit inputs; };
         };
       };
     };
