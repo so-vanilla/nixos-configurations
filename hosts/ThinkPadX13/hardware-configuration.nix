@@ -45,4 +45,12 @@
       powerOnBoot = true;
     };
   };
+
+  services = {
+    blueman.enable = true;
+    thermald.enable = true;
+    tlp.enable = true;
+  };
+
+  powerManagement.enable = true;
 }
