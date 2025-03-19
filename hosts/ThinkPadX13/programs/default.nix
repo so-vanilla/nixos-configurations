@@ -2,7 +2,7 @@
 let
   hyprland = import ./hyprland;
   wireshark = import ./wireshark { inherit pkgs; };
-  steam = import ./steam;
+  steam = import ./steam { inherit pkgs; };
 in
 [
   hyprland

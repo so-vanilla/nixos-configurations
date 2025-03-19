@@ -1,3 +1,9 @@
 {
-  programs.steam.enable = true;
+  pkgs
+}:
+{
+  programs.steam = {
+    enable = true;
+    package = pkgs.steam;
+  };
 }
