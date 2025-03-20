@@ -621,8 +621,8 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     ((prog-mode-hook . copilot-mode))
     :bind
     ((copilot-completion-map
-      ("<tab>" . copilot-accept-completion-by-word)
-      ("C-<tab>" . copilot-accept-completion-by-line))))
+      ("<tab>" . copilot-accept-completion-by-line)
+      ("C-<tab>" . copilot-accept-completion-by-word))))
 
   (leaf copilot-chat
     :url "https://github.com/chep/copilot-chat.el"))
