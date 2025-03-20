@@ -762,4 +762,24 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
   (interactive)
   (bw--select-item 'insert))
 
+(defun playerctl-play ()
+  (interactive)
+  (shell-command "playerctl play"))
+
+(defun playerctl-pause ()
+  (interactive)
+  (shell-command "playerctl pause"))
+
+(defun playerctl-play-pause ()
+  (interactive)
+  (shell-command "playerctl play-pause"))
+
+(defun playerctl-next ()
+  (interactive)
+  (shell-command "playerctl next"))
+
+(defun playerctl-previous ()
+  (interactive)
+  (shell-command "playerctl previous"))
+
 (provide 'init)
