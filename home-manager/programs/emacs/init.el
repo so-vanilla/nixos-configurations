@@ -690,16 +690,18 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     ((parrot-num-rotations . nil))))
 
 ;; bitwarden
-(setq bw-password (getenv "BW_PASSWORD"))
-
 (defun bw--unlock (password)
   "This function gets session key from bitwarden cli."
   (if (string= password "")
-      (message "Password is empty")
+      (progn
+        (message "Password is empty")
+        nil)
     (let* ((command (concat "bw unlock " password))
            (output (shell-command-to-string command)))
       (if (string= output "Invalid master password.")
-          (message "Password is invalid")
+          (progn
+            (message "Password is invalid")
+            nil)
         (let* ((lines (split-string output "\n"))
                (target-line (nth 3 lines))
                (words (split-string target-line "\""))
@@ -708,18 +710,15 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
 (defun bw-unlock ()
   (interactive)
-  (cond ((boundp 'bw-session-key)
-         (message "Bitwarden is already unlocked"))
-        ((not(boundp 'bw-password))
-         (message "Password is not set"))
-        (t
-         (let ((session-key (bw--unlock bw-password)))
-           (if session-key
-               (progn
-                 (setq bw-session-key session-key)
-                 (message "Bitwarden is unlocked")
-                 session-key)
-             nil)))))
+  (if (boundp 'bw-session-key) (message "Bitwarden is already unlocked")
+    (let* ((password (read-passwd "Password: "))
+           (session-key (bw--unlock password)))
+      (if session-key
+          (progn
+            (setq bw-session-key session-key)
+            (message "Bitwarden is unlocked")
+            session-key)
+        nil))))
 
 (defun bw--lock ()
   (let ((command "bw lock"))
@@ -740,7 +739,9 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
 (defun bw--select-item (handler)
   (if (not (boundp 'bw-session-key))
-      (message "Bitwarden is not unlocked")
+      (progn
+        (message "Bitwarden is not unlocked")
+        nil)
     (let* ((items (bw--list-items bw-session-key))
            (item-names (mapcar (lambda (item) (cdr (assoc 'name item))) items))
            (item-usernames (mapcar (lambda (item) (cdr (or (assoc 'username (assoc 'login item)) '(name . "")))) items))
