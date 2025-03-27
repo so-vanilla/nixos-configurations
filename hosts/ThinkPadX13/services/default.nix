@@ -5,7 +5,6 @@ let
   xserver = ./xserver;
   pipewire = ./pipewire;
   displayManager = ./displayManager;
-  firefly-iii = ./firefly-iii;
 in
 [
   ssh
@@ -14,5 +13,4 @@ in
   xserver
   pipewire
   displayManager
-  firefly-iii
 ]
