@@ -27,12 +27,14 @@
   :config
   (leaf emacs
     :tag "builtin"
+    :hook
+    ((prog-mode-hook . (lambda ()
+                         (setq-local show-trailing-whitespace t))))
     :custom
     ((frame-title-format . '("%b"))
      (ring-bell-function . 'ignore)
      (use-file-dialog . nil)
      (use-short-answers . t)
-     (show-trailing-whitespace . t)
      (create-lockfiles . nil)
      (tab-width . 4)))
 
