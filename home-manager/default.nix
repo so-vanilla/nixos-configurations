@@ -33,7 +33,7 @@ let
 in
 {
   nixpkgs.config.allowUnfree = true;
-  
+
   home = {
     username = username;
     homeDirectory = "/home/${username}";
