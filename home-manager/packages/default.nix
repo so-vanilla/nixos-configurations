@@ -36,7 +36,6 @@ let
     nodejs_22
     playerctl
     pyright
-    python3
     rust-analyzer
     rustc
     rustfmt
@@ -56,9 +55,14 @@ gimp
   zen-browser = [
     zen-browser-pkg
   ];
+  python-env = pkgs.python3.withPackages (ps: with ps; [
+    numpy
+    pandas
+    matplotlib
+  ]);
 in
 [
   {
-    home.packages = frompkgs ++ zen-browser;
+    home.packages = frompkgs ++ zen-browser ++ python-env;
   }
 ]
