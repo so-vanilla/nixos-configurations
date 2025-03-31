@@ -78,6 +78,10 @@
     force_default_wallpaper = -1;
   };
 
+  xwayland = {
+    force_zero_scaling = true;
+  };
+
   monitor = [
     "Unknown-1,disable"
   ];
@@ -110,7 +114,7 @@
     ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
 
     "$mod SHIFT, Q, exit, "
-    "$mod SHIFT, Delete, exec, hyprlock"
+    "$mod SHIFT, Delete, exec, hyprlock & systemctl suspend"
     "$mod, C, killactive, "
     "$mod, V, togglefloating, "
     "$mod, T, togglesplit,"
