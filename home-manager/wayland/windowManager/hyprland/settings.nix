@@ -99,7 +99,6 @@
     "hyprpaper"
     "wl-paste --type text --watch cliphist store"
     "wl-paste --type image --watch cliphist store"
-    "~/.config/hypr/scripts/rsync_automount.sh"
   ];
 
   bind = [
@@ -163,9 +162,6 @@
     # scratch pad
     "$mod, O, togglespecialworkspace"
     "$mod SHIFT, O, movetoworkspace, special"
-
-    # "$mod, I, exec, XMODIFIERS=@im=~/repos/github.com/SOmura-KIT/dotfiles/home/desktop/scripts/vime.sh"
-    "$mod, I, exec, ~/.config/hypr/scripts/vime.sh"
   ];
 
   bindm = [
