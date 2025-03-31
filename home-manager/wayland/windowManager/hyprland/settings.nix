@@ -84,10 +84,9 @@
 
   windowrulev2 = "opacity 0.7 0.7,class:^(org.wezfurlong.wezterm)$";
   windowrule = [
-    "float,^(vime)$"
-    "workspace 3, thunderbird"
-    "workspace 4, Slack"
-    "workspace 5, discord"
+    "workspace 3, class:thunderbird"
+    "workspace 4, class:Slack"
+    "workspace 5, class:discord"
   ];
 
   exec-once = [
