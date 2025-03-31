@@ -42,7 +42,7 @@ in
 
   imports =
     [
-      catppuccin.homeManagerModules.catppuccin
+      catppuccin.homeModules.catppuccin
     ]
     ++ programs
     ++ services
