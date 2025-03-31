@@ -11,6 +11,7 @@
     interactiveShellInit = ''
       set fish_greeting
       set pure_enable_nixdevshell true
+      set -x PYTHON_HOME $(python3 -c 'import sys; print(sys.prefix, end="")')
       source ~/.config/fish/general.fish
       source ~/.config/fish/links.fish
     '';

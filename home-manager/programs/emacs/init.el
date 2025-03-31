@@ -784,4 +784,9 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
   (interactive)
   (shell-command "playerctl previous"))
 
+(defun libpython-init ()
+  (interactive)
+  (let ((python-home (shell-command-to-string "python -c 'import sys; print(sys.prefix, end=\"\")'")))
+    (insert (format "(initialize! :python-home \"%s\")" python-home))))
+
 (provide 'init)
