@@ -41,6 +41,7 @@ let
     rustc
     rustfmt
     slack
+    soundwireserver
     texlab
     texliveFull
     thunderbird
