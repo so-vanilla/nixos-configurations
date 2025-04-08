@@ -1,0 +1,60 @@
+status	key	command
+Composition	Backspace	Backspace
+Composition	Ctrl h	Backspace
+Precomposition	Backspace	Backspace
+Precomposition	Ctrl h	Backspace
+Composition	Delete	Delete
+Composition	Ctrl d	Delete
+Precomposition	Delete	Delete
+Precomposition	Ctrl d	Delete
+Composition	Ctrl f	MoveCursorRight
+Composition	Ctrl b	MoveCursorLeft
+Composition	Ctrl e	MoveCursorToEnd
+Composition	Ctrl a	MoveCursorToBeginning
+Precomposition	Ctrl f	MoveCursorRight
+Precomposition	Ctrl b	MoveCursorLeft
+Precomposition	Ctrl e	MoveCursorToEnd
+Precomposition	Ctrl a	MoveCursorToBeginning
+Conversion	Ctrl n	ConvertNext
+Conversion	Ctrl p	ConvertPrev
+Conversion	Enter	Commit
+Conversion	Ctrl m	Commit
+Conversion	Ctrl j	Commit
+Composition	Space	Convert
+Composition	Ctrl g	Cancel
+Conversion	Ctrl g	Cancel
+Composition	F8	ConvertToHalfKatakana
+Composition	F7	ConvertToFullKatakana
+Conversion	F7	ConvertToFullKatakana
+Conversion	F8	ConvertToHalfKatakana
+Composition	Enter	Commit
+Composition	Ctrl m	Commit
+Composition	Ctrl j	Commit
+Conversion	Space	ConvertNext
+Conversion	Ctrl f	SegmentFocusRight
+Conversion	Ctrl b	SegmentFocusLeft
+Precomposition	Space	InsertHalfSpace
+Precomposition	Shift Space	InsertFullSpace
+Composition	Ctrl q	ConvertToFullKatakana
+Conversion	Ctrl q	ConvertToFullKatakana
+Composition	Ctrl Shift q	ConvertToHalfKatakana
+Conversion	Ctrl Shift q	ConvertToHalfKatakana
+Conversion	Ctrl v	ConvertNextPage
+Conversion	Ctrl Shift v	ConvertPrevPage
+Conversion	Ctrl ]	SegmentWidthExpand
+Conversion	Ctrl [	SegmentWidthShrink
+Composition	ASCII	InsertCharacter
+Composition	Kanji	IMEOff
+Composition	OFF	IMEOff
+Composition	ON	IMEOn
+Conversion	F1	ReportBug
+Conversion	F3	ReportBug
+Conversion	Kanji	IMEOff
+Conversion	OFF	IMEOff
+Conversion	ON	IMEOn
+DirectInput	Kanji	IMEOn
+DirectInput	ON	IMEOn
+Precomposition	ASCII	InsertCharacter
+Precomposition	Kanji	IMEOff
+Precomposition	OFF	IMEOff
+Precomposition	ON	IMEOn
