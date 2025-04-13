@@ -12,6 +12,7 @@
     (if (member current-host private-hosts)
         t
       nil)))
+(defvar is-work-host (not is-private-host))
 
 (use-package leaf)
 
@@ -170,46 +171,62 @@ _r_: redo
 
 (leaf *cursor
   :config
-  (leaf isearch
-    :tag "builtin"
-    :custom
-    ((isearch-allow-scroll . t)))
+  (if is-private-host
+      ;; private
+      (progn
+        (leaf isearch
+          :tag "builtin"
+          :custom
+          ((isearch-allow-scroll . t)))
 
-  (leaf avy
-    :url "https://github.com/abo-abo/avy"
-    :ensure (not is-private-host)
-    :bind
-    (("C-;" . avy-goto-char-timer))))
+        (leaf avy
+          :url "https://github.com/abo-abo/avy"
+          :bind
+          (("C-;" . avy-goto-char-timer))))
+    ;; work
+    (progn
+        (leaf isearch
+          :tag "builtin"
+          :custom
+          ((isearch-allow-scroll . t)))
+
+        (leaf avy
+          :url "https://github.com/abo-abo/avy"
+          :ensure t
+          :bind
+          (("C-;" . avy-goto-char-timer))))))
 
 (leaf *pair
   :config
-  (leaf elec-pair
-    :tag "builtin"
-    :global-minor-mode electric-pair-mode
-    :hook
-    ((minibuffer-mode-hook . (lambda ()
-				               (if (not (eq this-command 'eval-expression))
-					               (electric-pair-local-mode 0)
-				                 nil)))))
+  (if is-private-host
+      ;; private
+      (progn
+        (leaf elec-pair
+          :tag "builtin"
+          :global-minor-mode electric-pair-mode
+          :hook
+          ((minibuffer-mode-hook . (lambda ()
+				                     (if (not (eq this-command 'eval-expression))
+					                     (electric-pair-local-mode 0)
+				                       nil)))))
 
-  (leaf paren
-    :tag "builtin"
-    :global-minor-mode show-paren-mode
-    :custom
-    (show-paren-style 'mixed))
+        (leaf paren
+          :tag "builtin"
+          :global-minor-mode show-paren-mode
+          :custom
+          (show-paren-style 'mixed))
 
-  (leaf puni
-    :url "https://github.com/AmaiKinono/puni"
-    :ensure (not is-private-host)
-    :global-minor-mode puni-global-mode
-    :bind
-    ((puni-mode-map
-      ("M-C-d" . puni-backward-kill-word)
-      ("M-C-p" . hydra-puni/body)))
-    :hydra
-    ((hydra-puni
-      (:hint nil)
-      "
+        (leaf puni
+          :url "https://github.com/AmaiKinono/puni"
+          :global-minor-mode puni-global-mode
+          :bind
+          ((puni-mode-map
+            ("M-C-d" . puni-backward-kill-word)
+            ("M-C-p" . hydra-puni/body)))
+          :hydra
+          ((hydra-puni
+            (:hint nil)
+            "
 ^Delete^        ^Move^
 ^^--------------^^-------------------
 _C-w_: squeeze  _]_: slurp-forward
@@ -217,14 +234,58 @@ _s_: splice     _}_: barf-forward
                 _[_: slurp-backward
                 _{_: barf-backward}
 "
-      ("C-w" puni-squeeze)
-      ("s" puni-splice)
-      ("]" puni-slurp-forward)
-      ("}" puni-barf-forward)
-      ("[" puni-slurp-backward)
-      ("{" puni-barf-backward)
-      ("C-m" nil :exit t)
-      ("q" nil :exit t)))))
+            ("C-w" puni-squeeze)
+            ("s" puni-splice)
+            ("]" puni-slurp-forward)
+            ("}" puni-barf-forward)
+            ("[" puni-slurp-backward)
+            ("{" puni-barf-backward)
+            ("C-m" nil :exit t)
+            ("q" nil :exit t)))))
+    ;; work
+    (progn
+        (leaf elec-pair
+          :tag "builtin"
+          :global-minor-mode electric-pair-mode
+          :hook
+          ((minibuffer-mode-hook . (lambda ()
+				                     (if (not (eq this-command 'eval-expression))
+					                     (electric-pair-local-mode 0)
+				                       nil)))))
+
+        (leaf paren
+          :tag "builtin"
+          :global-minor-mode show-paren-mode
+          :custom
+          (show-paren-style 'mixed))
+
+        (leaf puni
+          :url "https://github.com/AmaiKinono/puni"
+          :ensure t
+          :global-minor-mode puni-global-mode
+          :bind
+          ((puni-mode-map
+            ("M-C-d" . puni-backward-kill-word)
+            ("M-C-p" . hydra-puni/body)))
+          :hydra
+          ((hydra-puni
+            (:hint nil)
+            "
+^Delete^        ^Move^
+^^--------------^^-------------------
+_C-w_: squeeze  _]_: slurp-forward
+_s_: splice     _}_: barf-forward
+                _[_: slurp-backward
+                _{_: barf-backward}
+"
+            ("C-w" puni-squeeze)
+            ("s" puni-splice)
+            ("]" puni-slurp-forward)
+            ("}" puni-barf-forward)
+            ("[" puni-slurp-backward)
+            ("{" puni-barf-backward)
+            ("C-m" nil :exit t)
+            ("q" nil :exit t)))))))
 
 (leaf *window
   :config
@@ -252,51 +313,93 @@ _C-n_: down
 
 (leaf *vcs
   :config
-  (leaf magit
-    :url "https://github.com/magit/magit"
-    :ensure (not is-private-host)))
+  (if is-private-host
+      (leaf magit
+        :url "https://github.com/magit/magit")
+    (leaf magit
+        :url "https://github.com/magit/magit"
+        :ensure t)))
 
 (leaf *minibuffer
   :config
-  (leaf vertico
-    :url "https://github.com/minad/vertico"
-    :ensure (not is-private-host)
-    :global-minor-mode t)
+  (if is-private-host
+      ;; private
+      (progn
+        (leaf vertico
+          :url "https://github.com/minad/vertico"
+          :global-minor-mode t)
 
-  (leaf orderless
-    :url "https://github.com/oantolin/orderless"
-    :ensure (not is-private-host)
-    :custom
-    ((completion-styles . '(orderless basic))
-     (completion-category-overrides . '((file (style basic partial-completion))))
-     (orderless-matching-styles . '(orderless-literal
-				                    orderless-prefixes
-				                    orderless-initialism
-				                    orderless-regexp))))
+        (leaf orderless
+          :url "https://github.com/oantolin/orderless"
+          :custom
+          ((completion-styles . '(orderless basic))
+           (completion-category-overrides . '((file (style basic partial-completion))))
+           (orderless-matching-styles . '(orderless-literal
+				                          orderless-prefixes
+				                          orderless-initialism
+				                          orderless-regexp))))
 
-  (leaf marginalia
-    :url "https://github.com/minad/marginalia"
-    :ensure (not is-private-host)
-    :global-minor-mode t)
+        (leaf marginalia
+          :url "https://github.com/minad/marginalia"
+          :global-minor-mode t)
 
-  (leaf consult
-    :url "https://github.com/minad/consult"
-    :ensure (not is-private-host)
-    :bind
-    (([remap switch-to-buffer] . consult-buffer)
-     ([remap imenu] . consult-imenu)
-     ([remap goto-line] . consult-goto-line)
-     ("C-s". consult-line)
-     (minibuffer-mode-map
-      ("C-r" . consult-history))))
+        (leaf consult
+          :url "https://github.com/minad/consult"
+          :bind
+          (([remap switch-to-buffer] . consult-buffer)
+           ([remap imenu] . consult-imenu)
+           ([remap goto-line] . consult-goto-line)
+           ("C-s". consult-line)
+           (minibuffer-mode-map
+            ("C-r" . consult-history))))
 
-  (leaf embark-consult
-    :url "https://github.com/oantolin/embark"
-    :ensure (not is-private-host)
-    :bind
-    ((minibuffer-mode-map
-      ("M-." . embark-dwin)
-      ("C-." . embark-act)))))
+        (leaf embark-consult
+          :url "https://github.com/oantolin/embark"
+          :bind
+          ((minibuffer-mode-map
+            ("M-." . embark-dwin)
+            ("C-." . embark-act)))))
+    ;; work
+    (progn
+        (leaf vertico
+          :url "https://github.com/minad/vertico"
+          :ensure t
+          :global-minor-mode t)
+
+        (leaf orderless
+          :url "https://github.com/oantolin/orderless"
+          :ensure t
+          :custom
+          ((completion-styles . '(orderless basic))
+           (completion-category-overrides . '((file (style basic partial-completion))))
+           (orderless-matching-styles . '(orderless-literal
+				                          orderless-prefixes
+				                          orderless-initialism
+				                          orderless-regexp))))
+
+        (leaf marginalia
+          :url "https://github.com/minad/marginalia"
+          :ensure true
+          :global-minor-mode t)
+
+        (leaf consult
+          :url "https://github.com/minad/consult"
+          :ensure t
+          :bind
+          (([remap switch-to-buffer] . consult-buffer)
+           ([remap imenu] . consult-imenu)
+           ([remap goto-line] . consult-goto-line)
+           ("C-s". consult-line)
+           (minibuffer-mode-map
+            ("C-r" . consult-history))))
+
+        (leaf embark-consult
+          :url "https://github.com/oantolin/embark"
+          :ensure t
+          :bind
+          ((minibuffer-mode-map
+            ("M-." . embark-dwin)
+            ("C-." . embark-act)))))))
 
 (leaf eglot
   :tag "builtin"
@@ -314,78 +417,152 @@ _C-n_: down
 
 (leaf *inline-completion
   :config
-  (leaf corfu
-    :url "https://github.com/minad/corfu"
-    :ensure (not is-private-host)
-    :global-minor-mode global-corfu-mode
-    :init
-    (eval-after-load 'corfu
-    '(setq corfu-mode-map nil))
-    :custom
-    ((corfu-auto . t)
-     (corfu-auto-delay . 0)
-     (corfu-auto-prefix . 1))
-    :bind
-    ((corfu-map
-      ("C-g" . corfu-quit)
-      ("C-i" . corfu-complete)
-      ("C-n" . corfu-next)
-      ("C-p" . corfu-previous)
-      ("<tab>" . nil)
-      ("RET" . nil)
-      ("<down>" . nil)
-      ("<up>" . nil)
-      ("C-M-i" . nil)
-      ("M-SPC" . nil)
-      ("M-g" . nil)
-      ("M-h" . nil)
-      ("M-n" . nil)
-      ("M-p" . nil)
-      ("[remap beginning-of-buffer]" . nil)
-      ("[remap completion-at-point]" . nil)
-      ("[remap end-of-buffer]" . nil)
-      ("[remap keyboard-escape-quit]" . nil)
-      ("[remap move-beginning-of-line]" . nil)
-      ("[remap move-end-of-line]" . nil)
-      ("[remap next-line]" . nil)
-      ("[remap previous-line]" . nil)
-      ("[remap scroll-down-command]" . nil)
-      ("[remap scroll-up-command]" . nil))))
+  (if is-private-host
+      ;; private
+      (progn
+        (leaf corfu
+          :url "https://github.com/minad/corfu"
+          :global-minor-mode global-corfu-mode
+          :init
+          (eval-after-load 'corfu
+            '(setq corfu-mode-map nil))
+          :custom
+          ((corfu-auto . t)
+           (corfu-auto-delay . 0)
+           (corfu-auto-prefix . 1))
+          :bind
+          ((corfu-map
+            ("C-g" . corfu-quit)
+            ("C-i" . corfu-complete)
+            ("C-n" . corfu-next)
+            ("C-p" . corfu-previous)
+            ("<tab>" . nil)
+            ("RET" . nil)
+            ("<down>" . nil)
+            ("<up>" . nil)
+            ("C-M-i" . nil)
+            ("M-SPC" . nil)
+            ("M-g" . nil)
+            ("M-h" . nil)
+            ("M-n" . nil)
+            ("M-p" . nil)
+            ("[remap beginning-of-buffer]" . nil)
+            ("[remap completion-at-point]" . nil)
+            ("[remap end-of-buffer]" . nil)
+            ("[remap keyboard-escape-quit]" . nil)
+            ("[remap move-beginning-of-line]" . nil)
+            ("[remap move-end-of-line]" . nil)
+            ("[remap next-line]" . nil)
+            ("[remap previous-line]" . nil)
+            ("[remap scroll-down-command]" . nil)
+            ("[remap scroll-up-command]" . nil))))
 
-  (leaf cape
-    :url "https://github.com/minad/cape"
-    :ensure (not is-private-host)
-    :config
-    (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-    (add-to-list 'completion-at-point-functions #'cape-file)
-    (add-to-list 'completion-at-point-functions #'cape-elisp-block)
-    (add-to-list 'completion-at-point-functions #'cape-elisp-symbol))
+        (leaf cape
+          :url "https://github.com/minad/cape"
+          :config
+          (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+          (add-to-list 'completion-at-point-functions #'cape-file)
+          (add-to-list 'completion-at-point-functions #'cape-elisp-block)
+          (add-to-list 'completion-at-point-functions #'cape-elisp-symbol))
 
-  (leaf tempel
-    :url "https://github.com/minad/tempel"
-    :ensure (not is-private-host)
-    :global-minor-mode global-tempel-abbrev-mode
-    :hook
-    ((prog-mode-hook . tempel-setup-capf)
-     (text-mode-hook . tempel-setup-capf)
-     (conf-mode-hook . tempel-setup-capf))
-    :custom
-    ((tempel-trigger-prefix . ";"))
-    :init
-    (defun tempel-setup-capf ()
-      (setq-local completion-at-point-functions
-                  (cons #'tempel-complete completion-at-point-functions)))
-    :bind
-    ((tempel-map
-      ("M-<down>" . nil)
-      ("M-<up>" . nil)
-      ("M-{" . nil)
-      ("M-}" . nil)
-      ("C-]" . tempel-next)
-      ("C-[" . tempel-previous)))
-    :config
-    (leaf tempel-collection
-      :url "https://github.com/Crandel/tempel-collection")))
+        (leaf tempel
+          :url "https://github.com/minad/tempel"
+          :global-minor-mode global-tempel-abbrev-mode
+          :hook
+          ((prog-mode-hook . tempel-setup-capf)
+           (text-mode-hook . tempel-setup-capf)
+           (conf-mode-hook . tempel-setup-capf))
+          :custom
+          ((tempel-trigger-prefix . ";"))
+          :init
+          (defun tempel-setup-capf ()
+            (setq-local completion-at-point-functions
+                        (cons #'tempel-complete completion-at-point-functions)))
+          :bind
+          ((tempel-map
+            ("M-<down>" . nil)
+            ("M-<up>" . nil)
+            ("M-{" . nil)
+            ("M-}" . nil)
+            ("C-]" . tempel-next)
+            ("C-[" . tempel-previous)))
+          :config
+          (leaf tempel-collection
+            :url "https://github.com/Crandel/tempel-collection")))
+    ;; work
+    (progn
+        (leaf corfu
+          :url "https://github.com/minad/corfu"
+          :ensure t
+          :global-minor-mode global-corfu-mode
+          :init
+          (eval-after-load 'corfu
+            '(setq corfu-mode-map nil))
+          :custom
+          ((corfu-auto . t)
+           (corfu-auto-delay . 0)
+           (corfu-auto-prefix . 1))
+          :bind
+          ((corfu-map
+            ("C-g" . corfu-quit)
+            ("C-i" . corfu-complete)
+            ("C-n" . corfu-next)
+            ("C-p" . corfu-previous)
+            ("<tab>" . nil)
+            ("RET" . nil)
+            ("<down>" . nil)
+            ("<up>" . nil)
+            ("C-M-i" . nil)
+            ("M-SPC" . nil)
+            ("M-g" . nil)
+            ("M-h" . nil)
+            ("M-n" . nil)
+            ("M-p" . nil)
+            ("[remap beginning-of-buffer]" . nil)
+            ("[remap completion-at-point]" . nil)
+            ("[remap end-of-buffer]" . nil)
+            ("[remap keyboard-escape-quit]" . nil)
+            ("[remap move-beginning-of-line]" . nil)
+            ("[remap move-end-of-line]" . nil)
+            ("[remap next-line]" . nil)
+            ("[remap previous-line]" . nil)
+            ("[remap scroll-down-command]" . nil)
+            ("[remap scroll-up-command]" . nil))))
+
+        (leaf cape
+          :url "https://github.com/minad/cape"
+          :ensure t
+          :config
+          (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+          (add-to-list 'completion-at-point-functions #'cape-file)
+          (add-to-list 'completion-at-point-functions #'cape-elisp-block)
+          (add-to-list 'completion-at-point-functions #'cape-elisp-symbol))
+
+        (leaf tempel
+          :url "https://github.com/minad/tempel"
+          :ensure t
+          :global-minor-mode global-tempel-abbrev-mode
+          :hook
+          ((prog-mode-hook . tempel-setup-capf)
+           (text-mode-hook . tempel-setup-capf)
+           (conf-mode-hook . tempel-setup-capf))
+          :custom
+          ((tempel-trigger-prefix . ";"))
+          :init
+          (defun tempel-setup-capf ()
+            (setq-local completion-at-point-functions
+                        (cons #'tempel-complete completion-at-point-functions)))
+          :bind
+          ((tempel-map
+            ("M-<down>" . nil)
+            ("M-<up>" . nil)
+            ("M-{" . nil)
+            ("M-}" . nil)
+            ("C-]" . tempel-next)
+            ("C-[" . tempel-previous)))
+          :config
+          (leaf tempel-collection
+            :url "https://github.com/Crandel/tempel-collection")))))
 
 (leaf *programming-assistant
   :config
@@ -449,50 +626,52 @@ _r_: row(table)
     ("C-m" nil :exit t)
     ("q" nil :exit t)))
   :config
-  (leaf org-agenda
-    :tag "builtin"
-    :custom
-    ((org-agenda-files . '("~/org/todo.org" "~/org/schedule.org"))
-     (org-agenda-span . 'day)
-     (org-agenda-skip-deadline-if-done . nil)
-     (org-agenda-skip-schedule-if-done . nil)
-     (org-agenda-skip-deadline-prewarning-if-scheduled . nil)))
+  (if is-private-host
+      ;; private
+      (progn
+        (leaf org-agenda
+          :tag "builtin"
+          :custom
+          ((org-agenda-files . '("~/org/todo.org" "~/org/schedule.org"))
+           (org-agenda-span . 'day)
+           (org-agenda-skip-deadline-if-done . nil)
+           (org-agenda-skip-schedule-if-done . nil)
+           (org-agenda-skip-deadline-prewarning-if-scheduled . nil)))
 
-  (leaf org-super-agenda
-    :url "https://github.com/alphapapa/org-super-agenda"
-    :ensure (not is-private-host)
-    :global-minor-mode t
-    :custom
-    ((org-super-agenda-groups .
-      '((:name "Schedule"
-               :file-path "~/org/schedule.org"
-               :time-grid t)
-        (:name "Work"
-               :tag "work")
-        (:name "Project"
-               :tag "project")
-        (:name "Search"
-               :file-path "~/org/todo.org")
-        (:name "Emacs"
-               :tag "emacs")
-        (:name "Linux"
-               :tag "linux")))))
+        (leaf org-super-agenda
+          :url "https://github.com/alphapapa/org-super-agenda"
+          :global-minor-mode t
+          :custom
+          ((org-super-agenda-groups .
+                                    '((:name "Schedule"
+                                             :file-path "~/org/schedule.org"
+                                             :time-grid t)
+                                      (:name "Work"
+                                             :tag "work")
+                                      (:name "Project"
+                                             :tag "project")
+                                      (:name "Search"
+                                             :file-path "~/org/todo.org")
+                                      (:name "Emacs"
+                                             :tag "emacs")
+                                      (:name "Linux"
+                                             :tag "linux")))))
 
-  (leaf org-capture
-    :tag "builtin"
-    :custom
-    (org-capture-templates .
-     '(("t" "Todo" entry (file "~/org/todo.org")
-        "* TODO %?\n")
-       ("s" "Schedule" entry (file "~/org/schedule.org")
-        "* %?\n"))))
+        (leaf org-capture
+          :tag "builtin"
+          :custom
+          (org-capture-templates .
+                                 '(("t" "Todo" entry (file "~/org/todo.org")
+                                    "* TODO %?\n")
+                                   ("s" "Schedule" entry (file "~/org/schedule.org")
+                                    "* %?\n"))))
 
-  (leaf org-timer
-    :tag "builtin"
-    :hydra
-    ((hydra-org-timer
-      (:hint nil :exit t)
-      "
+        (leaf org-timer
+          :tag "builtin"
+          :hydra
+          ((hydra-org-timer
+            (:hint nil :exit t)
+            "
 ^Command^
 ^^--------------------
 _b_: start
@@ -502,25 +681,24 @@ _p_: pause
 _i_: insert
 _I_: insert as item
 "
-      ("b" org-timer-start)
-      ("B" org-timer-set-timer)
-      ("e" org-timer-stop)
-      ("p" org-timer-pause-or-continue)
-      ("i" org-timer)
-      ("I" org-timer-item)
-      ("C-m" nil)
-      ("q" nil))))
+            ("b" org-timer-start)
+            ("B" org-timer-set-timer)
+            ("e" org-timer-stop)
+            ("p" org-timer-pause-or-continue)
+            ("i" org-timer)
+            ("I" org-timer-item)
+            ("C-m" nil)
+            ("q" nil))))
 
-  (leaf org-journal
-    :url "https://github.com/bastibe/org-journal"
-    :ensure (not is-private-host)
-    :custom
-    ((org-journal-dir . "~/org/journal/")
-     (org-journal-file-format . "%Y-%m-%d.org"))
-    :hydra
-    ((hydra-org-journal
-      (:hint nil :exit t)
-      "
+        (leaf org-journal
+          :url "https://github.com/bastibe/org-journal"
+          :custom
+          ((org-journal-dir . "~/org/journal/")
+           (org-journal-file-format . "%Y-%m-%d.org"))
+          :hydra
+          ((hydra-org-journal
+            (:hint nil :exit t)
+            "
 ^Open^          ^Search^
 ^^^^-----------------------------------
 _t_: today      _s_: search(calendar)
@@ -529,27 +707,26 @@ _n_: new entry  _S_: search(all)
 ^ ^             _m_: calendar month
 ^ ^             _w_: calendar week
 "
-      ("t" org-journal-open-current-journal-file)
-      ("n" org-journal-new-entry)
-      ("s" org-journal-search)
-      ("S" org-journal-search-forever)
-      ("y" org-journal-search-calendar-year)
-      ("m" org-journal-search-calendar-month)
-      ("w" org-journal-search-calendar-week)
-      ("C-m" nil)
-      ("q" nil))))
+            ("t" org-journal-open-current-journal-file)
+            ("n" org-journal-new-entry)
+            ("s" org-journal-search)
+            ("S" org-journal-search-forever)
+            ("y" org-journal-search-calendar-year)
+            ("m" org-journal-search-calendar-month)
+            ("w" org-journal-search-calendar-week)
+            ("C-m" nil)
+            ("q" nil))))
 
-  (leaf org-roam
-    :url "https://github.com/org-roam/org-roam"
-    :ensure (not is-private-host)
-    :custom
-    `((org-roam-directory . ,(file-truename "~/org/org-roam")))
-    :config
-    (org-roam-db-autosync-mode)
-    :hydra
-    ((hydra-org-roam
-      (:hint nil :exit t)
-      "
+        (leaf org-roam
+          :url "https://github.com/org-roam/org-roam"
+          :custom
+          `((org-roam-directory . ,(file-truename "~/org/org-roam")))
+          :config
+          (org-roam-db-autosync-mode)
+          :hydra
+          ((hydra-org-roam
+            (:hint nil :exit t)
+            "
 ^Node^       ^Dailies^                                     ^Other^
 ^^^^^^--------------------------------------------------------------
 _f_: find    _t_: today(goto)     _y_: yesterday(goto)     _s_: sync
@@ -557,179 +734,368 @@ _i_: insert  _T_: today(capture)  _Y_: yesterday(capture)  _g_: graph
 _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 ^ ^          _D_: date(capture)   _N_: tomorrow(capture)
 "
-      ("f" org-roam-node-find)
-      ("i" org-roam-node-insert)
-      ("r" org-roam-node-random)
-      ("t" org-roam-dailies-goto-today)
-      ("T" org-roam-dailies-capture-today)
-      ("d" org-roam-dailies-goto-date)
-      ("D" org-roam-dailies-capture-date)
-      ("y" org-roam-dailies-goto-yesterday)
-      ("Y" org-roam-dailies-capture-yesterday)
-      ("n" org-roam-dailies-goto-tomorrow)
-      ("N" org-roam-dailies-capture-tomorrow)
-      ("s" org-roam-db-sync)
-      ("g" org-roam-graph)
-      ("q" nil))))
+            ("f" org-roam-node-find)
+            ("i" org-roam-node-insert)
+            ("r" org-roam-node-random)
+            ("t" org-roam-dailies-goto-today)
+            ("T" org-roam-dailies-capture-today)
+            ("d" org-roam-dailies-goto-date)
+            ("D" org-roam-dailies-capture-date)
+            ("y" org-roam-dailies-goto-yesterday)
+            ("Y" org-roam-dailies-capture-yesterday)
+            ("n" org-roam-dailies-goto-tomorrow)
+            ("N" org-roam-dailies-capture-tomorrow)
+            ("s" org-roam-db-sync)
+            ("g" org-roam-graph)
+            ("q" nil))))
 
-  (leaf org-caldav
-    :url "https://github.com/dengste/org-caldav"
-    :if is-private-host
-    :custom
-    `((org-caldav-calendars .
-                            '((:calendar-id "67B2-67412200-1A7-7F1B4200" :files ("~/org/todo.org")
-		                                    :inbox "~/org/todo.org")
-                              (:calendar-id "11D3-67412200-21D-48611280" :files ("~/org/schedule.org")
-		                                    :inbox "~/org/schedule.org")))
-      (org-caldav-url . ,(getenv "CALDAV_LINK"))
-      (org-icalendar-timezone . "Asia/Tokyo")
-      (org-icalendar-include-todo . 'all)
-      (org-caldav-sync-todo . t)))
+        (leaf org-caldav
+          :url "https://github.com/dengste/org-caldav"
+          :custom
+          `((org-caldav-calendars .
+                                  '((:calendar-id "67B2-67412200-1A7-7F1B4200" :files ("~/org/todo.org")
+		                                          :inbox "~/org/todo.org")
+                                    (:calendar-id "11D3-67412200-21D-48611280" :files ("~/org/schedule.org")
+		                                          :inbox "~/org/schedule.org")))
+            (org-caldav-url . ,(getenv "CALDAV_LINK"))
+            (org-icalendar-timezone . "Asia/Tokyo")
+            (org-icalendar-include-todo . 'all)
+            (org-caldav-sync-todo . t)))
 
-  (leaf org-ai
-    :url "https://github.com/rksm/org-ai"
-    :if is-private-host
-    :global-minor-mode org-ai-global-mode
-    :custom
-    `((org-ai-openai-api-token . ,(getenv "ORG_AI_KEY"))
-      (org-ai-default-chat-model . "gpt-4o"))))
+        (leaf org-ai
+          :url "https://github.com/rksm/org-ai"
+          :global-minor-mode org-ai-global-mode
+          :custom
+          `((org-ai-openai-api-token . ,(getenv "ORG_AI_KEY"))
+            (org-ai-default-chat-model . "gpt-4o"))))
+    ;; work
+    (progn
+        (leaf org-agenda
+          :tag "builtin"
+          :custom
+          ((org-agenda-files . '("~/org/todo.org" "~/org/schedule.org"))
+           (org-agenda-span . 'day)
+           (org-agenda-skip-deadline-if-done . nil)
+           (org-agenda-skip-schedule-if-done . nil)
+           (org-agenda-skip-deadline-prewarning-if-scheduled . nil)))
+
+        (leaf org-super-agenda
+          :url "https://github.com/alphapapa/org-super-agenda"
+          :ensure t
+          :global-minor-mode t
+          :custom
+          ((org-super-agenda-groups .
+                                    '((:name "Schedule"
+                                             :file-path "~/org/schedule.org"
+                                             :time-grid t)
+                                      (:name "Work"
+                                             :tag "work")
+                                      (:name "Project"
+                                             :tag "project")
+                                      (:name "Search"
+                                             :file-path "~/org/todo.org")
+                                      (:name "Emacs"
+                                             :tag "emacs")
+                                      (:name "Linux"
+                                             :tag "linux")))))
+
+        (leaf org-capture
+          :tag "builtin"
+          :custom
+          (org-capture-templates .
+                                 '(("t" "Todo" entry (file "~/org/todo.org")
+                                    "* TODO %?\n")
+                                   ("s" "Schedule" entry (file "~/org/schedule.org")
+                                    "* %?\n"))))
+
+        (leaf org-timer
+          :tag "builtin"
+          :hydra
+          ((hydra-org-timer
+            (:hint nil :exit t)
+            "
+^Command^
+^^--------------------
+_b_: start
+_B_: set timer
+_e_: stop
+_p_: pause
+_i_: insert
+_I_: insert as item
+"
+            ("b" org-timer-start)
+            ("B" org-timer-set-timer)
+            ("e" org-timer-stop)
+            ("p" org-timer-pause-or-continue)
+            ("i" org-timer)
+            ("I" org-timer-item)
+            ("C-m" nil)
+            ("q" nil))))
+
+        (leaf org-journal
+          :url "https://github.com/bastibe/org-journal"
+          :ensure t
+          :custom
+          ((org-journal-dir . "~/org/journal/")
+           (org-journal-file-format . "%Y-%m-%d.org"))
+          :hydra
+          ((hydra-org-journal
+            (:hint nil :exit t)
+            "
+^Open^          ^Search^
+^^^^-----------------------------------
+_t_: today      _s_: search(calendar)
+_n_: new entry  _S_: search(all)
+^ ^             _y_: calendar year
+^ ^             _m_: calendar month
+^ ^             _w_: calendar week
+"
+            ("t" org-journal-open-current-journal-file)
+            ("n" org-journal-new-entry)
+            ("s" org-journal-search)
+            ("S" org-journal-search-forever)
+            ("y" org-journal-search-calendar-year)
+            ("m" org-journal-search-calendar-month)
+            ("w" org-journal-search-calendar-week)
+            ("C-m" nil)
+            ("q" nil))))
+
+        (leaf org-roam
+          :url "https://github.com/org-roam/org-roam"
+          :ensure t
+          :custom
+          `((org-roam-directory . ,(file-truename "~/org/org-roam")))
+          :config
+          (org-roam-db-autosync-mode)
+          :hydra
+          ((hydra-org-roam
+            (:hint nil :exit t)
+            "
+^Node^       ^Dailies^                                     ^Other^
+^^^^^^--------------------------------------------------------------
+_f_: find    _t_: today(goto)     _y_: yesterday(goto)     _s_: sync
+_i_: insert  _T_: today(capture)  _Y_: yesterday(capture)  _g_: graph
+_r_: random  _d_: date(goto)      _n_: tomorrow(goto)
+^ ^          _D_: date(capture)   _N_: tomorrow(capture)
+"
+            ("f" org-roam-node-find)
+            ("i" org-roam-node-insert)
+            ("r" org-roam-node-random)
+            ("t" org-roam-dailies-goto-today)
+            ("T" org-roam-dailies-capture-today)
+            ("d" org-roam-dailies-goto-date)
+            ("D" org-roam-dailies-capture-date)
+            ("y" org-roam-dailies-goto-yesterday)
+            ("Y" org-roam-dailies-capture-yesterday)
+            ("n" org-roam-dailies-goto-tomorrow)
+            ("N" org-roam-dailies-capture-tomorrow)
+            ("s" org-roam-db-sync)
+            ("g" org-roam-graph)
+            ("q" nil)))))))
 
 (leaf *language
   :config
-  (leaf cc-mode
-    :tag "builtin"
-    :custom
-    ((c-default-style . "k&r")))
+  (if is-private-host
+      ;; private
+      (progn
+        (leaf cc-mode
+          :tag "builtin"
+          :custom
+          ((c-default-style . "k&r")))
 
-  (leaf clojure-mode
-    :url "https://github.com/clojure-emacs/clojure-mode"
-    :if is-private-host
-    :config
-    (leaf cider
-      :url "https://github.com/clojure-emacs/cider"
-      :if is-private-host)
+        (leaf clojure-mode
+          :url "https://github.com/clojure-emacs/clojure-mode"
+          :config
+          (leaf cider
+            :url "https://github.com/clojure-emacs/cider")
 
-    (leaf clj-deps-new
-      :url "https://github.com/jpe90/emacs-clj-deps-new"))
+          (leaf clj-deps-new
+            :url "https://github.com/jpe90/emacs-clj-deps-new"))
 
-  (leaf elisp-mode
-    :tag "builtin")
+        (leaf elisp-mode
+          :tag "builtin")
 
-  (leaf go-mode
-    :url "https://github.com/dominikh/go-mode.el"
-    :ensure (not is-private-host))
+        (leaf go-mode
+          :url "https://github.com/dominikh/go-mode.el")
 
-  (leaf lua-mode
-    :url "https://github.com/immerrr/lua-mode"
-    :ensure (not is-private-host))
+        (leaf lua-mode
+          :url "https://github.com/immerrr/lua-mode")
 
-  (leaf nix-mode
-    :url "https://github.com/NixOS/nix-mode"
-    :ensure (not is-private-host))
+        (leaf nix-mode
+          :url "https://github.com/NixOS/nix-mode")
 
-  (leaf python-mode
-    :url "https://gitlab.com/python-mode-devs/python-mode/"
-    :ensure (not is-private-host))
+        (leaf python-mode
+          :url "https://gitlab.com/python-mode-devs/python-mode/")
 
-  (leaf rustic
-    :url "https://github.com/emacs-rustic/rustic"
-    :ensure (not is-private-host)
-    :custom
-    ((rustic-format-on-save . t)
-     (rustic-cargo-use-last-stored-auguments . t)
-     (rustic-lsp-client 'eglot))
-    :config
-    (leaf cargo
-      :url "https://github.com/kwrooijen/cargo.el"
-      :ensure (not is-private-host)))
+        (leaf rustic
+          :url "https://github.com/emacs-rustic/rustic"
+          :custom
+          ((rustic-format-on-save . t)
+           (rustic-cargo-use-last-stored-auguments . t)
+           (rustic-lsp-client 'eglot))
+          :config
+          (leaf cargo
+            :url "https://github.com/kwrooijen/cargo.el"))
 
-  (leaf tex-mode
-    :tag "builtin"))
+        (leaf tex-mode
+          :tag "builtin"))
+    ;; work
+    (progn
+      (leaf python-mode
+          :url "https://gitlab.com/python-mode-devs/python-mode/"
+          :ensure t)
+
+        (leaf rustic
+          :url "https://github.com/emacs-rustic/rustic"
+          :ensure t
+          :custom
+          ((rustic-format-on-save . t)
+           (rustic-cargo-use-last-stored-auguments . t)
+           (rustic-lsp-client 'eglot))
+          :config
+          (leaf cargo
+            :url "https://github.com/kwrooijen/cargo.el"
+            :ensure t)))))
 
 (leaf *ai-assistant
   :config
-  (leaf copilot
-    :url "https://github.com/copilot-emacs/copilot.el"
-    :ensure (not is-private-host)
-    :hook
-    ((prog-mode-hook . copilot-mode))
-    :bind
-    ((copilot-completion-map
-      ("<tab>" . copilot-accept-completion-by-line)
-      ("C-<tab>" . copilot-accept-completion-by-word))))
+  (if is-private-host
+      ;; private
+      (progn
+        (leaf copilot
+          :url "https://github.com/copilot-emacs/copilot.el"
+          :hook
+          ((prog-mode-hook . copilot-mode))
+          :bind
+          ((copilot-completion-map
+            ("<tab>" . copilot-accept-completion-by-line)
+            ("C-<tab>" . copilot-accept-completion-by-word))))
 
-  (leaf copilot-chat
-    :url "https://github.com/chep/copilot-chat.el"
-    :if is-private-host))
+        (leaf copilot-chat
+          :url "https://github.com/chep/copilot-chat.el"))
+    ;; work
+    (progn
+        (leaf copilot
+          :url "https://github.com/copilot-emacs/copilot.el"
+          :ensure t
+          :hook
+          ((prog-mode-hook . copilot-mode))
+          :bind
+          ((copilot-completion-map
+            ("<tab>" . copilot-accept-completion-by-line)
+            ("C-<tab>" . copilot-accept-completion-by-word)))))))
 
 (leaf *others
   :config
-  (leaf direnv
-    :url "https://github.com/wbolster/emacs-direnv"
-    :if is-private-host
-    :global-minor-mode t)
+  (if is-private-host
+      (progn
+        (leaf direnv
+          :url "https://github.com/wbolster/emacs-direnv"
+          :global-minor-mode t)
 
-  (leaf mistty
-    :url "https://github.com/szermatt/mistty"
-    :ensure (not is-private-host)))
+        (leaf mistty
+          :url "https://github.com/szermatt/mistty"))
+    (progn
+      (leaf mistty
+        :url "https://github.com/szermatt/mistty"
+        :ensure t))))
 
 (leaf *appearance
   :config
-  (leaf doom-modeline
-    :url "https://github.com/seagle0128/doom-modeline"
-    :ensure (not is-private-host)
-    :global-minor-mode t
-    :custom
-    ((doom-modeline-battery . t)
-     (doom-modeline-time . t))
-    :config
-    (leaf nerd-icons
-      :url "https://github.com/rainstormstudio/nerd-icons.el"))
+  (if is-private-host
+      ;; private
+      (progn
+        (leaf doom-modeline
+          :url "https://github.com/seagle0128/doom-modeline"
+          :global-minor-mode t
+          :custom
+          ((doom-modeline-battery . t)
+           (doom-modeline-time . t))
+          :config
+          (leaf nerd-icons
+            :url "https://github.com/rainstormstudio/nerd-icons.el"))
 
-  (leaf catppuccin-theme
-    :url "https://github.com/catppuccin/emacs"
-    :ensure (not is-private-host)
-    :custom
-    ((catppuccin-flavor . 'latte))
-    :config
-    (load-theme 'catppuccin :no-confirm))
+        (leaf catppuccin-theme
+          :url "https://github.com/catppuccin/emacs"
+          :custom
+          ((catppuccin-flavor . 'latte))
+          :config
+          (load-theme 'catppuccin :no-confirm))
 
-  (leaf org-modern
-    :url "https://github.com/minad/org-modern"
-    :ensure (not is-private-host)
-    :global-minor-mode global-org-modern-mode
-    :custom
-    ((org-auto-align-tags . nil)
-     (org-tags-column . 0)
-     (org-fold-catch-invisible-edits . 'show-and-error)
-     (org-special-ctrl-a/e . t)
-     (org-insert-heading-respect-content . t)
-     (org-hide-emphasis-markers . t)
-     (org-pretty-entities . t)
-     (org-ellipsis . "…")
-     (org-agenda-tags-column . 0)
-     (org-agenda-block-separator . ?─)
-     (org-agenda-time-grid . '((daily today require-timed)
-                               (800 1000 1200 1400 1600 1800 2000)
-                               " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄"))
-     (org-agenda-current-time-string . "◀── now ─────────────────────────────────────────────────")))
+        (leaf org-modern
+          :url "https://github.com/minad/org-modern"
+          :global-minor-mode global-org-modern-mode
+          :custom
+          ((org-auto-align-tags . nil)
+           (org-tags-column . 0)
+           (org-fold-catch-invisible-edits . 'show-and-error)
+           (org-special-ctrl-a/e . t)
+           (org-insert-heading-respect-content . t)
+           (org-hide-emphasis-markers . t)
+           (org-pretty-entities . t)
+           (org-ellipsis . "…")
+           (org-agenda-tags-column . 0)
+           (org-agenda-block-separator . ?─)
+           (org-agenda-time-grid . '((daily today require-timed)
+                                     (800 1000 1200 1400 1600 1800 2000)
+                                     " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄"))
+           (org-agenda-current-time-string . "◀── now ─────────────────────────────────────────────────")))
 
-  (leaf nyan-mode
-    :url "https://github.com/TeMPOraL/nyan-mode"
-    :if is-private-host
-    :global-minor-mode t
-    :custom
-    ((nyan-wavy-trail . t)
-     (nyan-animate-nyancat . t)
-     (nyan-bar-length . 16)
-     (nyan-minimub-window-width . 80)))
+        (leaf nyan-mode
+          :url "https://github.com/TeMPOraL/nyan-mode"
+          :global-minor-mode t
+          :custom
+          ((nyan-wavy-trail . t)
+           (nyan-animate-nyancat . t)
+           (nyan-bar-length . 16)
+           (nyan-minimub-window-width . 80)))
 
-  (leaf parrot
-    :url "https://github.com/dp12/parrot"
-    :if is-private-host
-    :global-minor-mode t
-    :custom
-    ((parrot-num-rotations . nil))))
+        (leaf parrot
+          :url "https://github.com/dp12/parrot"
+          :global-minor-mode t
+          :custom
+          ((parrot-num-rotations . nil))))
+    ;; work
+    (progn
+        (leaf doom-modeline
+          :url "https://github.com/seagle0128/doom-modeline"
+          :ensure t
+          :global-minor-mode t
+          :custom
+          ((doom-modeline-battery . t)
+           (doom-modeline-time . t))
+          :config
+          (leaf nerd-icons
+            :url "https://github.com/rainstormstudio/nerd-icons.el"
+            :ensure t))
+
+        (leaf catppuccin-theme
+          :url "https://github.com/catppuccin/emacs"
+          :ensure t
+          :custom
+          ((catppuccin-flavor . 'latte))
+          :config
+          (load-theme 'catppuccin :no-confirm))
+
+        (leaf org-modern
+          :url "https://github.com/minad/org-modern"
+          :ensure t
+          :global-minor-mode global-org-modern-mode
+          :custom
+          ((org-auto-align-tags . nil)
+           (org-tags-column . 0)
+           (org-fold-catch-invisible-edits . 'show-and-error)
+           (org-special-ctrl-a/e . t)
+           (org-insert-heading-respect-content . t)
+           (org-hide-emphasis-markers . t)
+           (org-pretty-entities . t)
+           (org-ellipsis . "…")
+           (org-agenda-tags-column . 0)
+           (org-agenda-block-separator . ?─)
+           (org-agenda-time-grid . '((daily today require-timed)
+                                     (800 1000 1200 1400 1600 1800 2000)
+                                     " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄"))
+           (org-agenda-current-time-string . "◀── now ─────────────────────────────────────────────────"))))))
 
 ;; bitwarden
 (if is-private-host
