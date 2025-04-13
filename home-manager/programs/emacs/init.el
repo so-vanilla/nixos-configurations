@@ -6,6 +6,13 @@
 
 ;;; Code:
 
+(let ((private-hosts '("vanilla"))
+      (current-host (system-name)))
+  (defvar is-private-host
+    (if (member current-host private-hosts)
+        t
+      nil)))
+
 (use-package leaf)
 
 (leaf *leaf
@@ -170,6 +177,7 @@ _r_: redo
 
   (leaf avy
     :url "https://github.com/abo-abo/avy"
+    :ensure (not is-private-host)
     :bind
     (("C-;" . avy-goto-char-timer))))
 
@@ -192,6 +200,7 @@ _r_: redo
 
   (leaf puni
     :url "https://github.com/AmaiKinono/puni"
+    :ensure (not is-private-host)
     :global-minor-mode puni-global-mode
     :bind
     ((puni-mode-map
@@ -244,16 +253,19 @@ _C-n_: down
 (leaf *vcs
   :config
   (leaf magit
-    :url "https://github.com/magit/magit"))
+    :url "https://github.com/magit/magit"
+    :ensure (not is-private-host)))
 
 (leaf *minibuffer
   :config
   (leaf vertico
     :url "https://github.com/minad/vertico"
+    :ensure (not is-private-host)
     :global-minor-mode t)
 
   (leaf orderless
     :url "https://github.com/oantolin/orderless"
+    :ensure (not is-private-host)
     :custom
     ((completion-styles . '(orderless basic))
      (completion-category-overrides . '((file (style basic partial-completion))))
@@ -264,10 +276,12 @@ _C-n_: down
 
   (leaf marginalia
     :url "https://github.com/minad/marginalia"
+    :ensure (not is-private-host)
     :global-minor-mode t)
 
   (leaf consult
     :url "https://github.com/minad/consult"
+    :ensure (not is-private-host)
     :bind
     (([remap switch-to-buffer] . consult-buffer)
      ([remap imenu] . consult-imenu)
@@ -278,6 +292,7 @@ _C-n_: down
 
   (leaf embark-consult
     :url "https://github.com/oantolin/embark"
+    :ensure (not is-private-host)
     :bind
     ((minibuffer-mode-map
       ("M-." . embark-dwin)
@@ -301,6 +316,7 @@ _C-n_: down
   :config
   (leaf corfu
     :url "https://github.com/minad/corfu"
+    :ensure (not is-private-host)
     :global-minor-mode global-corfu-mode
     :init
     (eval-after-load 'corfu
@@ -338,6 +354,7 @@ _C-n_: down
 
   (leaf cape
     :url "https://github.com/minad/cape"
+    :ensure (not is-private-host)
     :config
     (add-to-list 'completion-at-point-functions #'cape-dabbrev)
     (add-to-list 'completion-at-point-functions #'cape-file)
@@ -346,6 +363,7 @@ _C-n_: down
 
   (leaf tempel
     :url "https://github.com/minad/tempel"
+    :ensure (not is-private-host)
     :global-minor-mode global-tempel-abbrev-mode
     :hook
     ((prog-mode-hook . tempel-setup-capf)
@@ -442,6 +460,7 @@ _r_: row(table)
 
   (leaf org-super-agenda
     :url "https://github.com/alphapapa/org-super-agenda"
+    :ensure (not is-private-host)
     :global-minor-mode t
     :custom
     ((org-super-agenda-groups .
@@ -494,6 +513,7 @@ _I_: insert as item
 
   (leaf org-journal
     :url "https://github.com/bastibe/org-journal"
+    :ensure (not is-private-host)
     :custom
     ((org-journal-dir . "~/org/journal/")
      (org-journal-file-format . "%Y-%m-%d.org"))
@@ -521,6 +541,7 @@ _n_: new entry  _S_: search(all)
 
   (leaf org-roam
     :url "https://github.com/org-roam/org-roam"
+    :ensure (not is-private-host)
     :custom
     `((org-roam-directory . ,(file-truename "~/org/org-roam")))
     :config
@@ -553,6 +574,7 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
   (leaf org-caldav
     :url "https://github.com/dengste/org-caldav"
+    :if is-private-host
     :custom
     `((org-caldav-calendars .
                             '((:calendar-id "67B2-67412200-1A7-7F1B4200" :files ("~/org/todo.org")
@@ -566,6 +588,7 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
   (leaf org-ai
     :url "https://github.com/rksm/org-ai"
+    :if is-private-host
     :global-minor-mode org-ai-global-mode
     :custom
     `((org-ai-openai-api-token . ,(getenv "ORG_AI_KEY"))
@@ -580,9 +603,11 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
   (leaf clojure-mode
     :url "https://github.com/clojure-emacs/clojure-mode"
+    :if is-private-host
     :config
     (leaf cider
-      :url "https://github.com/clojure-emacs/cider")
+      :url "https://github.com/clojure-emacs/cider"
+      :if is-private-host)
 
     (leaf clj-deps-new
       :url "https://github.com/jpe90/emacs-clj-deps-new"))
@@ -591,26 +616,32 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :tag "builtin")
 
   (leaf go-mode
-    :url "https://github.com/dominikh/go-mode.el")
+    :url "https://github.com/dominikh/go-mode.el"
+    :ensure (not is-private-host))
 
   (leaf lua-mode
-    :url "https://github.com/immerrr/lua-mode")
+    :url "https://github.com/immerrr/lua-mode"
+    :ensure (not is-private-host))
 
   (leaf nix-mode
-    :url "https://github.com/NixOS/nix-mode")
+    :url "https://github.com/NixOS/nix-mode"
+    :ensure (not is-private-host))
 
   (leaf python-mode
-    :url "https://gitlab.com/python-mode-devs/python-mode/")
+    :url "https://gitlab.com/python-mode-devs/python-mode/"
+    :ensure (not is-private-host))
 
   (leaf rustic
     :url "https://github.com/emacs-rustic/rustic"
+    :ensure (not is-private-host)
     :custom
     ((rustic-format-on-save . t)
      (rustic-cargo-use-last-stored-auguments . t)
      (rustic-lsp-client 'eglot))
     :config
     (leaf cargo
-      :url "https://github.com/kwrooijen/cargo.el"))
+      :url "https://github.com/kwrooijen/cargo.el"
+      :ensure (not is-private-host)))
 
   (leaf tex-mode
     :tag "builtin"))
@@ -619,6 +650,7 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
   :config
   (leaf copilot
     :url "https://github.com/copilot-emacs/copilot.el"
+    :ensure (not is-private-host)
     :hook
     ((prog-mode-hook . copilot-mode))
     :bind
@@ -627,21 +659,25 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
       ("C-<tab>" . copilot-accept-completion-by-word))))
 
   (leaf copilot-chat
-    :url "https://github.com/chep/copilot-chat.el"))
+    :url "https://github.com/chep/copilot-chat.el"
+    :if is-private-host))
 
 (leaf *others
   :config
   (leaf direnv
     :url "https://github.com/wbolster/emacs-direnv"
+    :if is-private-host
     :global-minor-mode t)
 
   (leaf mistty
-    :url "https://github.com/szermatt/mistty"))
+    :url "https://github.com/szermatt/mistty"
+    :ensure (not is-private-host)))
 
 (leaf *appearance
   :config
   (leaf doom-modeline
     :url "https://github.com/seagle0128/doom-modeline"
+    :ensure (not is-private-host)
     :global-minor-mode t
     :custom
     ((doom-modeline-battery . t)
@@ -652,6 +688,7 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
   (leaf catppuccin-theme
     :url "https://github.com/catppuccin/emacs"
+    :ensure (not is-private-host)
     :custom
     ((catppuccin-flavor . 'latte))
     :config
@@ -659,6 +696,7 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
   (leaf org-modern
     :url "https://github.com/minad/org-modern"
+    :ensure (not is-private-host)
     :global-minor-mode global-org-modern-mode
     :custom
     ((org-auto-align-tags . nil)
@@ -678,6 +716,7 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
   (leaf nyan-mode
     :url "https://github.com/TeMPOraL/nyan-mode"
+    :if is-private-host
     :global-minor-mode t
     :custom
     ((nyan-wavy-trail . t)
@@ -687,106 +726,116 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
   (leaf parrot
     :url "https://github.com/dp12/parrot"
+    :if is-private-host
     :global-minor-mode t
     :custom
     ((parrot-num-rotations . nil))))
 
 ;; bitwarden
-(defun bw--unlock (password)
-  "This function gets session key from bitwarden cli."
-  (if (string= password "")
-      (progn
-        (message "Password is empty")
-        nil)
-    (let* ((command (concat "bw unlock " password))
-           (output (shell-command-to-string command)))
-      (if (string= output "Invalid master password.")
-          (progn
-            (message "Password is invalid")
-            nil)
-        (let* ((lines (split-string output "\n"))
-               (target-line (nth 3 lines))
-               (words (split-string target-line "\""))
-               (session-key (nth 1 words)))
-          session-key)))))
+(if is-private-host
+    (progn
+      (defun bw--unlock (password)
+        "This function gets session key from bitwarden cli."
+        (if (string= password "")
+            (progn
+              (message "Password is empty")
+              nil)
+          (let* ((command (concat "bw unlock " password))
+                 (output (shell-command-to-string command)))
+            (if (string= output "Invalid master password.")
+                (progn
+                  (message "Password is invalid")
+                  nil)
+              (let* ((lines (split-string output "\n"))
+                     (target-line (nth 3 lines))
+                     (words (split-string target-line "\""))
+                     (session-key (nth 1 words)))
+                session-key)))))
 
-(defun bw-unlock ()
-  (interactive)
-  (if (boundp 'bw-session-key) (message "Bitwarden is already unlocked")
-    (let* ((password (read-passwd "Password: "))
-           (session-key (bw--unlock password)))
-      (if session-key
-          (progn
-            (setq bw-session-key session-key)
-            (message "Bitwarden is unlocked")
-            session-key)
-        nil))))
+      (defun bw-unlock ()
+        (interactive)
+        (if (boundp 'bw-session-key) (message "Bitwarden is already unlocked")
+          (let* ((password (read-passwd "Password: "))
+                 (session-key (bw--unlock password)))
+            (if session-key
+                (progn
+                  (setq bw-session-key session-key)
+                  (message "Bitwarden is unlocked")
+                  session-key)
+              nil))))
 
-(defun bw--lock ()
-  (let ((command "bw lock"))
-    (shell-command-to-string command)))
+      (defun bw--lock ()
+        (let ((command "bw lock"))
+          (shell-command-to-string command)))
 
-(defun bw-lock ()
-  (interactive)
-  (progn
-    (bw--lock)
-    (message "Bitwarden is locked")
-    (makunbound 'bw-session-key)))
+      (defun bw-lock ()
+        (interactive)
+        (progn
+          (bw--lock)
+          (message "Bitwarden is locked")
+          (makunbound 'bw-session-key)))
 
-(defun bw--list-items (session-key)
-  "This function return json as a list frombitwarden cli."
-  (let* ((command (concat "bw list items --session " session-key))
-         (output (shell-command-to-string command)))
-    (json-read-from-string output)))
+      (defun bw--list-items (session-key)
+        "This function return json as a list frombitwarden cli."
+        (let* ((command (concat "bw list items --session " session-key))
+               (output (shell-command-to-string command)))
+          (json-read-from-string output)))
 
-(defun bw--select-item (handler)
-  (if (not (boundp 'bw-session-key))
-      (progn
-        (message "Bitwarden is not unlocked")
-        nil)
-    (let* ((items (bw--list-items bw-session-key))
-           (item-names (mapcar (lambda (item) (cdr (assoc 'name item))) items))
-           (item-usernames (mapcar (lambda (item) (cdr (or (assoc 'username (assoc 'login item)) '(name . "")))) items))
-           (item-string (cl-mapcar (lambda (name username) (concat name " :: " username)) item-names item-usernames))
-           (item-alist (cl-mapcar (lambda (key item) (cons key item)) item-string items))
-           (selected (completing-read "Select item: " item-string))
-           (item (cdr (assoc selected item-alist)))
-           (p-or-u (completing-read "Password or Username: " '("password" "username")))
-           (value (cond ((string= p-or-u "password") (cdr (assoc 'password (assoc 'login item))))
-                        ((string= p-or-u "username") (cdr (assoc 'username (assoc 'login item)))))))
-      (funcall handler value))))
+      (defun bw--select-item (handler)
+        (if (not (boundp 'bw-session-key))
+            (progn
+              (message "Bitwarden is not unlocked")
+              nil)
+          (let* ((items (bw--list-items bw-session-key))
+                 (item-names (mapcar (lambda (item) (cdr (assoc 'name item))) items))
+                 (item-usernames (mapcar (lambda (item) (cdr (or (assoc 'username (assoc 'login item)) '(name . "")))) items))
+                 (item-string (cl-mapcar (lambda (name username) (concat name " :: " username)) item-names item-usernames))
+                 (item-alist (cl-mapcar (lambda (key item) (cons key item)) item-string items))
+                 (selected (completing-read "Select item: " item-string))
+                 (item (cdr (assoc selected item-alist)))
+                 (p-or-u (completing-read "Password or Username: " '("password" "username")))
+                 (value (cond ((string= p-or-u "password") (cdr (assoc 'password (assoc 'login item))))
+                              ((string= p-or-u "username") (cdr (assoc 'username (assoc 'login item)))))))
+            (funcall handler value))))
 
-(defun bw-add-to-kill-ring ()
-  (interactive)
-  (bw--select-item 'kill-new))
+      (defun bw-add-to-kill-ring ()
+        (interactive)
+        (bw--select-item 'kill-new))
 
-(defun bw-yank ()
-  (interactive)
-  (bw--select-item 'insert))
+      (defun bw-yank ()
+        (interactive)
+        (bw--select-item 'insert))
 
-(defun playerctl-play ()
-  (interactive)
-  (shell-command "playerctl play"))
+      t)
+  nil)
 
-(defun playerctl-pause ()
-  (interactive)
-  (shell-command "playerctl pause"))
+(if is-private-host
+    (progn
+      (defun playerctl-play ()
+        (interactive)
+        (shell-command "playerctl play"))
 
-(defun playerctl-play-pause ()
-  (interactive)
-  (shell-command "playerctl play-pause"))
+      (defun playerctl-pause ()
+        (interactive)
+        (shell-command "playerctl pause"))
 
-(defun playerctl-next ()
-  (interactive)
-  (shell-command "playerctl next"))
+      (defun playerctl-play-pause ()
+        (interactive)
+        (shell-command "playerctl play-pause"))
 
-(defun playerctl-previous ()
-  (interactive)
-  (shell-command "playerctl previous"))
+      (defun playerctl-next ()
+        (interactive)
+        (shell-command "playerctl next"))
 
-(defun libpython-init ()
-  (interactive)
-  (let ((python-home (shell-command-to-string "python -c 'import sys; print(sys.prefix, end=\"\")'")))
-    (insert (format "(initialize! :python-home \"%s\")" python-home))))
+      (defun playerctl-previous ()
+        (interactive)
+        (shell-command "playerctl previous"))
+
+      (defun libpython-init ()
+        (interactive)
+        (let ((python-home (shell-command-to-string "python -c 'import sys; print(sys.prefix, end=\"\")'")))
+          (insert (format "(initialize! :python-home \"%s\")" python-home))))
+      t)
+  nil)
 
 (provide 'init)
