@@ -4,6 +4,7 @@
 }:
 let
   frompkgs = with pkgs; [
+    babashka
     bitwarden-cli
     brightnessctl
     cargo
