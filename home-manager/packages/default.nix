@@ -53,7 +53,6 @@ let
     wl-clipboard
     zip
     zoom-us
-    gimp
   ];
   zen-browser = [
     zen-browser-pkg
