@@ -49,6 +49,7 @@ let
     traceroute
     trash-cli
     unzip
+    vim-language-server
     whois
     wl-clipboard
     zip
