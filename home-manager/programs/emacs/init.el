@@ -76,18 +76,22 @@
   (leaf simple
     :tag "builtin"
     :preface
-    (defun wl-copy (text)
-      (setq wl-copy-process (make-process :name "wl-copy"
-					                      :buffer nil
-					                      :command '("wl-copy" "-f" "-n")
-					                      :connection-type 'pipe
-					                      :noquery t))
+    (defun clipboard-copy (text)
+      (setq copy-process (make-process :name "clipboard-copy"
+					                   :buffer nil
+					                   :command (if is-private-host
+                                                    '("wl-copy" "-n")
+                                                  '("clip.exe"))
+					                   :connection-type 'pipe
+					                   :noquery t))
       (process-send-string wl-copy-process text)
       (process-send-eof wl-copy-process))
-    (defun wl-paste ()
-      (if (and wl-copy-process (process-live-p wl-copy-process))
+    (defun clipboard-paste ()
+      (if (and copy-process (process-live-p copy-process))
 	      nil
-	    (shell-command-to-string "wl-paste -n | tr -d \\r")))
+	    (if is-private-host
+            (shell-command-to-string "wl-paste -n | tr -d \\r")
+          (shell-command-to-string "powershell.exe -command Get-Clipboard | tr -d \\r"))))
     (defun my-move-beginning-of-line ()
       "Move point to first non-whitespace character or beginning-of-line."
       (interactive "^")
@@ -104,9 +108,9 @@
       (undo-redo)
       (hydra-undo/body))
     :custom
-    ((wl-copy-process . nil)
-     (interprogram-cut-function . 'wl-copy)
-     (interprogram-paste-function . 'wl-paste)
+    ((copy-process . nil)
+     (interprogram-cut-function . 'clipboard-copy)
+     (interprogram-paste-function . 'clipboard-paste)
      (indent-tabs-mode . nil))
     :bind
     (("C-x u" . my-undo)
