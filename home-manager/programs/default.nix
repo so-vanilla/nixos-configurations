@@ -17,7 +17,7 @@ let
   hyprlock = import ./hyprlock;
   java = import ./java;
   jq = import ./jq;
-  neovim = import ./neovim;
+  neovim = import ./neovim { inherit pkgs; };
   pandoc = import ./pandoc;
   ripgrep = import ./ripgrep;
   tofi = import ./tofi { inherit catppuccin-flavor; };
