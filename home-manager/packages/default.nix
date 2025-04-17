@@ -31,7 +31,7 @@ let
     lua-language-server
     markdown-oxide
     networkmanagerapplet
-    nil
+    nixd
     nixfmt-rfc-style
     nodePackages.bash-language-server
     nodejs_22
