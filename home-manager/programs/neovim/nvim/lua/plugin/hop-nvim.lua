@@ -1,6 +1,10 @@
 return {
-    "smoka7/hop.nvim",
+    'smoka7/hop.nvim',
     config = function()
         require('hop').setup({})
-    end
+    end,
+    keys = {
+      { '<C-/>', '<cmd>HopWord<CR>' },
+      { '<M-/>', '<cmd>HopLine<CR>' },
+    };
 }
