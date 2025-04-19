@@ -4,7 +4,7 @@ return {
         require('hop').setup({})
     end,
     keys = {
-      { '<C-/>', '<cmd>HopWord<CR>' },
-      { '<M-/>', '<cmd>HopLine<CR>' },
+      { '<C-/>', '<cmd>HopWord<CR>', { 'n', 'v' }},
+      { '<M-/>', '<cmd>HopLine<CR>', { 'n', 'v' }},
     };
 }
