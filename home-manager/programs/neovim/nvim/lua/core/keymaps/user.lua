@@ -1,5 +1,6 @@
 local n = 'n'
 local i = 'i'
+local c = 'c'
 local nv = { 'n', 'v' }
 local ic = { 'i', 'c' }
 local all_modes = { 'n', 'i', 'v', 'c' }
@@ -13,6 +14,8 @@ local keymaps = {
     { nv, 'w', '<Nop>', default_opts },
     { nv, 'e', '<Nop>', default_opts },
     { nv, 'b', '<Nop>', default_opts },
+    { c, '<C-[>', '<C-c>', default_opts },
+    { c, '<C-g>', '<C-c>', default_opts },
 }
 
 return keymaps
