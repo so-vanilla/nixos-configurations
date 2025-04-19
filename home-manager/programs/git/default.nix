@@ -5,7 +5,7 @@
     userEmail = "somura-vanilla@so-icecream.com";
     extraConfig = {
       core = {
-        editor = "emacsclient -c";
+        editor = "nvim";
       };
       init = {
         defaultbranch = "main";
