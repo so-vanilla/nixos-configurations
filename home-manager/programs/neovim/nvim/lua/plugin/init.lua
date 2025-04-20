@@ -5,6 +5,7 @@ require('lazy').setup({
     require('plugin.nvim-cmp'),
     require('plugin.telescope-nvim'),
     require('plugin.nvim-autopairs'),
+    require('plugin.nvim-surround'),
     require('plugin.hop-nvim'),
     require('plugin.orgmode'),
     require('plugin.neogit'),
