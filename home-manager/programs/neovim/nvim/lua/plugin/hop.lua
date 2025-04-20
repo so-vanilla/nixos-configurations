@@ -6,5 +6,6 @@ return {
     keys = {
       { '<C-/>', '<cmd>HopWord<CR>', { 'n', 'v' }},
       { '<M-/>', '<cmd>HopLine<CR>', { 'n', 'v' }},
+      { '<C-;>', '<cmd>HopChar2<CR>', { 'n', 'v' }},
     };
 }
