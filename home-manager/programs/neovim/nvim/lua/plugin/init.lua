@@ -12,5 +12,5 @@ require('lazy').setup({
     require('plugin.lualine'),
     require('plugin.catppuccin'),
   },
-  checker = { enabled = true },
+  checker = { enabled = false, },
 })
