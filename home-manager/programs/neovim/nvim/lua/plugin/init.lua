@@ -1,6 +1,7 @@
 require('lazy').setup({
     spec = {
         require('plugin.nvim-lspconfig'),
+        require('plugin.nvim-treesitter'),
         require('plugin.nvim-cmp'),
         require('plugin.telescope-nvim'),
         require('plugin.nvim-autopairs'),
