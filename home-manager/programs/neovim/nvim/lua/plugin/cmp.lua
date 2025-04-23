@@ -9,6 +9,7 @@ return {
     'hrsh7th/cmp-emoji',
     'hrsh7th/cmp-vsnip',
     'hrsh7th/vim-vsnip',
+    'nvim-orgmode/orgmode'
   },
   config = function ()
     local cmp = require('cmp')
@@ -28,6 +29,7 @@ return {
         { name = 'path' },
         { name = 'emoji' },
         { name = 'vsnip' },
+        { name = 'orgmode' },
       },
     })
   end,
