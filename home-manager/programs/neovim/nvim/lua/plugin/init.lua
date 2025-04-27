@@ -8,6 +8,7 @@ require('lazy').setup({
     require('plugin.ts-autotag'),
     require('plugin.surround'),
     require('plugin.hop'),
+    require('plugin.toggleterm'),
     require('plugin.orgmode'),
     require('plugin.neogit'),
     require('plugin.lualine'),
