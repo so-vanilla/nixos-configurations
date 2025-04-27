@@ -50,6 +50,7 @@ let
     trash-cli
     unzip
     vim-language-server
+    vscode-langservers-extracted
     whois
     wl-clipboard
     zip
