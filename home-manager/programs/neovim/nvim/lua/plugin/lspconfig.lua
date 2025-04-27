@@ -31,5 +31,9 @@ return {
     })
     vim.lsp.enable('nixd')
     vim.lsp.enable('pyright')
+
+    vim.diagnostic.config({
+      signs = false,
+    })
   end
 }
