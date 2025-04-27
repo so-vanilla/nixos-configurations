@@ -4,7 +4,7 @@ local opts = {
   expandtab = true,
   smartindent = true,
   autoindent = true,
-
+  swapfile = false,
 }
 
 for k, v in pairs(opts) do
