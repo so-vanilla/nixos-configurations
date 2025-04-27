@@ -11,9 +11,6 @@ local default_opts = {
 }
 
 local keymaps = {
-    { nv, 'w', '<Nop>', default_opts },
-    { nv, 'e', '<Nop>', default_opts },
-    { nv, 'b', '<Nop>', default_opts },
     { c, '<C-[>', '<C-c>', default_opts },
     { c, '<C-g>', '<C-c>', default_opts },
 }
