@@ -18,6 +18,8 @@ local keymaps = {
   { ic, '<M-f>', '<S-Right>', default_opts },
   { ic, '<M-b>', '<S-Left>',  default_opts },
   { n, '<C-x><C-s>', '<CMD>w<CR>', default_opts },
+  { n, '<C-e>', '$', default_opts },
+  { n, '<C-a>', '^', default_opts },
   { i, '<C-k>', '<C-o>D', default_opts },
 }
 
