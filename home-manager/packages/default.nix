@@ -16,6 +16,7 @@ let
     deno
     discord
     efm-langserver
+    fd
     gcc
     ghq
     gnumake
