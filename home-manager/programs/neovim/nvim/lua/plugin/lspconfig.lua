@@ -1,6 +1,10 @@
 return {
   "neovim/nvim-lspconfig",
   lazy = false,
+  keys = {
+    { '<M-n>', function() vim.diagnostic.goto_next() end },
+    { '<M-p>', function() vim.diagnostic.goto_prev() end },
+  },
   config = function ()
     vim.lsp.enable('cssls')
     vim.lsp.enable('html')
