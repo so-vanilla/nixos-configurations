@@ -2,6 +2,7 @@ return {
   "neovim/nvim-lspconfig",
   lazy = false,
   config = function ()
+    vim.lsp.enable('cssls')
     vim.lsp.enable('html')
     vim.lsp.config('lua_ls', {
       on_init = function(client)
