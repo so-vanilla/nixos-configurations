@@ -9,6 +9,7 @@ return {
       },
       indent = {
         enable = true,
+        disable = { "html" },
       },
     })
   end
