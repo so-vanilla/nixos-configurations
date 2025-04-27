@@ -1,3 +1,4 @@
+local n = 'n'
 local i = 'i'
 local c = 'c'
 local ic = { i, c }
@@ -16,6 +17,8 @@ local keymaps = {
   { ic, '<C-d>', '<Del>',     default_opts },
   { ic, '<M-f>', '<S-Right>', default_opts },
   { ic, '<M-b>', '<S-Left>',  default_opts },
+  { n, '<C-x><C-s>', '<CMD>w<CR>', default_opts },
+  { i, '<C-k>', '<C-o>D', default_opts },
 }
 
 return keymaps
