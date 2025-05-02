@@ -84,8 +84,8 @@
                                                   '("clip.exe"))
 					                   :connection-type 'pipe
 					                   :noquery t))
-      (process-send-string wl-copy-process text)
-      (process-send-eof wl-copy-process))
+      (process-send-string copy-process text)
+      (process-send-eof copy-process))
     (defun clipboard-paste ()
       (if (and copy-process (process-live-p copy-process))
 	      nil
