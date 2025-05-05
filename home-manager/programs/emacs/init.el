@@ -299,10 +299,13 @@ _C-n_: down
   :hook
   ((c-mode-hook . eglot-ensure)
    (clojure-mode-hook . eglot-ensure)
+   (css-mode-hook . eglot-ensure)
    (go-mode-hook . eglot-ensure)
    (lua-mode-hook . eglot-ensure)
    (markdown-mode-hook . eglot-ensure)
+   (mhtml-mode-hook . eglot-ensure)
    (java-mode-hook . eglot-ensure)
+   (js-mode-hook . eglot-ensure)
    (nix-mode-hook . eglot-ensure)
    (python-mode-hook . eglot-ensure)
    (rust-mode-hook . eglot-ensure)

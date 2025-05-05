@@ -49,6 +49,7 @@ let
     thunderbird
     traceroute
     trash-cli
+    typescript-language-server
     unzip
     vim-language-server
     vscode-langservers-extracted
