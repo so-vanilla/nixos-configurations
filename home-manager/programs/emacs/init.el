@@ -182,7 +182,10 @@ _r_: redo
   (leaf avy
     :url "https://github.com/abo-abo/avy"
     :bind
-    (("C-;" . avy-goto-char-timer))))
+    (("C-;" . avy-goto-char-in-line)
+     ("C-/" . avy-goto-char-timer)
+     ("M-/" . avy-goto-line))))
+
 
 (leaf *pair
   :config
