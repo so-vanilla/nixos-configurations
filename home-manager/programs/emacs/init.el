@@ -107,6 +107,8 @@
       (interactive)
       (undo-redo)
       (hydra-undo/body))
+    :hook
+    ((before-save-hook . (delete-trailing-whitespace)))
     :custom
     ((copy-process . nil)
      (interprogram-cut-function . 'clipboard-copy)
@@ -170,7 +172,15 @@ _r_: redo
   (leaf help
     :tag "builtin"
     :bind
-    (("C-h K" . describe-keymap))))
+    (("C-h K" . describe-keymap)))
+
+  (leaf hl-line
+    :tag "builtin"
+    :global-minor-mode global-hl-line-mode)
+
+  (leaf which-key
+    :tag "builtin"
+    :global-minor-mode t))
 
 (leaf *cursor
   :config
@@ -209,6 +219,13 @@ _r_: redo
     :global-minor-mode puni-global-mode
     :bind
     ((puni-mode-map
+      ("C-k" . (lambda ()
+                 (interactive)
+                 (if (minibufferp)
+                     (puni-kill-line)
+                   (progn
+                     (puni-kill-line)
+                     (indent-for-tab-command)))))
       ("M-C-d" . puni-backward-kill-word)
       ("M-C-p" . hydra-puni/body)))
     :hydra
