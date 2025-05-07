@@ -368,7 +368,12 @@ _C-n_: down
       ("[remap next-line]" . nil)
       ("[remap previous-line]" . nil)
       ("[remap scroll-down-command]" . nil)
-      ("[remap scroll-up-command]" . nil))))
+      ("[remap scroll-up-command]" . nil)))
+    :config
+    (leaf corfu-terminal
+      :url "https://codeberg.org/akib/emacs-corfu-terminal"
+      :if (not is-private-host)
+      :doc "Temporary solution. Corfu support for terminal Emacs31. After release, remove this."))
 
   (leaf cape
     :url "https://github.com/minad/cape"
