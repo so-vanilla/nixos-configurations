@@ -221,11 +221,11 @@ _r_: redo
     ((puni-mode-map
       ("C-k" . (lambda ()
                  (interactive)
-                 (if (minibufferp)
-                     (puni-kill-line)
-                   (progn
-                     (puni-kill-line)
-                     (indent-for-tab-command)))))
+                 (if (derived-mode-p 'prog-mode)
+                     (progn
+                       (puni-kill-line)
+                       (indent-for-tab-command))
+                   (puni-kill-line))))
       ("M-C-d" . puni-backward-kill-word)
       ("M-C-p" . hydra-puni/body)))
     :hydra
