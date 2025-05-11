@@ -13,8 +13,6 @@
         t
       nil)))
 
-(keyboard-translate ?\C-h ?\C-?)
-
 (use-package leaf)
 
 (leaf *leaf
@@ -182,7 +180,12 @@ _r_: redo
 
   (leaf which-key
     :tag "builtin"
-    :global-minor-mode t))
+    :global-minor-mode t)
+
+  (leaf subr
+    :tag "builtin"
+    :config
+    (keyboard-translate ?\C-h ?\C-?)))
 
 (leaf *cursor
   :config
@@ -664,6 +667,7 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :tag "builtin"))
 
 (leaf *ai-assistant
+  :if nil
   :config
   (leaf copilot
     :url "https://github.com/copilot-emacs/copilot.el"
