@@ -79,9 +79,7 @@
     (defun clipboard-copy (text)
       (setq copy-process (make-process :name "clipboard-copy"
 					                   :buffer nil
-					                   :command (if is-private-host
-                                                    '("wl-copy" "-n")
-                                                  '("clip.exe"))
+					                   :command '("wl-copy" "-n")
 					                   :connection-type 'pipe
 					                   :noquery t))
       (process-send-string copy-process text)
@@ -89,9 +87,7 @@
     (defun clipboard-paste ()
       (if (and copy-process (process-live-p copy-process))
 	      nil
-	    (if is-private-host
-            (shell-command-to-string "wl-paste -n | tr -d \\r")
-          (shell-command-to-string "powershell.exe -command Get-Clipboard | tr -d \\r"))))
+	    (shell-command-to-string "wl-paste -n | tr -d \\r")))
     (defun my-move-beginning-of-line ()
       "Move point to first non-whitespace character or beginning-of-line."
       (interactive "^")
@@ -111,9 +107,12 @@
     ((before-save-hook . (delete-trailing-whitespace)))
     :custom
     ((copy-process . nil)
-     (interprogram-cut-function . 'clipboard-copy)
-     (interprogram-paste-function . 'clipboard-paste)
      (indent-tabs-mode . nil))
+    :config
+    (if (is-private-host)
+        (progn
+          (setq interprogram-cut-function 'clipboard-copy)
+          (setq interprogram-paste-function 'clipboard-paste)))
     :bind
     (("C-x u" . my-undo)
      ("C-x r" . my-redo)
@@ -853,5 +852,22 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
           (insert (format "(initialize! :python-home \"%s\")" python-home))))
       t)
   nil)
+
+;; Tempolary solution
+;; I need check this work on WSL machine
+(defun wsl-copy-to-clipboard (start end)
+  (interactive "r")
+  (let ((text (buffer-substring-no-properties start end)))
+    (with-temp-buffer
+      (insert text)
+      (call-process-region (point-min) (point-max) "clip.exe"))))
+
+(defun wsl-paste-from-clipboard ()
+  (interactive)
+  (let ((text (with-temp-buffer
+                (call-process "powershell.exe" nil t nil "-command" "Get-Clipboard")
+                (decode-coding-string (buffer-string) 'utf-8-dos))))
+    (insert text)))
+
 
 (provide 'init)
