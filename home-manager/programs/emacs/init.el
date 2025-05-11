@@ -13,6 +13,8 @@
         t
       nil)))
 
+(keyboard-translate ?\C-h ?\C-?)
+
 (use-package leaf)
 
 (leaf *leaf
