@@ -10,4 +10,5 @@ mhtml-mode
       n "</head>"
       n "<body>"
       n>
-      n "<body>")
+      n "<body>"
+      n "</html>")
