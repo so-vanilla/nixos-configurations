@@ -184,7 +184,7 @@ _r_: redo
 
   (leaf subr
     :tag "builtin"
-    :config
+    :init
     (keyboard-translate ?\C-h ?\C-?)))
 
 (leaf *cursor
