@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+FORBIDDEN_FILES="hosts/ThinkPadX13/networkig/firewall/default.nix"
+STAGED_FILES=$(git diff --cached --name-only)
+
+for s_file in $STAGED_FILES; do
+    for f_file in $FORBIDDEN_FILES; do
+        if [ "$s_file" = "$f_file" ]; then
+            echo "Error: You cannot commit '$f_file'"
+            echo "       Unstage this file from git staging"
+            exit 1
+        fi
+    done
+done
