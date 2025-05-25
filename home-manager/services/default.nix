@@ -5,6 +5,7 @@ let
   remmina = import ./remmina;
   swaync = import ./swaync;
   nm-applet = import ./network-manager-applet;
+  kdeconnect = import ./kdeconnect;
 in
 [
   emacs
@@ -13,4 +14,5 @@ in
   nm-applet
   remmina
   swaync
+  kdeconnect
 ]
