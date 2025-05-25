@@ -44,6 +44,7 @@ let
     rustfmt
     slack
     soundwireserver
+    spotify
     texlab
     texliveFull
     thunderbird
