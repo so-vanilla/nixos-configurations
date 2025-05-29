@@ -184,7 +184,15 @@ _r_: redo
   (leaf subr
     :tag "builtin"
     :init
-    (keyboard-translate ?\C-h ?\C-?)))
+    (keyboard-translate ?\C-h ?\C-?))
+
+  (leaf autorevert
+    :tag "builtin"
+    :global-minor-mode global-auto-revert-mode)
+
+  (leaf delsel
+    :tag "builtin"
+    :global-minor-mode delete-selection-mode))
 
 (leaf *cursor
   :config
@@ -315,6 +323,7 @@ _C-n_: down
     :url "https://github.com/oantolin/embark"
     :bind
     ((minibuffer-mode-map
+      :package emacs
       ("M-." . embark-dwin)
       ("C-." . embark-act)))))
 
