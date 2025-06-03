@@ -634,7 +634,6 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
   (leaf clojure-mode
     :url "https://github.com/clojure-emacs/clojure-mode"
-    :if is-private-host
     :config
     (leaf cider
       :url "https://github.com/clojure-emacs/cider"
@@ -675,7 +674,6 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :tag "builtin"))
 
 (leaf *ai-assistant
-  :if nil
   :config
   (leaf copilot
     :url "https://github.com/copilot-emacs/copilot.el"
@@ -694,7 +692,6 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
   :config
   (leaf direnv
     :url "https://github.com/wbolster/emacs-direnv"
-    :if is-private-host
     :global-minor-mode t)
 
   (leaf mistty
@@ -740,7 +737,6 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
   (leaf nyan-mode
     :url "https://github.com/TeMPOraL/nyan-mode"
-    :if is-private-host
     :global-minor-mode t
     :custom
     ((nyan-wavy-trail . t)
@@ -750,7 +746,6 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
   (leaf parrot
     :url "https://github.com/dp12/parrot"
-    :if is-private-host
     :global-minor-mode t
     :custom
     ((parrot-num-rotations . nil))))
