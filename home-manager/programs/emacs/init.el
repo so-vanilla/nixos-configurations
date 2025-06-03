@@ -71,7 +71,8 @@
     :tag "builtin"
     :custom
     ((make-backup-files . nil)
-     (backup-inhibited . nil)))
+     (backup-inhibited . nil)
+     (major-mode-remap-alist . '((yaml-mode . yaml-ts-mode)))))
 
   (leaf simple
     :tag "builtin"
@@ -343,7 +344,8 @@ _C-n_: down
    (js-mode-hook . eglot-ensure)
    (nix-mode-hook . eglot-ensure)
    (python-mode-hook . eglot-ensure)
-   (rust-mode-hook . eglot-ensure)))
+   (rust-mode-hook . eglot-ensure)
+   (yaml-ts-mode-hook . eglot-ensure)))
 
 (leaf *inline-completion
   :config
@@ -674,7 +676,11 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
       :url "https://github.com/kwrooijen/cargo.el"))
 
   (leaf tex-mode
-    :tag "builtin"))
+    :tag "builtin")
+
+  (leaf yaml-ts-mode
+    :tag "builtin"
+    :mode "\\.yaml\\'"))
 
 (leaf *ai-assistant
   :config
