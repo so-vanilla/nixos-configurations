@@ -20,6 +20,7 @@ let
     fd
     gcc
     ghq
+    git-credential-manager
     gnumake
     gopls
     graphviz
@@ -57,6 +58,7 @@ let
     vscode-langservers-extracted
     whois
     wl-clipboard
+    yaml-language-server
     zip
     zoom-us
   ];
