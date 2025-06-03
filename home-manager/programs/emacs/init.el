@@ -637,13 +637,15 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :config
     (leaf cider
       :url "https://github.com/clojure-emacs/cider"
-      :if is-private-host
       :bind
       ((cider-repl-mode-map
         ("M-RET" . cider-repl-newline-and-indent))))
 
     (leaf clj-deps-new
       :url "https://github.com/jpe90/emacs-clj-deps-new"))
+
+  (leaf dockerfile-mode
+    :url "https://github.com/spotify/dockerfile-mode")
 
   (leaf elisp-mode
     :tag "builtin")
