@@ -15,6 +15,7 @@ let
     copilot-language-server
     deno
     discord
+    dockerfile-language-server-nodejs
     efm-langserver
     fd
     gcc
