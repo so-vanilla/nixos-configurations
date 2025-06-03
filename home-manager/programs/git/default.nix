@@ -10,6 +10,9 @@
       init = {
         defaultbranch = "main";
       };
+      credential = {
+        helper = "store";
+      };
       ghq = {
         root = "~/repos";
       };
