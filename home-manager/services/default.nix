@@ -1,5 +1,6 @@
 let
   emacs = import ./emacs;
+  gpg-agent = import ./gpg-agent;
   hyprpaper = import ./hyprpaper;
   playerctld = import ./playerctld;
   remmina = import ./remmina;
@@ -9,6 +10,7 @@ let
 in
 [
   emacs
+  gpg-agent
   hyprpaper
   playerctld
   nm-applet

@@ -12,6 +12,7 @@ let
   fish = import ./fish { inherit pkgs catppuccin-flavor; };
   git = import ./git;
   go = import ./go;
+  gpg = import ./gpg;
   gradle = import ./gradle;
   home-manager = import ./home-manager;
   hyprlock = import ./hyprlock;
@@ -33,6 +34,7 @@ in
   fish
   git
   go
+  gpg
   gradle
   home-manager
   hyprlock
