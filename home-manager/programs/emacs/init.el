@@ -193,7 +193,12 @@ _r_: redo
 
   (leaf delsel
     :tag "builtin"
-    :global-minor-mode delete-selection-mode))
+    :global-minor-mode delete-selection-mode)
+
+  (leaf window
+    :tag "builting"
+    :custom
+    (split-width-threshold . nil)))
 
 (leaf *cursor
   :config
