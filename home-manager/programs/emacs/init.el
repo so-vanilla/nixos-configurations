@@ -110,7 +110,7 @@
     ((copy-process . nil)
      (indent-tabs-mode . nil))
     :config
-    (if (is-private-host)
+    (if is-private-host
         (progn
           (setq interprogram-cut-function 'clipboard-copy)
           (setq interprogram-paste-function 'clipboard-paste)))
