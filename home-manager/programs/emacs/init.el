@@ -198,7 +198,12 @@ _r_: redo
   (leaf window
     :tag "builting"
     :custom
-    (split-width-threshold . nil)))
+    (split-width-threshold . nil))
+
+  (leaf eag-config
+    :tag "builtin"
+    :custom
+    (epa-pinentry-mode . 'loopback)))
 
 (leaf *cursor
   :config
