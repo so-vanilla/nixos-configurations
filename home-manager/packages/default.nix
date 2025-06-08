@@ -38,6 +38,7 @@ let
     nixfmt-rfc-style
     nodePackages.bash-language-server
     nodejs_22
+    pinentry-curses
     playerctl
     pyright
     (python3.withPackages (ps: with ps; [ numpy pandas matplotlib ]))

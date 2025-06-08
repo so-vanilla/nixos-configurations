@@ -1,9 +1,17 @@
 {
-  pkgs
+  pkgs,
 }:
 {
   services.gpg-agent = {
     enable = true;
-    pinentry.package = pkgs.pinentry-curses;
+    enableFishIntegration = true;
+    extraConfig = ''
+      allow-emacs-pinentry
+      allow-loopback-pinentry
+    '';
+    pinentry = {
+      package = pkgs.pinentry-curses;
+      program = "pinentry-curses";
+    };
   };
 }
