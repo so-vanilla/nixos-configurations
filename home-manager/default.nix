@@ -18,7 +18,9 @@ let
   programs = import ./programs {
     inherit pkgs;
   };
-  services = import ./services;
+  services = import ./services {
+    inherit pkgs;
+  };
   wayland = import ./wayland;
   packages = import ./packages {
     inherit pkgs zen-browser-pkg;

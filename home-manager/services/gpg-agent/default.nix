@@ -1,3 +1,9 @@
 {
-  services.gpg-agent.enable = true;
+  pkgs
+}:
+{
+  services.gpg-agent = {
+    enable = true;
+    pinentry.package = pkgs.pinentry-curses;
+  };
 }
