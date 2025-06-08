@@ -328,7 +328,7 @@ _C-n_: down
   (leaf embark-consult
     :url "https://github.com/oantolin/embark"
     :bind
-    ((minibuffer-mode-map
+    ((global-map
       :package emacs
       ("M-." . embark-dwin)
       ("C-." . embark-act)))))
@@ -682,6 +682,14 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
   (leaf tex-mode
     :tag "builtin")
+
+  (leaf tsx-ts-mode
+    :tag "builtin"
+    :mode "\\.tsx\\'")
+
+  (leaf typescript-ts-mode
+    :tag "builtin"
+    :mode "\\.ts\\'")
 
   (leaf yaml-ts-mode
     :tag "builtin"
