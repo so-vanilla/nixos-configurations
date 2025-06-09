@@ -6,8 +6,8 @@
 
 ;;; Code:
 
-(setq completion-system 'lsp-mode)
-; (setq completion-system 'eglot)
+(setq lsp-client 'lsp-mode)
+; (setq lsp-client 'eglot)
 
 (let ((private-hosts '("vanilla"))
       (current-host (system-name)))
@@ -345,7 +345,7 @@ _C-n_: down
   :config
   (leaf eglot
     :tag "builtin"
-    :if (eq completion-system 'eglot)
+    :if (eq lsp-client 'eglot)
     :hook
     ((c-mode-hook . eglot-ensure)
      (clojure-mode-hook . eglot-ensure)
@@ -365,7 +365,7 @@ _C-n_: down
 
   (leaf lsp-mode
     :url "https://github.com/emacs-lsp/lsp-mode"
-    :if (eq completion-system 'lsp-mode)
+    :if (eq lsp-client 'lsp-mode)
     :hook
     ((c-mode-hook . lsp)
      (clojure-mode-hook . lsp)
@@ -383,6 +383,13 @@ _C-n_: down
      (rust-mode-hook . lsp)
      (yaml-ts-mode-hook . lsp))
     :config
+    (leaf lsp-pyright
+      :url "https://github.com/emacs-lsp/lsp-pyright"
+      :hook
+      ((python-mode-hook . (lambda ()
+                             (require 'lsp-pyright)
+                             (lsp)))))
+
     (leaf lsp-ui
       :url "https://github.com/emacs-lsp/lsp-ui")))
 
@@ -390,7 +397,6 @@ _C-n_: down
   :config
   (leaf corfu
     :url "https://github.com/minad/corfu"
-    :if (eq completion-system 'eglot)
     :global-minor-mode global-corfu-mode
     :init
     (eval-after-load 'corfu
@@ -433,28 +439,14 @@ _C-n_: down
 
   (leaf cape
     :url "https://github.com/minad/cape"
-    :if (eq completion-system 'eglot)
     :config
     (add-to-list 'completion-at-point-functions #'cape-dabbrev)
     (add-to-list 'completion-at-point-functions #'cape-file)
     (add-to-list 'completion-at-point-functions #'cape-elisp-block)
     (add-to-list 'completion-at-point-functions #'cape-elisp-symbol))
 
-  (leaf company
-    :url "https://github.com/company-mode/company-mode"
-    :if (eq completion-system 'lsp-mode)
-    :global-minor-mode global-company-mode
-    :bind
-    ((company-active-map
-      ("TAB" . nil)
-      ("<tab>" . nil)
-      ("RET" . nil)
-      ("<return>" . nil)
-      ("C-i" . company-complete-selection))))
-
   (leaf tempel
     :url "https://github.com/minad/tempel"
-    :if (eq completion-system 'eglot)
     :global-minor-mode global-tempel-abbrev-mode
     :hook
     ((prog-mode-hook . tempel-setup-capf)
