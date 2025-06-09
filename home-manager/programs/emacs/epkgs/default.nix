@@ -3,6 +3,8 @@
 }:
 epkgs:
 import ./leaf.nix { inherit epkgs; }
+++ import ./lsp.nix { inherit epkgs; }
+++ import ./coding.nix { inherit epkgs; }
 ++ import ./paren.nix { inherit epkgs; }
 ++ import ./cursor.nix { inherit epkgs; }
 ++ import ./vcs.nix { inherit epkgs; }

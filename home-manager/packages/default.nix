@@ -17,6 +17,7 @@ let
     discord
     dockerfile-language-server-nodejs
     efm-langserver
+    eslint
     fd
     gcc
     ghq
@@ -43,6 +44,7 @@ let
     pyright
     (python3.withPackages (ps: with ps; [ numpy pandas matplotlib ]))
     rpi-imager
+    ruff
     rust-analyzer
     rustc
     rustfmt

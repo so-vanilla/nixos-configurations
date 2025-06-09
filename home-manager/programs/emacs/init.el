@@ -6,6 +6,9 @@
 
 ;;; Code:
 
+(setq completion-system 'lsp-mode)
+; (setq completion-system 'eglot)
+
 (let ((private-hosts '("vanilla"))
       (current-host (system-name)))
   (defvar is-private-host
@@ -338,29 +341,56 @@ _C-n_: down
       ("M-." . embark-dwin)
       ("C-." . embark-act)))))
 
-(leaf eglot
-  :tag "builtin"
-  :hook
-  ((c-mode-hook . eglot-ensure)
-   (clojure-mode-hook . eglot-ensure)
-   (css-mode-hook . eglot-ensure)
-   (dockerfile-mode . eglot-ensure)
-   (go-mode-hook . eglot-ensure)
-   (latex-mode-hook . eglot-ensure)
-   (lua-mode-hook . eglot-ensure)
-   (markdown-mode-hook . eglot-ensure)
-   (mhtml-mode-hook . eglot-ensure)
-   (java-mode-hook . eglot-ensure)
-   (js-mode-hook . eglot-ensure)
-   (nix-mode-hook . eglot-ensure)
-   (python-mode-hook . eglot-ensure)
-   (rust-mode-hook . eglot-ensure)
-   (yaml-ts-mode-hook . eglot-ensure)))
+(leaf *completion
+  :config
+  (leaf eglot
+    :tag "builtin"
+    :if (eq completion-system 'eglot)
+    :hook
+    ((c-mode-hook . eglot-ensure)
+     (clojure-mode-hook . eglot-ensure)
+     (css-mode-hook . eglot-ensure)
+     (dockerfile-mode . eglot-ensure)
+     (go-mode-hook . eglot-ensure)
+     (latex-mode-hook . eglot-ensure)
+     (lua-mode-hook . eglot-ensure)
+     (markdown-mode-hook . eglot-ensure)
+     (mhtml-mode-hook . eglot-ensure)
+     (java-mode-hook . eglot-ensure)
+     (js-mode-hook . eglot-ensure)
+     (nix-mode-hook . eglot-ensure)
+     (python-mode-hook . eglot-ensure)
+     (rust-mode-hook . eglot-ensure)
+     (yaml-ts-mode-hook . eglot-ensure)))
+
+  (leaf lsp-mode
+    :url "https://github.com/emacs-lsp/lsp-mode"
+    :if (eq completion-system 'lsp-mode)
+    :hook
+    ((c-mode-hook . lsp)
+     (clojure-mode-hook . lsp)
+     (css-mode-hook . lsp)
+     (dockerfile-mode . lsp)
+     (go-mode-hook . lsp)
+     (latex-mode-hook . lsp)
+     (lua-mode-hook . lsp)
+     (markdown-mode-hook . lsp)
+     (mhtml-mode-hook . lsp)
+     (java-mode-hook . lsp)
+     (js-mode-hook . lsp)
+     (nix-mode-hook . lsp)
+     (python-mode-hook . lsp)
+     (rust-mode-hook . lsp)
+     (yaml-ts-mode-hook . lsp))
+    :config
+    (leaf lsp-ui
+      :url "https://github.com/emacs-lsp/lsp-ui")))
 
 (leaf *inline-completion
   :config
   (leaf corfu
     :url "https://github.com/minad/corfu"
+    :if (eq completion-system 'eglot)
     :global-minor-mode global-corfu-mode
     :init
     (eval-after-load 'corfu
@@ -403,14 +433,28 @@ _C-n_: down
 
   (leaf cape
     :url "https://github.com/minad/cape"
+    :if (eq completion-system 'eglot)
     :config
     (add-to-list 'completion-at-point-functions #'cape-dabbrev)
     (add-to-list 'completion-at-point-functions #'cape-file)
     (add-to-list 'completion-at-point-functions #'cape-elisp-block)
     (add-to-list 'completion-at-point-functions #'cape-elisp-symbol))
 
+  (leaf company
+    :url "https://github.com/company-mode/company-mode"
+    :if (eq completion-system 'lsp-mode)
+    :global-minor-mode global-company-mode
+    :bind
+    ((company-active-map
+      ("TAB" . nil)
+      ("<tab>" . nil)
+      ("RET" . nil)
+      ("<return>" . nil)
+      ("C-i" . company-complete-selection))))
+
   (leaf tempel
     :url "https://github.com/minad/tempel"
+    :if (eq completion-system 'eglot)
     :global-minor-mode global-tempel-abbrev-mode
     :hook
     ((prog-mode-hook . tempel-setup-capf)
@@ -434,13 +478,15 @@ _C-n_: down
     (leaf tempel-collection
       :url "https://github.com/Crandel/tempel-collection")))
 
-(leaf *programming-assistant
+(leaf *coding-assistant
   :config
-  (leaf flymake
+  (leaf flycheck
     :tag "builtin"
+    :global-minor-mode global-flycheck-mode
     :bind
-    (("M-n" . flymake-goto-next-error)
-     ("M-p" . flymake-goto-prev-error))))
+    (("M-n" . flycheck-next-error)
+     ("M-p" . flycheck-previous-error))))
+;; TODO: Addd hydra
 
 (leaf org
   :tag "builtin"
