@@ -412,8 +412,7 @@ _C-n_: down
                       :major-modes '(nix-mode)
                       :priority 0
                       :server-id 'nixd))
-
-
+    
     (leaf lsp-pyright
       :url "https://github.com/emacs-lsp/lsp-pyright"
       :hook
@@ -422,7 +421,10 @@ _C-n_: down
                              (lsp)))))
 
     (leaf lsp-ui
-      :url "https://github.com/emacs-lsp/lsp-ui")))
+      :url "https://github.com/emacs-lsp/lsp-ui"
+      :global-minor-mode lsp-ui-mode
+      :custom
+      ((lsp-ui-sideline-show-hover . t)))))
 
 (leaf *inline-completion
   :config
