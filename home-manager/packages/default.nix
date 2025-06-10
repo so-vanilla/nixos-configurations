@@ -51,6 +51,7 @@ let
     slack
     soundwireserver
     spotify
+    svelte-language-server
     texlab
     texliveFull
     thunderbird
