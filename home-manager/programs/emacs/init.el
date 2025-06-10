@@ -206,7 +206,31 @@ _r_: redo
   (leaf eag-config
     :tag "builtin"
     :custom
-    (epa-pinentry-mode . 'loopback)))
+    (epa-pinentry-mode . 'loopback))
+
+  (leaf kmacro
+    :tag "builtin"
+    :preface
+    (defun my-kmacro-call-macro ()
+      "Call the last keyboard macro."
+      (interactive)
+      (kmacro-end-and-call-macro 1)
+      (hydra-kmacro/body))
+    :bind
+    (("C-x e" . my-kmacro-call-macro))
+    :hydra
+    ((hydra-kmacro
+      (:hint nil)
+      "
+^Repeat^
+^^--------------
+  _e_: call
+_C-g_: splice
+"
+      ("e" kmacro-call-macro)
+      ("C-g" nil :exit t)
+      ("C-m" nil :exit t)
+      ("q" nil :exit t)))))
 
 (leaf *cursor
   :config
