@@ -731,6 +731,10 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
   (leaf lua-mode
     :url "https://github.com/immerrr/lua-mode")
 
+  (leaf mhtml-mode
+    :tag "builtin"
+    :mode "\\.svelte\\'")
+
   (leaf nix-mode
     :url "https://github.com/NixOS/nix-mode")
 
