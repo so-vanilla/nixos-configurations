@@ -407,6 +407,13 @@ _C-n_: down
      (rust-mode-hook . lsp)
      (yaml-ts-mode-hook . lsp))
     :config
+    (lsp-register-client
+     (make-lsp-client :new-connection (lsp-stdio-connection '("nixd"))
+                      :major-modes '(nix-mode)
+                      :priority 0
+                      :server-id 'nixd))
+
+
     (leaf lsp-pyright
       :url "https://github.com/emacs-lsp/lsp-pyright"
       :hook
