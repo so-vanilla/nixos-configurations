@@ -271,13 +271,7 @@ _C-g_: splice
     :global-minor-mode puni-global-mode
     :bind
     ((puni-mode-map
-      ("C-k" . (lambda ()
-                 (interactive)
-                 (if (derived-mode-p 'prog-mode)
-                     (progn
-                       (puni-kill-line)
-                       (indent-for-tab-command))
-                   (puni-kill-line))))
+      ("C-k" . puni-kill-line)
       ("M-C-d" . puni-backward-kill-word)
       ("M-C-p" . hydra-puni/body)))
     :hydra
