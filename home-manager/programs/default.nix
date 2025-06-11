@@ -22,6 +22,7 @@ let
   pandoc = import ./pandoc;
   ripgrep = import ./ripgrep;
   tofi = import ./tofi { inherit catppuccin-flavor; };
+  vscode = import ./vscode;
   waybar = import ./waybar;
 in
 [
@@ -44,5 +45,6 @@ in
   pandoc
   ripgrep
   tofi
+  vscode
   waybar
 ]
