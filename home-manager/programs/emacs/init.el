@@ -189,7 +189,7 @@ _r_: redo
 
   (leaf subr
     :tag "builtin"
-    :init
+    :config
     (keyboard-translate ?\C-h ?\C-?))
 
   (leaf autorevert
