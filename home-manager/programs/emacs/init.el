@@ -46,7 +46,8 @@
      (use-file-dialog . nil)
      (use-short-answers . t)
      (create-lockfiles . nil)
-     (tab-width . 4)))
+     (tab-width . 4)
+     (gc-cons-threshold . 10000000)))
 
   (leaf startup
     :tag "builtin"
