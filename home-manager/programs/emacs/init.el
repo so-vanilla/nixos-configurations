@@ -246,7 +246,8 @@ _C-g_: splice
     :bind
     (("C-;" . avy-goto-char-in-line)
      ("C-/" . avy-goto-char-timer)
-     ("M-/" . avy-goto-line))))
+     ("M-/" . avy-goto-end-of-line)
+     ("M-?" . avy-goto-line))))
 
 
 (leaf *pair
