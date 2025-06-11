@@ -47,7 +47,8 @@
      (use-short-answers . t)
      (create-lockfiles . nil)
      (tab-width . 4)
-     (gc-cons-threshold . 10000000)))
+     (gc-cons-threshold . 10000000)
+     (read-process-output-max . (* 1024 1024)) ; 1MB))
 
   (leaf startup
     :tag "builtin"
@@ -978,3 +979,5 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
 
 (provide 'init)
+
+;;; init.el ends here
