@@ -70,7 +70,7 @@ services
 
     users.users."${username}" = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "libvirtd" "wireshark" "docker" ];
+      extraGroups = [ "wheel" "networkmanager" "libvirtd" "wireshark" "docker" "disk"];
       ignoreShellProgramCheck = true;
       shell = pkgs.fish;
     };
