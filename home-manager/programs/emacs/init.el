@@ -798,9 +798,11 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
   (leaf ddskk
     :url "https://github.com/skk-dev/ddskk"
+    :if (not is-private-host)
     :custom
     ((skk-preload . t)
      (skk-user-directory . "~/.ddskk")
+     (skk-init-file . "~/.ddskk/init")
      (skk-large-jisyo . "~/.ddskk/SKK-JISYO.L"))
     :bind
     (("C-x C-j" . skk-mode))))
