@@ -50,6 +50,7 @@ let
     rustfmt
     slack
     soundwireserver
+    spice
     spotify
     svelte-language-server
     texlab
@@ -60,6 +61,7 @@ let
     typescript-language-server
     unzip
     vim-language-server
+    virt-viewer
     vscode-langservers-extracted
     whois
     wl-clipboard
