@@ -10,4 +10,5 @@
   home.file.".emacs.d/init.el".source = ./init.el;
   home.file.".emacs.d/early-init.el".source = ./early-init.el;
   home.file.".emacs.d/templates".source = ./templates;
+  home.file.".ddskk/init".source = ./.ddskk/init;
 }
