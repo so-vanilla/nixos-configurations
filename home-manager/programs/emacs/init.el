@@ -799,6 +799,11 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
   (leaf eat
     :url "https://codeberg.org/akib/emacs-eat")
 
+  (leaf dirvish
+    :url "https://github.com/alexluigit/dirvish"
+    :init
+    (dirvish-override-dired-mode))
+
   (leaf ddskk
     :url "https://github.com/skk-dev/ddskk"
     :if (not is-private-host)
