@@ -796,6 +796,9 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
   (leaf mistty
     :url "https://github.com/szermatt/mistty")
 
+  (leaf eat
+    :url "https://codeberg.org/akib/emacs-eat")
+
   (leaf ddskk
     :url "https://github.com/skk-dev/ddskk"
     :if (not is-private-host)
