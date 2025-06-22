@@ -794,7 +794,16 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :global-minor-mode t)
 
   (leaf mistty
-    :url "https://github.com/szermatt/mistty"))
+    :url "https://github.com/szermatt/mistty")
+
+  (leaf ddskk
+    :url "https://github.com/skk-dev/ddskk"
+    :custom
+    ((skk-preload . t)
+     (skk-user-directory . "~/.ddskk")
+     (skk-large-jisyo . "~/.ddskk/SKK-JISYO.L"))
+    :bind
+    (("C-x C-j" . skk-mode))))
 
 (leaf *appearance
   :config
