@@ -25,7 +25,9 @@
       h="cd";
       q="exit";
       v="emacsclient -nc";
-      emacs-restart="emacsclient -e \"(kill-emacs)\" && emacs --daemon";
+      ed="XMODIFIERS= GTK_IM_MODULE= QT_IM_MODULE= emacs --daemon";
+      ek="emacsclient -e \"(kill-emacs)\"";
+      ec="emacsclient -c";
       kills="killall slack .Discord-wrapped";
     };
   };
