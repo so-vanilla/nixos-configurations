@@ -8,6 +8,7 @@ let
     bitwarden-cli
     brightnessctl
     cargo
+    ciscoPacketTracer8
     clang-tools
     clojure
     clojure-lsp
