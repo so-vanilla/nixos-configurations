@@ -66,6 +66,7 @@ let
     whois
     wl-clipboard
     yaml-language-server
+    zed-editor
     zip
     zoom-us
   ];
