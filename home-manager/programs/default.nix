@@ -24,6 +24,7 @@ let
   tofi = import ./tofi { inherit catppuccin-flavor; };
   vscode = import ./vscode;
   waybar = import ./waybar;
+  zed-editor = import ./zed-editor;
 in
 [
   alacritty
