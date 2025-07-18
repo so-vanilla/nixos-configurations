@@ -4,6 +4,7 @@
 let
   catppuccin-flavor = "latte";
   alacritty = import ./alacritty { inherit catppuccin-flavor; };
+  awscli = import ./awscli;
   bat = import ./bat { inherit catppuccin-flavor; };
   btop = import ./btop { inherit catppuccin-flavor; };
   direnv = import ./direnv;
@@ -28,6 +29,7 @@ let
 in
 [
   alacritty
+  awscli
   bat
   btop
   direnv

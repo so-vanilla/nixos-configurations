@@ -1,0 +1,3 @@
+{
+  programs.awscli.enable = true;
+}
