@@ -9,6 +9,7 @@ let
     brightnessctl
     cargo
     clang-tools
+    claude-code
     clojure
     clojure-lsp
     cmake
