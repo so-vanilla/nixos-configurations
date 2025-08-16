@@ -1,8 +1,8 @@
-;;; init.el --- My init.el
+;;; init.el --- My init.el -*- lexical-binding: t; -*-
 
-;; Author: Shuto Omura <somura-vanilla@so-icecream.com>
+;;; Author: Shuto Omura <somura-vanilla@so-icecream.com>
 
-;; Commentary:
+;;; Commentary:
 
 ;;; Code:
 
