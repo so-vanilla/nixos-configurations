@@ -797,7 +797,7 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
   :config
   (leaf direnv
     :url "https://github.com/wbolster/emacs-direnv"
-    :global-mpinor-mode t)
+    :global-minor-mode t)
 
   (leaf mistty
     :url "https://github.com/szermatt/mistty")
