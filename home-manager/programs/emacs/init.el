@@ -785,7 +785,10 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
   (leaf copilot-chat
     :url "https://github.com/chep/copilot-chat.el"
-    :if is-private-host))
+    :if is-private-host)
+
+  (leaf claude-code-ide
+    :vc (:url "https://github.com/manaltu/claude-code-ide.el" :rev :newest)))
 
 (leaf *others
   :config
