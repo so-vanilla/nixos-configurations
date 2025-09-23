@@ -790,8 +790,12 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
   (if (file-exists-p "~/repos/github.com/manzaltu/claude-code-ide.el/")
       (progn
         (add-to-list 'load-path "~/repos/github.com/manzaltu/claude-code-ide.el")
-        (use-package claude-code-ide
-          :ensure nil))))
+        (leaf claude-code-ide
+          :ensure nil
+          :custom
+          ((claude-code-ide-terminal-backend 'eat))
+          :bind (("C-x c m" . claude-code-ide-menu)
+                 ("C-x c t" . claude-code-ide-toggle))))))
 
 (leaf *others
   :config
