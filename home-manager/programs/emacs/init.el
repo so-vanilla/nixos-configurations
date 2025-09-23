@@ -788,7 +788,7 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :if is-private-host)
 
   (leaf claude-code-ide
-    :vc (:url "https://github.com/manaltu/claude-code-ide.el" :rev :newest)))
+    :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)))
 
 (leaf *others
   :config
