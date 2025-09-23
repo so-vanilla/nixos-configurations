@@ -787,7 +787,7 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :url "https://github.com/chep/copilot-chat.el"
     :if is-private-host)
 
-  (if (path-exists-p "~/repos/github.com/manzaltu/claude-code-ide.el/")
+  (if (file-exists-p "~/repos/github.com/manzaltu/claude-code-ide.el/")
       (progn
         (add-to-list 'load-path "~/repos/github.com/manzaltu/claude-code-ide.el")
         (use-package claude-code-ide
