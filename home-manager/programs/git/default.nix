@@ -1,11 +1,13 @@
 {
   programs.git = {
     enable = true;
-    userName = "somura";
-    userEmail = "somura-vanilla@so-icecream.com";
-    extraConfig = {
+    settings = {
       core = {
         editor = "nvim";
+      };
+      user = {
+        name = "somura";
+        email = "somura-vanilla@so-icecream.com";
       };
       init = {
         defaultbranch = "main";

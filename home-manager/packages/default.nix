@@ -16,7 +16,7 @@ let
     copilot-language-server
     deno
     discord
-    dockerfile-language-server-nodejs
+    dockerfile-language-server
     efm-langserver
     eslint
     fd
@@ -44,7 +44,6 @@ let
     playerctl
     pyright
     (python3.withPackages (ps: with ps; [ numpy pandas matplotlib ]))
-    rpi-imager
     ruff
     rust-analyzer
     rustc
