@@ -360,6 +360,7 @@ _C-n_: down
      ([remap imenu] . consult-imenu)
      ([remap goto-line] . consult-goto-line)
      ("C-s". consult-line)
+     ("C-M-s" . consult-ripgrep)
      (minibuffer-mode-map
       ("C-r" . consult-history))))
 
