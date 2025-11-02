@@ -6,8 +6,17 @@
 
 ;;; Code:
 
-(setq lsp-client 'lsp-mode)
-; (setq lsp-client 'eglot)
+(defgroup lsp-client-settings nil
+  "LSPクライアント設定."
+  :group 'programming)
+
+(defcustom my-default-lsp-client 'lsp-mode
+  "デフォルトのLSPクライアントを選択します."
+  :type '(choice (const :tag "lsp-mode" lsp-mode)
+                 (const :tag "Eglot" eglot))
+  :group 'lsp-client-settings)
+
+(setq my-default-lsp-client 'lsp-mode)
 
 (let ((private-hosts '("vanilla"))
       (current-host (system-name)))
@@ -366,7 +375,7 @@ _C-n_: down
   :config
   (leaf eglot
     :tag "builtin"
-    :if (eq lsp-client 'eglot)
+    :if (eq my-default-lsp-client 'eglot)
     :hook
     ((c-mode-hook . eglot-ensure)
      (clojure-mode-hook . eglot-ensure)
@@ -386,7 +395,7 @@ _C-n_: down
 
   (leaf lsp-mode
     :url "https://github.com/emacs-lsp/lsp-mode"
-    :if (eq lsp-client 'lsp-mode)
+    :if (eq my-default-lsp-client 'lsp-mode)
     :hook
     ((c-mode-hook . lsp)
      (clojure-mode-hook . lsp)
@@ -752,7 +761,7 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :custom
     ((rustic-format-on-save . t)
      (rustic-cargo-use-last-stored-auguments . t)
-     (rustic-lsp-client 'eglot))
+     (rustic-lsp-client my-default-lsp-client))
     :config
     (leaf cargo
       :url "https://github.com/kwrooijen/cargo.el"))
