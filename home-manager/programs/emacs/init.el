@@ -6,18 +6,6 @@
 
 ;;; Code:
 
-(defgroup lsp-client-settings nil
-  "LSPクライアント設定."
-  :group 'programming)
-
-(defcustom my-default-lsp-client 'lsp-mode
-  "デフォルトのLSPクライアントを選択します."
-  :type '(choice (const :tag "lsp-mode" lsp-mode)
-                 (const :tag "Eglot" eglot))
-  :group 'lsp-client-settings)
-
-(setq my-default-lsp-client 'lsp-mode)
-
 (let ((private-hosts '("vanilla"))
       (current-host (system-name)))
   (defvar is-private-host
@@ -373,6 +361,26 @@ _C-n_: down
       ("C-." . embark-act)))))
 
 (leaf *completion
+  :init
+  (defgroup lsp-client-settings nil
+    "LSPクライアント設定."
+    :group 'programming)
+
+  (defcustom my-default-lsp-client 'lsp-mode
+    "デフォルトのLSPクライアントを選択します."
+    :type '(choice (const :tag "lsp-mode" lsp-mode)
+                   (const :tag "Eglot" eglot))
+    :group 'lsp-client-settings)
+
+  (defcustom my-enabled-lsp-servers
+    '()
+    "有効なLSPサーバのリスト."
+    :type '(repeat string)
+    :group 'lsp-client-settings)
+
+  :custom
+  (((my-default-lsp-client . 'lsp-mode)))
+    
   :config
   (leaf eglot
     :tag "builtin"
