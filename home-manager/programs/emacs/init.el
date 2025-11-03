@@ -5,7 +5,6 @@
 ;;; Commentary:
 
 ;;; Code:
-
 (let ((private-hosts '("vanilla"))
       (current-host (system-name)))
   (defvar is-private-host
@@ -831,6 +830,11 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :url "https://github.com/alexluigit/dirvish"
     :init
     (dirvish-override-dired-mode))
+
+  (ace-window
+   :url "https://github.com/abo-abo/ace-window"
+   :bind
+   (("M-o" . ace-window)))
 
   (leaf ddskk
     :url "https://github.com/skk-dev/ddskk"
