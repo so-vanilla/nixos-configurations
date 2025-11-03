@@ -23,6 +23,7 @@ let
     gcc
     ghq
     git-credential-manager
+    github-copilot-cli
     gnumake
     gopls
     graphviz
