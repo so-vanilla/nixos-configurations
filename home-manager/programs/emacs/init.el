@@ -831,10 +831,13 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :init
     (dirvish-override-dired-mode))
 
-  (ace-window
-   :url "https://github.com/abo-abo/ace-window"
-   :bind
-   (("M-o" . ace-window)))
+  (leaf ace-window
+    :url "https://github.com/abo-abo/ace-window"
+    :custom
+    ((aw-keys . '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+     (aw-background . nil))
+    :bind
+    (("M-o" . ace-window)))
 
   (leaf ddskk
     :url "https://github.com/skk-dev/ddskk"
