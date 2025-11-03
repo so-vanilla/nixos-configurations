@@ -824,7 +824,23 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :url "https://github.com/szermatt/mistty")
 
   (leaf eat
-    :url "https://codeberg.org/akib/emacs-eat")
+    :url "https://codeberg.org/akib/emacs-eat"
+    :init
+    (defun eat-toggle-mode ()
+      "Toggle eat-mode."
+      (interactive)
+      (if eat--semi-char-mode
+          (eat-emacs-mode)
+        (eat-semi-char-mode)))
+    :config
+    (customize-set-variable
+     'eat-semi-char-non-bound-keys
+     (append
+      (list (vector meta-prefix-char ?e) (vector meta-prefix-char ?o))
+      eat-semi-char-non-bound-keys))
+    :bind
+    (eat-mode-map
+     ("M-e" . eat-toggle-mode)))
 
   (leaf dirvish
     :url "https://github.com/alexluigit/dirvish"
