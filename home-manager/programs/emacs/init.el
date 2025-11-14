@@ -523,9 +523,12 @@ _C-n_: down
     :tag "builtin"
     :global-minor-mode global-flycheck-mode
     :bind
-    (("M-n" . flycheck-next-error)
-     ("M-p" . flycheck-previous-error))))
-;; TODO: Addd hydra
+    ((flycheck-mode-map
+      ("M-n" . flycheck-next-error)
+      ("M-p" . flycheck-previous-error))
+     (cider-repl-mode-map
+      ("M-n" . nil)
+      ("M-p" . nil)))))
 
 (leaf org
   :tag "builtin"
