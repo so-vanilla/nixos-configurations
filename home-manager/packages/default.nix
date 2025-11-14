@@ -21,6 +21,7 @@ let
     eslint
     fd
     gcc
+    gh
     ghq
     git-credential-manager
     github-copilot-cli
