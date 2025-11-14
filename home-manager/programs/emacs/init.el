@@ -828,6 +828,8 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
   (leaf eat
     :url "https://codeberg.org/akib/emacs-eat"
+    :hook
+    ((eshell-first-time-mode-hook . eat-eshell-visual-command-mode))
     :init
     (defun eat-toggle-mode ()
       "Toggle eat-mode."
