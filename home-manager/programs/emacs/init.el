@@ -111,10 +111,8 @@
     ((copy-process . nil)
      (indent-tabs-mode . nil))
     :config
-    (if is-private-host
-        (progn
-          (setq interprogram-cut-function 'clipboard-copy)
-          (setq interprogram-paste-function 'clipboard-paste)))
+    (setq interprogram-cut-function 'clipboard-copy)
+    (setq interprogram-paste-function 'clipboard-paste)
     :bind
     (("C-x u" . my-undo)
      ("C-x r" . my-redo)
