@@ -14,6 +14,9 @@
       set -x PYTHON_HOME $(python3 -c 'import sys; print(sys.prefix, end="")')
       source ~/.config/fish/general.fish
       source ~/.config/fish/links.fish
+      if status is-interactive; and test -n $EAT_SHELL_INTEGRATION_DIR
+        source ~/.config/fish/eat-integration.fish
+      end
     '';
     shellAbbrs = {
       ls="eza";
@@ -31,6 +34,8 @@
       kills="killall slack .Discord-wrapped";
     };
   };
+
+  home.file.".config/fish/eat-integration.fish".source = ./eat-integration.fish;
 
   catppuccin.fish = {
     enable = true;
