@@ -412,12 +412,14 @@ _C-n_: down
      (lua-mode-hook . lsp)
      (markdown-mode-hook . lsp)
      (mhtml-mode-hook . lsp)
-     (java-mode-hook . lsp)
+     ;; (java-mode-hook . lsp)
      (js-mode-hook . lsp)
      (nix-mode-hook . lsp)
-     (python-mode-hook . lsp)
+     ;; (python-mode-hook . lsp)
      (rust-mode-hook . lsp)
-     (yaml-ts-mode-hook . lsp))
+     (yaml-ts-mode-hook . lsp)
+     (lsp-mode . lsp-enable-which-key-integration)
+     (lsp-mode-hook . lsp-lens-mode))
     :config
     (lsp-register-client
      (make-lsp-client :new-connection (lsp-stdio-connection '("nixd"))
@@ -431,6 +433,18 @@ _C-n_: down
       ((python-mode-hook . (lambda ()
                              (require 'lsp-pyright)
                              (lsp)))))
+
+    (leaf lsp-java
+      :url "https://github.com/emacs-lsp/lsp-java"
+      :hook
+      ((java-mode-hook . (lambda ()
+                             (require 'lsp-java)
+                             (lsp)))
+       :config
+       (leaf lsp-java-boot
+         :url "https://github.com/emacs-lsp/lsp-java"
+         :hook
+         ((java-mode-hook . lsp-java-boot-lens-mode)))))
 
     (leaf lsp-ui
       :url "https://github.com/emacs-lsp/lsp-ui"
