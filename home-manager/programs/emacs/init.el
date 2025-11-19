@@ -439,12 +439,12 @@ _C-n_: down
       :hook
       ((java-mode-hook . (lambda ()
                              (require 'lsp-java)
-                             (lsp)))
-       :config
-       (leaf lsp-java-boot
-         :url "https://github.com/emacs-lsp/lsp-java"
-         :hook
-         ((java-mode-hook . lsp-java-boot-lens-mode)))))
+                             (lsp))))
+      :config
+      (leaf lsp-java-boot
+        :url "https://github.com/emacs-lsp/lsp-java"
+        :hook
+        ((java-mode-hook . lsp-java-boot-lens-mode))))
 
     (leaf lsp-ui
       :url "https://github.com/emacs-lsp/lsp-ui"
