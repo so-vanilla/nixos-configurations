@@ -744,7 +744,8 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
   (leaf cc-mode
     :tag "builtin"
     :custom
-    ((c-default-style . "k&r")))
+    ((c-default-style . "gnu")
+     (c-basic-offset . 4)))
 
   (leaf clojure-mode
     :url "https://github.com/clojure-emacs/clojure-mode"
