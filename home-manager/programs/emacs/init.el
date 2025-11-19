@@ -535,12 +535,9 @@ _C-n_: down
     :tag "builtin"
     :global-minor-mode global-flycheck-mode
     :bind
-    ((flycheck-mode-map
-      ("M-n" . flycheck-next-error)
-      ("M-p" . flycheck-previous-error))
-     (cider-repl-mode-map
-      ("M-n" . nil)
-      ("M-p" . nil)))))
+    (flycheck-mode-map
+     ("M-n" . flycheck-next-error)
+     ("M-p" . flycheck-previous-error))))
 
 (leaf org
   :tag "builtin"
