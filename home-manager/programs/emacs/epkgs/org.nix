@@ -7,4 +7,5 @@ with epkgs; [
   org-roam
   org-caldav
   org-ai
+  ox-gfm
 ]

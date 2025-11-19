@@ -722,7 +722,11 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :global-minor-mode org-ai-global-mode
     :custom
     `((org-ai-openai-api-token . ,(getenv "ORG_AI_KEY"))
-      (org-ai-default-chat-model . "gpt-4o"))))
+      (org-ai-default-chat-model . "gpt-4o")))
+
+  (leaf org-gfm
+    :url "https://github.com/larstvei/ox-gfm"
+    :after org))
 
 (leaf *language
   :config
