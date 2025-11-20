@@ -5,6 +5,8 @@
 ;;; Commentary:
 
 ;;; Code:
+(setq lsp-client 'lsp-mode)
+
 (let ((private-hosts '("vanilla"))
       (current-host (system-name)))
   (defvar is-private-host
@@ -316,7 +318,10 @@ _C-n_: down
 (leaf *vcs
   :config
   (leaf magit
-    :url "https://github.com/magit/magit"))
+    :url "https://github.com/magit/magit"
+    :config
+    (leaf forge
+      :after magit)))
 
 (leaf *minibuffer
   :config
@@ -417,9 +422,16 @@ _C-n_: down
      (nix-mode-hook . lsp)
      (python-mode-hook . lsp)
      (rust-mode-hook . lsp)
+     (terraform-mode-hook . lsp)
+     (yaml-ts-mode-hook . lsp)
      (yaml-ts-mode-hook . lsp)
      (lsp-mode . lsp-enable-which-key-integration)
      (lsp-mode-hook . lsp-lens-mode))
+    :custom
+    ((lsp-keymap-prefix . "C-c l")
+     (lsp-disabled-clients . '(tfls))
+     (lsp-terraform-ls-enable-show-reference . t)
+     (lsp-terraform-ls-prefill-required-fields . t))
     :config
     (lsp-register-client
      (make-lsp-client :new-connection (lsp-stdio-connection '("nixd"))
@@ -459,7 +471,7 @@ _C-n_: down
     :global-minor-mode global-corfu-mode
     :init
     (eval-after-load 'corfu
-    '(setq corfu-mode-map nil))
+      '(setq corfu-mode-map nil))
     :custom
     ((corfu-auto . t)
      (corfu-auto-delay . 0)
@@ -530,9 +542,8 @@ _C-n_: down
       :url "https://github.com/Crandel/tempel-collection")))
 
 (leaf *coding-assistant
-  :config
   (leaf flycheck
-    :tag "builtin"
+    :url "https://github.com/flycheck/flycheck"
     :global-minor-mode global-flycheck-mode
     :bind
     (flycheck-mode-map
@@ -607,28 +618,28 @@ _r_: row(table)
     :global-minor-mode t
     :custom
     ((org-super-agenda-groups .
-      '((:name "Schedule"
-               :file-path "~/org/schedule.org"
-               :time-grid t)
-        (:name "Work"
-               :tag "work")
-        (:name "Project"
-               :tag "project")
-        (:name "Search"
-               :file-path "~/org/todo.org")
-        (:name "Emacs"
-               :tag "emacs")
-        (:name "Linux"
-               :tag "linux")))))
+                              '((:name "Schedule"
+                                       :file-path "~/org/schedule.org"
+                                       :time-grid t)
+                                (:name "Work"
+                                       :tag "work")
+                                (:name "Project"
+                                       :tag "project")
+                                (:name "Search"
+                                       :file-path "~/org/todo.org")
+                                (:name "Emacs"
+                                       :tag "emacs")
+                                (:name "Linux"
+                                       :tag "linux")))))
 
   (leaf org-capture
     :tag "builtin"
     :custom
     (org-capture-templates .
-     '(("t" "Todo" entry (file "~/org/todo.org")
-        "* TODO %?\n")
-       ("s" "Schedule" entry (file "~/org/schedule.org")
-        "* %?\n"))))
+                           '(("t" "Todo" entry (file "~/org/todo.org")
+                              "* TODO %?\n")
+                             ("s" "Schedule" entry (file "~/org/schedule.org")
+                              "* %?\n"))))
 
   (leaf org-timer
     :tag "builtin"
@@ -659,6 +670,125 @@ _I_: insert as item
     :custom
     ((org-journal-dir . "~/org/journal/")
      (org-journal-file-format . "%Y-%m-%d.org"))
+    :config
+    (defun org-journal-kosu--parse-journal-file (path)
+      "Parse org journal file at PATH and return parsed buffer."
+      (with-temp-buffer
+        (insert-file-contents path)
+        (org-mode)
+        (org-element-parse-buffer)))
+
+    (defun org-journal-kosu--get-headings (parsed)
+      "Extract all headings from PARSED org buffer."
+      (let ((headings '()))
+        (progn
+          (org-element-map parsed 'headline
+            (lambda (hl)
+              (push hl headings)))
+          headings)))
+
+    (defun org-journal-kosu--is-start-with-time (title)
+      "Check if TITLE starts with time format HH:MM."
+      (string-match "^\\([0-9]\\{2\\}:[0-9]\\{2\\}\\) \\(.*\\)$" title))
+
+    (defun org-journal-kosu--to-time-and-tag-list (headings)
+      "Convert HEADINGS to list of time and tag entries."
+      (mapcar (lambda (hl)
+                (let ((raw-title (org-element-property :raw-value hl))
+                      (tags (org-element-property :tags hl)))
+                  (if (org-journal-kosu--is-start-with-time raw-title)
+                      (let ((time-str (match-string 1 raw-title))
+                            (work-desc (match-string 2 raw-title)))
+                        (list :time time-str :tags tags)))))
+              headings))
+
+    (defun org-journal-kosu--time-to-duration (time-tag-list)
+      "Convert TIME-TAG-LIST to duration entries between consecutive tasks."
+      (let* ((filtered-list (seq-filter 'identity time-tag-list))
+             (sorted-list (sort filtered-list
+                                (lambda (a b)
+                                  (string< (plist-get a :time) (plist-get b :time)))))
+             (result '()))
+        (dotimes (i (1- (length sorted-list)))
+          (let* ((current (nth i sorted-list))
+                 (next (nth (1+ i) sorted-list))
+                 (current-time (plist-get current :time))
+                 (next-time (plist-get next :time))
+                 (current-tags (plist-get current :tags))
+                 (next-tags (plist-get next :tags))
+                 (current-minutes (+ (* (string-to-number (substring current-time 0 2)) 60)
+                                     (string-to-number (substring current-time 3 5))))
+                 (next-minutes (+ (* (string-to-number (substring next-time 0 2)) 60)
+                                  (string-to-number (substring next-time 3 5))))
+                 (duration (cond
+                            ;; If current task is before 12:00 and next is 12:00 or after, end at 12:00
+                            ((and (< current-minutes 720) (>= next-minutes 720))
+                             (- 720 current-minutes))
+                            ;; Normal case
+                            (t (- next-minutes current-minutes)))))
+            (when (and current-tags (> (length current-tags) 0))
+              (push (list :duration duration :tags current-tags) result))))
+        (reverse result)))
+
+    (defun org-journal-kosu--sum-durations-by-tag (duration-tag-list)
+      "Sum durations in DURATION-TAG-LIST grouped by tags."
+      (let ((result '()))
+        (dolist (entry duration-tag-list)
+          (when entry
+            (let ((duration (plist-get entry :duration))
+                  (tags (plist-get entry :tags)))
+              (dolist (tag tags)
+                (let ((existing (assoc tag result)))
+                  (if existing
+                      (setcdr existing (+ (cdr existing) duration))
+                    (push (cons tag duration) result)))))))
+        result))
+
+    (defun org-journal-kosu--format-result (tag-duration-alist)
+      "Format TAG-DURATION-ALIST into readable string with HH:MM format."
+      (mapconcat (lambda (item)
+                   (let ((minutes (cdr item))
+                         (hours (/ (cdr item) 60))
+                         (mins (% (cdr item) 60)))
+                     (format "%s: %02d:%02d" (car item) hours mins)))
+                 tag-duration-alist "\n"))
+
+    (defun org-journal-kosu--write-to-temp-buffer (formatted-string)
+      "Write FORMATTED-STRING to temporary buffer and display it."
+      (with-current-buffer (get-buffer-create "*Journal Analysis*")
+        (let ((inhibit-read-only t))
+          (erase-buffer)
+          (insert "Journal Time Analysis\n")
+          (insert "=====================\n\n")
+          (insert formatted-string)
+          (goto-char (point-min))
+          (read-only-mode 1)
+          (display-buffer (current-buffer)))))
+
+    (defun org-journal-kosu-by-journal-file (file-path)
+      "Analyze journal file at FILE-PATH and display time analysis."
+      (->> file-path
+           org-journal-kosu--parse-journal-file
+           org-journal-kosu--get-headings
+           org-journal-kosu--to-time-and-tag-list
+           org-journal-kosu--time-to-duration
+           org-journal-kosu--sum-durations-by-tag
+           org-journal-kosu--format-result
+           org-journal-kosu--write-to-temp-buffer))
+
+    (defun org-journal-kosu-yesterday ()
+      "Analyze yesterday's journal file and display time analysis."
+      (interactive)
+      (let ((yesterday-file (format-time-string "~/org/journal/%Y-%m-%d.org"
+                                                (time-subtract (current-time) (days-to-time 1)))))
+        (org-journal-kosu-by-journal-file yesterday-file)))
+
+    (defun org-journal-kosu-by-date ()
+      "Analyze journal file from date and display time analysis."
+      (interactive)
+      (let* ((date-string (read-string "Enter date (YYYY-MM-DD): "))
+             (journal-file (format "~/org/journal/%s.org" date-string)))
+        (org-journal-kosu-by-journal-file journal-file)))
     :hydra
     ((hydra-org-journal
       (:hint nil :exit t)
@@ -794,6 +924,12 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     (leaf cargo
       :url "https://github.com/kwrooijen/cargo.el"))
 
+  (leaf terraform-mode
+    :url "https://github.com/hcl-emacs/terraform-mode"
+    :custom
+    ((terraform-indent-level . 2)
+     (hcl-indent-level . 2)))
+
   (leaf tex-mode
     :tag "builtin")
 
@@ -821,16 +957,15 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
       ("C-<tab>" . copilot-accept-completion-by-word))))
 
   (leaf copilot-chat
-    :url "https://github.com/chep/copilot-chat.el"
-    :if is-private-host)
-
+    :url "https://github.com/chep/copilot-chat.el")
+  
   (if (file-exists-p "~/repos/github.com/manzaltu/claude-code-ide.el/")
       (progn
         (add-to-list 'load-path "~/repos/github.com/manzaltu/claude-code-ide.el")
         (leaf claude-code-ide
           :ensure nil
           :custom
-          ((claude-code-ide-terminal-backend 'eat))
+          ((claude-code-ide-terminal-backend . 'eat))
           :bind (("C-x c m" . claude-code-ide-menu)
                  ("C-x c t" . claude-code-ide-toggle))))))
 
@@ -869,7 +1004,9 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
   (leaf dirvish
     :url "https://github.com/alexluigit/dirvish"
     :init
-    (dirvish-override-dired-mode))
+    (dirvish-override-dired-mode)
+    :bind
+    (("C-x d" . dirvish)))
 
   (leaf ace-window
     :url "https://github.com/abo-abo/ace-window"
