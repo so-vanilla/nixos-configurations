@@ -428,7 +428,7 @@ _C-n_: down
      (lsp-mode . lsp-enable-which-key-integration)
      (lsp-mode-hook . lsp-lens-mode))
     :custom
-    ((lsp-keymap-prefix . "C-c l")
+    ((lsp-keymap-prefix . "M-l")
      (lsp-disabled-clients . '(tfls))
      (lsp-terraform-ls-enable-show-reference . t)
      (lsp-terraform-ls-prefill-required-fields . t))
