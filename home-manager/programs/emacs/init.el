@@ -833,6 +833,8 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
 (leaf *others
   :config
+  (leaf projectile)
+
   (leaf direnv
     :url "https://github.com/wbolster/emacs-direnv"
     :global-minor-mode t)

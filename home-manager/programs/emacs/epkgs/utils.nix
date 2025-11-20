@@ -2,6 +2,7 @@
   epkgs
 }:
 with epkgs; [
+  projectile
   ddskk
   direnv
   dirvish
