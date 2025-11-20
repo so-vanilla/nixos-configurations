@@ -8,4 +8,5 @@ with epkgs; [
   org-caldav
   org-ai
   ox-gfm
+  org-pomodoro
 ]

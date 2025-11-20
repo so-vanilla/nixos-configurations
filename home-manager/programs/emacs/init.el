@@ -737,7 +737,10 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 
   (leaf org-gfm
     :url "https://github.com/larstvei/ox-gfm"
-    :after org))
+    :after org)
+
+  (leaf org-pomodoro
+    :url "https://github.com/marcinkoziej/org-pomodoro"))
 
 (leaf *language
   :config
