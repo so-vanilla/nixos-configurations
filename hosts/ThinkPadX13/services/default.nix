@@ -5,6 +5,7 @@ let
   xserver = ./xserver;
   pipewire = ./pipewire;
   displayManager = ./displayManager;
+  mullvad-vpn = ./mullvad-vpn;
 in
 [
   ssh
@@ -13,4 +14,5 @@ in
   xserver
   pipewire
   displayManager
+  mullvad-vpn
 ]
