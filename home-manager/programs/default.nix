@@ -19,6 +19,7 @@ let
   hyprlock = import ./hyprlock;
   java = import ./java;
   jq = import ./jq;
+  mullvad = import ./mullvad;
   neovim = import ./neovim { inherit pkgs; };
   pandoc = import ./pandoc;
   ripgrep = import ./ripgrep;
@@ -44,6 +45,7 @@ in
   hyprlock
   java
   jq
+  mullvad
   neovim
   pandoc
   ripgrep
