@@ -9,4 +9,5 @@ with epkgs; [
   org-ai
   ox-gfm
   org-pomodoro
+  org-download
 ]

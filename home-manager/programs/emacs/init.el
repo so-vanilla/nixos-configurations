@@ -870,7 +870,10 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :after org)
 
   (leaf org-pomodoro
-    :url "https://github.com/marcinkoziej/org-pomodoro"))
+    :url "https://github.com/marcinkoziej/org-pomodoro")
+
+  (leaf org-download
+    :url "https://github.com/abo-abo/org-download"))
 
 (leaf *language
   :config
