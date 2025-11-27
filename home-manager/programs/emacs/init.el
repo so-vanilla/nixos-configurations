@@ -878,7 +878,23 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
   (leaf valign
     :url "https://github.com/casouri/valign"
     :hook
-    ((org-mode-hook . valign-mode))))
+    ((org-mode-hook . valign-mode)))
+
+  (leaf org-present
+    :url "https://github.com/rlister/org-present"
+    :hook
+    ((org-present-mode-hook
+      . (lambda ()
+          (org-present-big)
+          (org-display-inline-images)
+          (org-present-hide-cursor)
+          (org-present-read-only)))
+     (org-present-mode-quit-hook
+      . (lambda ()
+          (org-present-small)
+          (org-remove-inline-images)
+          (org-present-show-cursor)
+          (org-present-read-write))))))
 
 (leaf *language
   :config

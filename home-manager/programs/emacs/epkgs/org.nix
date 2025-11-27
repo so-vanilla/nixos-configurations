@@ -11,4 +11,5 @@ with epkgs; [
   org-pomodoro
   org-download
   valign
+  org-present
 ]
