@@ -876,7 +876,9 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :url "https://github.com/abo-abo/org-download")
 
   (leaf valign
-    :url "https://github.com/casouri/valign"))
+    :url "https://github.com/casouri/valign"
+    :hook
+    ((org-mode-hook . valign-mode))))
 
 (leaf *language
   :config
