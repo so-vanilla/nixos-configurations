@@ -10,4 +10,5 @@ with epkgs; [
   ox-gfm
   org-pomodoro
   org-download
+  valign
 ]
