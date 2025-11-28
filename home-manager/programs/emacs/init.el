@@ -873,7 +873,12 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :url "https://github.com/marcinkoziej/org-pomodoro")
 
   (leaf org-download
-    :url "https://github.com/abo-abo/org-download")
+    :url "https://github.com/abo-abo/org-download"
+    :hook
+    ((org-mode-hook . org-download-enable))
+    :custom
+    ((org-download-method . 'directory)
+     (org-download-image-dir . "~/org/images")))
 
   (leaf valign
     :url "https://github.com/casouri/valign"
