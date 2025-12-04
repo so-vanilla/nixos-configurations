@@ -407,31 +407,28 @@ _C-n_: down
   (leaf lsp-mode
     :url "https://github.com/emacs-lsp/lsp-mode"
     :if (eq my-default-lsp-client 'lsp-mode)
-    :init
-    (lsp)
-    ;; :hook
-    ;; ((c-mode-hook . lsp)
-    ;;  (clojure-mode-hook . lsp)
-    ;;  (css-mode-hook . lsp)
-    ;;  (dockerfile-mode . lsp)
-    ;;  (go-mode-hook . lsp)
-    ;;  (latex-mode-hook . lsp)
-    ;;  (lua-mode-hook . lsp)
-    ;;  (markdown-mode-hook . lsp)
-    ;;  (mhtml-mode-hook . lsp)
-    ;;  (java-mode-hook . lsp)
-    ;;  (js-mode-hook . lsp)
-    ;;  (nix-mode-hook . lsp)
-    ;;  (python-mode-hook . lsp)
-    ;;  (rust-mode-hook . lsp)
-    ;;  (terraform-mode-hook . lsp)
-    ;;  (yaml-ts-mode-hook . lsp)
-    ;;  (yaml-ts-mode-hook . lsp)
-    ;;  (lsp-mode . lsp-enable-which-key-integration)
-    ;;  (lsp-mode-hook . lsp-lens-mode))
+    :hook
+    ((c-mode-hook . lsp)
+     (clojure-mode-hook . lsp)
+     (css-mode-hook . lsp)
+     (dockerfile-mode . lsp)
+     (go-mode-hook . lsp)
+     (latex-mode-hook . lsp)
+     (lua-mode-hook . lsp)
+     (markdown-mode-hook . lsp)
+     (mhtml-mode-hook . lsp)
+     (java-mode-hook . lsp)
+     (js-mode-hook . lsp)
+     (nix-mode-hook . lsp)
+     (python-mode-hook . lsp)
+     (rust-mode-hook . lsp)
+     (terraform-mode-hook . lsp)
+     (yaml-ts-mode-hook . lsp)
+     (yaml-ts-mode-hook . lsp)
+     (lsp-mode . lsp-enable-which-key-integration)
+     (lsp-mode-hook . lsp-lens-mode))
     :custom
     ((lsp-keymap-prefix . "M-l")
-     (lsp-copilot-enabled . t)
      (lsp-disabled-clients . '(tfls))
      (lsp-terraform-ls-enable-show-reference . t)
      (lsp-terraform-ls-prefill-required-fields . t))
@@ -981,7 +978,6 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
   :config
   (leaf copilot
     :url "https://github.com/copilot-emacs/copilot.el"
-    :if nil
     :hook
     ((prog-mode-hook . copilot-mode))
     :bind
