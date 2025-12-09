@@ -1014,22 +1014,9 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :url "https://codeberg.org/akib/emacs-eat"
     :hook
     ((eshell-first-time-mode-hook . eat-eshell-visual-command-mode))
-    :init
-    (defun eat-toggle-mode ()
-      "Toggle eat-mode."
-      (interactive)
-      (if eat--semi-char-mode
-          (eat-emacs-mode)
-        (eat-semi-char-mode)))
-    :config
-    (customize-set-variable
-     'eat-semi-char-non-bound-keys
-     (append
-      (list (vector meta-prefix-char ?e) (vector meta-prefix-char ?o))
-      eat-semi-char-non-bound-keys))
-    :bind
-    (eat-mode-map
-     ("M-e" . eat-toggle-mode)))
+    :custom
+    ((eat-enable-auto-line-mode . t)
+     (eat-enable-auto-line-mode . nil)))
 
   (leaf dirvish
     :url "https://github.com/alexluigit/dirvish"
