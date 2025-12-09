@@ -1016,7 +1016,7 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     ((eshell-first-time-mode-hook . eat-eshell-visual-command-mode))
     :custom
     ((eat-enable-auto-line-mode . t)
-     (eat-enable-auto-line-mode . nil)))
+     (eat-line-auto-move-to-input . nil)))
 
   (leaf dirvish
     :url "https://github.com/alexluigit/dirvish"
