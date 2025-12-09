@@ -36,7 +36,7 @@ let
     libnotify
     lua
     lua-language-server
-    markdown-oxide
+    marksman
     networkmanagerapplet
     nixd
     nixfmt-rfc-style
