@@ -503,9 +503,11 @@ _C-n_: down
       ("[remap scroll-down-command]" . nil)
       ("[remap scroll-up-command]" . nil)))
     :config
+    (corfu-history-mode)
+    (corfu-popupinfo-mode)
+    
     (leaf corfu-terminal
       :url "https://codeberg.org/akib/emacs-corfu-terminal"
-      :if (not is-private-host)
       :doc "Temporary solution. Corfu support for terminal Emacs31. After release, remove this."))
 
   (leaf cape
