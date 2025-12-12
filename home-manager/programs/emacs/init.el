@@ -1003,7 +1003,9 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
 (leaf *others
   :config
   (leaf projectile
-    :global-minor-mode t)
+    :global-minor-mode t
+    :bind
+    (("C-x C-p" . projectile-command-map)))
 
   (leaf direnv
     :url "https://github.com/wbolster/emacs-direnv"
