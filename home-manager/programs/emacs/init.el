@@ -360,7 +360,9 @@ _C-n_: down
     ((global-map
       :package emacs
       ("M-." . embark-dwin)
-      ("C-." . embark-act)))))
+      ("C-." . embark-act)))
+    :hook
+    (embark-collect-mode . consult-preview-at-point-mode)))
 
 (leaf *completion
   :init
