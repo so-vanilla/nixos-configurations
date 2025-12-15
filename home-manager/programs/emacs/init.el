@@ -934,7 +934,9 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
   (leaf go-mode
     :url "https://github.com/dominikh/go-mode.el"
     :hook
-    ((before-save-hook . gofmt-before-save)))
+    ((before-save-hook . gofmt-before-save))
+    :custom
+    ((gofmt-command . "goimports")))
 
   (leaf lua-mode
     :url "https://github.com/immerrr/lua-mode")
