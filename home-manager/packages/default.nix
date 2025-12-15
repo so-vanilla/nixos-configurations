@@ -27,6 +27,7 @@ let
     github-copilot-cli
     gnumake
     gopls
+    gotools
     graphviz
     hyprcursor
     hyprland-qtutils
