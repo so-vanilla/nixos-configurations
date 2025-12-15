@@ -932,7 +932,9 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :tag "builtin")
 
   (leaf go-mode
-    :url "https://github.com/dominikh/go-mode.el")
+    :url "https://github.com/dominikh/go-mode.el"
+    :hook
+    ((before-save-hook . gofmt-before-save)))
 
   (leaf lua-mode
     :url "https://github.com/immerrr/lua-mode")
