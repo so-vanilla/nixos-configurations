@@ -1157,25 +1157,6 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
       t)
   nil)
 
-;; Tempolary solution
-;; I need check this work on WSL machine
-(defun wsl-copy-to-clipboard (start end)
-  "START: regionの開始位置.  END: regionの終了位置.  Windows側のクリップボードにコピー."
-  (interactive "r")
-  (let ((text (buffer-substring-no-properties start end)))
-    (with-temp-buffer
-      (insert text)
-      (call-process-region (point-min) (point-max) "clip.exe"))))
-
-(defun wsl-paste-from-clipboard ()
-  "Windows側のクリップボードから貼り付け."
-  (interactive)
-  (let ((text (with-temp-buffer
-                (call-process "powershell.exe" nil t nil "-command" "Get-Clipboard")
-                (decode-coding-string (buffer-string) 'utf-8-dos))))
-    (insert text)))
-
-
 (provide 'init)
 
 ;;; init.el ends here
