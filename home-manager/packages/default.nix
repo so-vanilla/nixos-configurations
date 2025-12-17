@@ -19,6 +19,7 @@ let
     dockerfile-language-server
     efm-langserver
     eslint
+    enchant
     fd
     gcc
     gh
