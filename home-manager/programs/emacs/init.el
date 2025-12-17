@@ -1045,6 +1045,8 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
   (leaf jinx
     :url "https://github.com/minad/jinx"
     :global-minor-mode global-jinx-mode
+    :custom
+    ((jinx-languages . "en_US"))
     :bind
     (("M-$" . jinx-correct)
      ("C-M-$" . jinx-languages)))
