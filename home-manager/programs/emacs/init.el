@@ -1025,10 +1025,23 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :hook
     ((eshell-first-time-mode-hook . eat-eshell-visual-command-mode)
      (eat-mode-hook . corfu-mode))
-    :custom
-    ((eat-enable-auto-line-mode . t)
-     (eat-line-auto-move-to-input . nil)))
-
+    :init
+-    (defun eat-toggle-mode ()
+-      "Toggle eat-mode."
+-      (interactive)
+-      (if eat--semi-char-mode
+-          (eat-emacs-mode)
+-        (eat-semi-char-mode)))
+-    :config
+-    (customize-set-variable
+-     'eat-semi-char-non-bound-keys
+-     (append
+-      (list (vector meta-prefix-char ?e) (vector meta-prefix-char ?o))
+-      eat-semi-char-non-bound-keys))
+-    :bind
+-    (eat-mode-map
+-     ("M-e" . eat-toggle-mode)))
+  
   (leaf jinx
     :url "https://github.com/minad/jinx"
     :global-minor-mode global-jinx-mode
