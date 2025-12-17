@@ -1,25 +1,24 @@
 {
   pkgs,
-  zen-browser-pkg,
 }:
 let
+  nodePkgs = pkgs.callPackage ./node2nix { inherit pkgs; };
+  
   frompkgs = with pkgs; [
     babashka
-    bitwarden-cli
-    brightnessctl
+    browsh
     cargo
     clang-tools
     claude-code
     clojure
     clojure-lsp
-    cmake
     copilot-language-server
-    deno
-    discord
+    devcontainer
     dockerfile-language-server
-    efm-langserver
-    eslint
+    dot-language-server
+    firefox
     enchant
+    eslint
     fd
     gcc
     gh
@@ -30,56 +29,41 @@ let
     gopls
     gotools
     graphviz
-    hyprcursor
-    hyprland-qtutils
+    hunspellDicts.en_US-large
     jdt-language-server
     killall
     leiningen
-    libnotify
     lua
     lua-language-server
     marksman
-    networkmanagerapplet
     nixd
     nixfmt-rfc-style
     nodePackages.bash-language-server
     nodejs_22
-    pinentry-curses
-    playerctl
     pyright
     (python3.withPackages (ps: with ps; [ numpy pandas matplotlib ]))
     ruff
     rust-analyzer
     rustc
     rustfmt
-    slack
-    soundwireserver
-    spice
-    spotify
     svelte-language-server
     texlab
-    texliveFull
-    thunderbird
-    traceroute
+    # traceroute
+    terraform-ls
     trash-cli
     typescript-language-server
     unzip
     vim-language-server
-    virt-viewer
     vscode-langservers-extracted
     whois
-    wl-clipboard
     yaml-language-server
     zed-editor
     zip
-    zoom-us
-  ];
-  zen-browser = [
-    zen-browser-pkg
+    # nodePkgs."@github/copilot"
   ];
 in
 [
   {
-    home.packages = frompkgs ++ zen-browser;
+    home.packages = frompkgs;
   }
 ]
