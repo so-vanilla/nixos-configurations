@@ -1029,6 +1029,13 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     ((eat-enable-auto-line-mode . t)
      (eat-line-auto-move-to-input . nil)))
 
+  (leaf jinx
+    :url "https://github.com/minad/jinx"
+    :global-minor-mode global-jinx-mode
+    :bind
+    (("M-$" . jinx-correct)
+     ("C-M-$" . jinx-languages)))
+
   (leaf dirvish
     :url "https://github.com/alexluigit/dirvish"
     :init

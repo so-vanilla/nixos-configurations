@@ -9,4 +9,5 @@ with epkgs; [
   ace-window
   mistty
   eat
+  jinx
 ]
