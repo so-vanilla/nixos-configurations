@@ -1060,11 +1060,7 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
                                 "jinx-\\(?:languages\\|local-words\\):\\s-+.*$"))))
     :bind
     (("M-$" . jinx-correct)
-     ("C-M-$" . jinx-languages))
-    :config
-    (let ((global-exclude (assoc t jinx-exclude-regexps)))
-      (when global-exclude
-        (push "[ぁ-んァ-ヶ一-龠ー]+" (cdr global-exclude)))))
+     ("C-M-$" . jinx-languages)))
 
   (leaf dirvish
     :url "https://github.com/alexluigit/dirvish"
