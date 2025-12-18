@@ -1046,7 +1046,18 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :url "https://github.com/minad/jinx"
     :global-minor-mode global-jinx-mode
     :custom
-    ((jinx-languages . "en_US"))
+    ((jinx-languages . "en_US")
+     (jinx-exclude-regexps . '((emacs-lisp-mode "Package-Requires:.*$")
+                               (t
+                                "[ぁ-んァ-ヶ一-龠ー]+[a-zA-Z]+"
+                                "[a-zA-Z]+[ぁ-んァ-ヶ一-龠ー]+"
+                                "[ぁ-んァ-ヶ一-龠ー]+"
+                                "[A-Z]+\\>" "-+\\>"
+                                "\\w*?[0-9]\\w*\\>"
+                                "[a-z]+://\\S-+"
+                                "<?[-+_.~a-zA-Z][-+_.~:a-zA-Z0-9]*@[-.a-zA-Z0-9]+>?"
+                                "\\(?:Local Variables\\|End\\):\\s-*$"
+                                "jinx-\\(?:languages\\|local-words\\):\\s-+.*$"))))
     :bind
     (("M-$" . jinx-correct)
      ("C-M-$" . jinx-languages))
