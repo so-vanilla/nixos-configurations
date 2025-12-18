@@ -197,7 +197,7 @@ _r_: redo
     :global-minor-mode delete-selection-mode)
 
   (leaf window
-    :tag "builting"
+    :tag "builtin"
     :custom
     (split-width-threshold . nil))
 
