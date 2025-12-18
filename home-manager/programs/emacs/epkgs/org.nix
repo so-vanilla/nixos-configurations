@@ -12,4 +12,5 @@ with epkgs; [
   org-download
   valign
   org-present
+  org-superstar
 ]

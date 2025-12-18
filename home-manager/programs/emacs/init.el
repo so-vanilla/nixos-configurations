@@ -903,7 +903,12 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
           (org-present-small)
           (org-remove-inline-images)
           (org-present-show-cursor)
-          (org-present-read-write))))))
+          (org-present-read-write)))))
+
+  (leaf org-superstar
+    :url "https://github.com/integral-dw/org-superstar-mode"
+    :hook
+    ((org-mode-hook . org-superstar-mode))))
 
 (leaf *language
   :config
