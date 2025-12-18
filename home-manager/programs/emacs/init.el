@@ -1098,7 +1098,8 @@ _r_: random  _d_: date(goto)      _n_: tomorrow(goto)
     :custom
     ((catppuccin-flavor . 'latte))
     :config
-    (load-theme 'catppuccin :no-confirm))
+    (load-theme 'catppuccin :no-confirm)
+    (set-cursor-color (catppuccin-get-color 'pink)))
 
   (leaf org-modern
     :url "https://github.com/minad/org-modern"
