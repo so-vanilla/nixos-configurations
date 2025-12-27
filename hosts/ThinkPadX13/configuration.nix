@@ -1,12 +1,16 @@
-{ nixpkgs, system, username, ... }:
+{ nixpkgs, nixpkgs-stable, system, username, ... }:
 let
   hostname = "vanilla";
   pkgs = import nixpkgs {
     inherit system;
     config.allowUnfree = true;
   };
+  pkgs-stable = import nixpkgs-stable {
+    inherit system;
+    config.allowUnfree = true;
+  };
 
-  services = import ./services;
+  services = import ./services { inherit pkgs-stable; };
   programs = import ./programs { inherit pkgs; };
   networking = import ./networkig { inherit pkgs hostname; };
   security = import ./security;

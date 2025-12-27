@@ -4,6 +4,7 @@
 let
   inherit (inputs)
     nixpkgs
+    nixpkgs-stable
     catppuccin
     agenix;
   username = "somura";
@@ -13,7 +14,7 @@ nixpkgs.lib.nixosSystem {
   inherit system;
   specialArgs = { inherit username; };
   modules =
-    import ./configuration.nix { inherit nixpkgs system username; }
+    import ./configuration.nix { inherit nixpkgs nixpkgs-stable system username; }
     ++ [
       ./hardware-configuration.nix
       catppuccin.nixosModules.catppuccin
@@ -24,7 +25,7 @@ nixpkgs.lib.nixosSystem {
         home-manager.useUserPackages = true;
         home-manager.users."${username}" = import ../../home-manager {
           inherit username system;
-          inherit (inputs) nixpkgs emacs-overlay zen-browser catppuccin;
+          inherit (inputs) nixpkgs nixpkgs-stable emacs-overlay zen-browser catppuccin;
         };
       }
     ];

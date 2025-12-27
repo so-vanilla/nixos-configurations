@@ -2,6 +2,7 @@
   username,
   system,
   nixpkgs,
+  nixpkgs-stable,
   emacs-overlay,
   zen-browser,
   catppuccin,
@@ -14,9 +15,13 @@ let
       (import emacs-overlay)
     ];
   };
+  pkgs-stable = import nixpkgs-stable {
+    inherit system;
+    config.allowUnfree = true;
+  };
   zen-browser-pkg = zen-browser.packages.${system}.default;
   programs = import ./programs {
-    inherit pkgs;
+    inherit pkgs pkgs-stable;
   };
   services = import ./services {
     inherit pkgs;

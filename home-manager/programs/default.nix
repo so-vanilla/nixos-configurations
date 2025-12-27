@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
 }:
 let
   catppuccin-flavor = "latte";
@@ -19,7 +20,7 @@ let
   hyprlock = import ./hyprlock;
   java = import ./java;
   jq = import ./jq;
-  mullvad-vpn = import ./mullvad-vpn;
+  mullvad-vpn = import ./mullvad-vpn { inherit pkgs-stable; };
   neovim = import ./neovim { inherit pkgs; };
   pandoc = import ./pandoc;
   ripgrep = import ./ripgrep;

@@ -1,3 +1,4 @@
+{ pkgs-stable }:
 let
   ssh = ./ssh;
   gnome = ./gnome;
@@ -5,7 +6,7 @@ let
   xserver = ./xserver;
   pipewire = ./pipewire;
   displayManager = ./displayManager;
-  mullvad-vpn = ./mullvad-vpn;
+  mullvad-vpn = import ./mullvad-vpn { inherit pkgs-stable; };
 in
 [
   ssh

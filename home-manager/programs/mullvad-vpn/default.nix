@@ -1,3 +1,7 @@
+{ pkgs-stable }:
 {
-  programs.mullvad-vpn.enable = true;
+  programs.mullvad-vpn = {
+    enable = true;
+    package = pkgs-stable.mullvad-vpn;
+  };
 }
