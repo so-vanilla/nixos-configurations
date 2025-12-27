@@ -15,7 +15,6 @@ let
     cmake
     copilot-language-server
     deno
-    discord
     dockerfile-language-server
     efm-langserver
     eslint
