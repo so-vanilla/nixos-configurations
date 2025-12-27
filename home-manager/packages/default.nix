@@ -53,7 +53,6 @@ let
     rustc
     rustfmt
     slack
-    soundwireserver
     spice
     spotify
     svelte-language-server
