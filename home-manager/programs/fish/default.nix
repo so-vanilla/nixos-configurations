@@ -15,6 +15,7 @@
       source ~/.config/fish/general.fish
       source ~/.config/fish/links.fish
       if status is-interactive; and test -n $EAT_SHELL_INTEGRATION_DIR
+        set -g fish_autosuggestion_enabled 0
         source ~/.config/fish/eat-integration.fish
       end
     '';
