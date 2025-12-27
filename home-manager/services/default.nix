@@ -12,7 +12,7 @@ let
   kdeconnect = import ./kdeconnect;
 in
 [
-  emacs
+  # emacs
   gpg-agent
   hyprpaper
   playerctld
