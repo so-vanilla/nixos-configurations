@@ -30,6 +30,7 @@ let
     gopls
     gotools
     graphviz
+    hunspellDicts.en_US-large
     hyprcursor
     hyprland-qtutils
     jdt-language-server
