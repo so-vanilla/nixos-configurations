@@ -9,6 +9,7 @@ let
   bat = import ./bat { inherit catppuccin-flavor; };
   btop = import ./btop { inherit catppuccin-flavor; };
   direnv = import ./direnv;
+  discord = import ./discord;
   emacs = import ./emacs { inherit pkgs; };
   eza = import ./eza;
   fish = import ./fish { inherit pkgs catppuccin-flavor; };
@@ -35,6 +36,7 @@ in
   bat
   btop
   direnv
+  discord
   emacs
   eza
   fish
