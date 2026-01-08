@@ -3,23 +3,23 @@
   system,
   nixpkgs,
   nixpkgs-stable,
-  emacs-overlay,
   zen-browser,
   catppuccin,
+  my-emacs,
 }:
 let
   pkgs = import nixpkgs {
     inherit system;
     config.allowUnfree = true;
-    overlays = [
-      (import emacs-overlay)
-    ];
   };
   pkgs-stable = import nixpkgs-stable {
     inherit system;
     config.allowUnfree = true;
   };
   zen-browser-pkg = zen-browser.packages.${system}.default;
+  emacs-config = my-emacs.homeManagerModules.default {
+    inherit system;
+  };
   programs = import ./programs {
     inherit pkgs pkgs-stable;
   };
@@ -50,6 +50,7 @@ in
   imports =
     [
       catppuccin.homeModules.catppuccin
+      emacs-config
     ]
     ++ programs
     ++ services

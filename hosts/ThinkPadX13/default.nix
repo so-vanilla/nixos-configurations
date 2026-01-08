@@ -25,7 +25,7 @@ nixpkgs.lib.nixosSystem {
         home-manager.useUserPackages = true;
         home-manager.users."${username}" = import ../../home-manager {
           inherit username system;
-          inherit (inputs) nixpkgs nixpkgs-stable emacs-overlay zen-browser catppuccin;
+          inherit (inputs) nixpkgs nixpkgs-stable zen-browser catppuccin my-emacs;
         };
       }
     ];
