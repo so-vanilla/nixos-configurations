@@ -31,6 +31,7 @@ let
     graphviz
     hunspellDicts.en_US-large
     hyprcursor
+    hyprpaper
     hyprland-qtutils
     jdt-language-server
     killall
