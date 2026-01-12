@@ -17,9 +17,7 @@ let
     config.allowUnfree = true;
   };
   zen-browser-pkg = zen-browser.packages.${system}.default;
-  emacs-config = my-emacs.homeManagerModules.default {
-    inherit system;
-  };
+  emacs-config = my-emacs.homeManagerModules.${system}.pgtk;
   programs = import ./programs {
     inherit pkgs pkgs-stable;
   };
