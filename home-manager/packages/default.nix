@@ -42,7 +42,7 @@ let
     marksman
     networkmanagerapplet
     nixd
-    nixfmt-rfc-style
+    nixfmt
     nodePackages.bash-language-server
     nodejs_22
     pinentry-curses
