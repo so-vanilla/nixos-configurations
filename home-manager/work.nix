@@ -6,7 +6,7 @@ let
     nixpkgs
     home-manager
     catppuccin
-    emacs-config;
+    my-emacs;
   username = builtins.getEnv "HM_USERNAME";
   system = "aarch64-darwin";
 
@@ -34,7 +34,7 @@ home-manager.lib.homeManagerConfiguration {
         };
       }
       catppuccin.homeModules.catppuccin
-      emacs-config.homeManagerModules.${system}.macport
+      my-emacs.homeManagerModules.${system}.macport
     ]
     ++ programs
     ++ packages;
