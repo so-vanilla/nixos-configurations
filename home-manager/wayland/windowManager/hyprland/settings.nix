@@ -88,9 +88,9 @@
 
   windowrulev2 = "opacity 0.7 0.7,class:^(org.wezfurlong.wezterm)$";
   windowrule = [
-    "workspace 3, class:thunderbird"
-    "workspace 4, class:Slack"
-    "workspace 5, class:discord"
+    "match:class thunderbird, workspace 3"
+    "match:class Slack, workspace 4"
+    "match:class discord, workspace 5"
   ];
 
   exec-once = [

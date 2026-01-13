@@ -10,7 +10,6 @@ let
   btop = import ./btop { inherit catppuccin-flavor; };
   direnv = import ./direnv;
   discord = import ./discord;
-  emacs = import ./emacs { inherit pkgs; };
   eza = import ./eza;
   fish = import ./fish { inherit pkgs catppuccin-flavor; };
   git = import ./git;
@@ -37,7 +36,6 @@ in
   btop
   direnv
   discord
-  emacs
   eza
   fish
   git

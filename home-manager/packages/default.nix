@@ -31,6 +31,7 @@ let
     graphviz
     hunspellDicts.en_US-large
     hyprcursor
+    hyprpaper
     hyprland-qtutils
     jdt-language-server
     killall
@@ -41,7 +42,7 @@ let
     marksman
     networkmanagerapplet
     nixd
-    nixfmt-rfc-style
+    nixfmt
     nodePackages.bash-language-server
     nodejs_22
     pinentry-curses
@@ -73,12 +74,10 @@ let
     zip
     zoom-us
   ];
-  zen-browser = [
-    zen-browser-pkg
-  ];
+  emacs-proxy = pkgs.callPackage ./overlays/emacs-lsp-proxy.nix {};
 in
 [
   {
-    home.packages = frompkgs ++ zen-browser;
+    home.packages = frompkgs ++ [zen-browser-pkg] ++ [emacs-proxy];
   }
 ]
