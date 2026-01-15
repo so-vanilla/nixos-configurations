@@ -18,6 +18,9 @@
         set -g fish_autosuggestion_enabled 0
         source ~/.config/fish/eat-integration.fish
       end
+      if test -d /opt/homebrew/bin
+        set -x PATH /opt/homebrew/bin $PATH
+      end
     '';
     shellAbbrs = {
       ls="eza";
