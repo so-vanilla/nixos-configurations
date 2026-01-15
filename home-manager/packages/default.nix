@@ -5,6 +5,7 @@
 let
   frompkgs = with pkgs; [
     babashka
+    basedpyright
     bitwarden-cli
     brightnessctl
     cargo
@@ -47,7 +48,6 @@ let
     nodejs_22
     pinentry-curses
     playerctl
-    pyright
     (python3.withPackages (ps: with ps; [ numpy pandas matplotlib ]))
     ruff
     rust-analyzer

@@ -5,6 +5,7 @@ let
   frompkgs = with pkgs; [
     awscli2
     babashka
+    basedpyright
     browsh
     cargo
     clang-tools
@@ -39,7 +40,6 @@ let
     nixfmt-rfc-style
     nodePackages.bash-language-server
     nodejs_22
-    pyright
     (python3.withPackages (ps: with ps; [ numpy pandas matplotlib ]))
     ruff
     rust-analyzer
