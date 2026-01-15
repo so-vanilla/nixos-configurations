@@ -74,10 +74,9 @@ let
     zip
     zoom-us
   ];
-  emacs-proxy = pkgs.callPackage ./overlays/emacs-lsp-proxy.nix {};
 in
 [
   {
-    home.packages = frompkgs ++ [zen-browser-pkg] ++ [emacs-proxy];
+    home.packages = frompkgs ++ [zen-browser-pkg];
   }
 ]
