@@ -59,10 +59,9 @@ let
     zed-editor
     zip
   ];
-  emacs-proxy = pkgs.callPackage ./overlays/emacs-lsp-proxy.nix {};
 in
 [
   {
-    home.packages = frompkgs ++ [ emacs-proxy ];
+    home.packages = frompkgs;
   }
 ]
