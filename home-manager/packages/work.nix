@@ -1,0 +1,68 @@
+{
+  pkgs,
+}:
+let
+  frompkgs = with pkgs; [
+    awscli2
+    babashka
+    browsh
+    cargo
+    clang-tools
+    claude-code
+    clojure
+    clojure-lsp
+    copilot-language-server
+    devcontainer
+    dockerfile-language-server
+    dot-language-server
+    firefox
+    enchant
+    eslint
+    fd
+    gcc
+    gh
+    ghq
+    git-credential-manager
+    github-copilot-cli
+    gnumake
+    gopls
+    graphviz
+    hunspellDicts.en_US-large
+    jdt-language-server
+    killall
+    kotlin-language-server
+    leiningen
+    lua
+    lua-language-server
+    marksman
+    nixd
+    nixfmt-rfc-style
+    nodePackages.bash-language-server
+    nodejs_22
+    pyright
+    (python3.withPackages (ps: with ps; [ numpy pandas matplotlib ]))
+    ruff
+    rust-analyzer
+    rustc
+    rustfmt
+    svelte-language-server
+    tenv
+    texlab
+    terraform-ls
+    trash-cli
+    typescript-language-server
+    unzip
+    vim-language-server
+    vscode-langservers-extracted
+    whois
+    yaml-language-server
+    zed-editor
+    zip
+  ];
+  emacs-proxy = pkgs.callPackage ./overlays/emacs-lsp-proxy.nix {};
+in
+[
+  {
+    home.packages = frompkgs ++ [ emacs-proxy ];
+  }
+]
