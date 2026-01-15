@@ -25,6 +25,11 @@
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
+
       flake = {
         nixosConfigurations = {
           chocolate = import ./hosts/ENVYx360-13 { inherit inputs; };
