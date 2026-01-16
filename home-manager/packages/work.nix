@@ -6,6 +6,7 @@ let
     awscli2
     babashka
     basedpyright
+    black
     browsh
     cargo
     clang-tools
@@ -37,7 +38,7 @@ let
     lua-language-server
     marksman
     nixd
-    nixfmt-rfc-style
+    nixfmt
     nodePackages.bash-language-server
     nodejs_22
     (python3.withPackages (ps: with ps; [ numpy pandas matplotlib ]))

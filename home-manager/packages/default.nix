@@ -7,6 +7,7 @@ let
     babashka
     basedpyright
     bitwarden-cli
+    black
     brightnessctl
     cargo
     clang-tools
