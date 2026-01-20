@@ -4,6 +4,7 @@
     settings = {
       core = {
         editor = "nvim";
+        commentChar = ";";
       };
       user = {
         name = "somura";
