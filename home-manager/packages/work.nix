@@ -27,7 +27,6 @@ let
     git-credential-manager
     github-copilot-cli
     gnumake
-    gopls
     graphviz
     hunspellDicts.en_US-large
     jdt-language-server
@@ -41,7 +40,13 @@ let
     nixfmt
     nodePackages.bash-language-server
     nodejs_22
-    (python3.withPackages (ps: with ps; [ numpy pandas matplotlib ]))
+    (python3.withPackages (
+      ps: with ps; [
+        numpy
+        pandas
+        matplotlib
+      ]
+    ))
     ruff
     rust-analyzer
     rustc
