@@ -10,7 +10,7 @@ let
   direnv = import ./direnv;
   eza = import ./eza;
   fish = import ./fish { inherit pkgs catppuccin-flavor; };
-  git = import ./git;
+  git = import ./git { email = builtins.getEnv "HM_GIT_EMAIL"; };
   go = import ./go;
   gpg = import ./gpg;
   gradle = import ./gradle;

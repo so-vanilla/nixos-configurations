@@ -12,7 +12,7 @@ let
   discord = import ./discord;
   eza = import ./eza;
   fish = import ./fish { inherit pkgs catppuccin-flavor; };
-  git = import ./git;
+  git = import ./git { email = "somura-vanilla@so-icecream.com"; };
   go = import ./go;
   gpg = import ./gpg;
   gradle = import ./gradle;

@@ -45,16 +45,15 @@ in
     stateVersion = "23.11";
   };
 
-  imports =
-    [
-      catppuccin.homeModules.catppuccin
-      emacs-config
-    ]
-    ++ programs
-    ++ services
-    ++ wayland
-    ++ packages
-    ++ cursor
-    ++ i18n
-    ++ dconf;
+  imports = [
+    catppuccin.homeModules.catppuccin
+    emacs-config
+  ]
+  ++ programs
+  ++ services
+  ++ wayland
+  ++ packages
+  ++ cursor
+  ++ i18n
+  ++ dconf;
 }

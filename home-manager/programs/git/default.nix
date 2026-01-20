@@ -1,4 +1,7 @@
 {
+  email,
+}:
+{
   programs.git = {
     enable = true;
     settings = {
@@ -8,7 +11,7 @@
       };
       user = {
         name = "somura";
-        email = "somura-vanilla@so-icecream.com";
+        email = email;
       };
       init = {
         defaultbranch = "main";
