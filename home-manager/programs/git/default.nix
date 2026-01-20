@@ -8,6 +8,7 @@
       core = {
         editor = "nvim";
         commentChar = ";";
+        excludesFile = "~/.gitignore_global";
       };
       user = {
         name = "somura";
@@ -24,4 +25,6 @@
       };
     };
   };
+
+  home.file.".gitignore_global".source = ./gitignore_global;
 }
