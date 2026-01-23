@@ -21,6 +21,7 @@ let
     enchant
     eslint
     fd
+    gawk
     gcc
     gh
     ghq
