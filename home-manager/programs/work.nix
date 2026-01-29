@@ -16,7 +16,6 @@ let
   gpg = import ./gpg;
   gradle = import ./gradle;
   home-manager = import ./home-manager;
-  hyprlock = import ./hyprlock;
   java = import ./java;
   jq = import ./jq;
   neovim = import ./neovim { inherit pkgs; };
