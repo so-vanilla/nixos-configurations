@@ -10,14 +10,12 @@ let
     browsh
     cargo
     clang-tools
-    claude-code
     clojure
     clojure-lsp
     copilot-language-server
     devcontainer
     dockerfile-language-server
     dot-language-server
-    firefox
     enchant
     eslint
     fd
@@ -63,7 +61,6 @@ let
     vscode-langservers-extracted
     whois
     yaml-language-server
-    zed-editor
     zip
   ];
 in

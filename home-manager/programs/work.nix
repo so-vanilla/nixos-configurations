@@ -7,6 +7,7 @@ let
   awscli = import ./awscli;
   bat = import ./bat { inherit catppuccin-flavor; };
   btop = import ./btop { inherit catppuccin-flavor; };
+  claude-code = import ./claude-code;
   direnv = import ./direnv;
   eza = import ./eza;
   fish = import ./fish { inherit pkgs catppuccin-flavor; };
@@ -26,6 +27,7 @@ in
   awscli
   bat
   btop
+  claude-code
   direnv
   eza
   fish
