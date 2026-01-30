@@ -38,6 +38,10 @@
       if test -d /opt/homebrew/bin
         set -x PATH /opt/homebrew/bin $PATH
       end
+
+      if test -d ~/.rd/bin
+        set -x PATH $HOME/.rd/bin $PATH
+      end
     '';
     shellAbbrs = {
       ls = "eza";
