@@ -20,6 +20,9 @@
       credential = {
         helper = "store";
       };
+      github = {
+        user = "so-vanilla";
+      };
       ghq = {
         root = "~/repos";
       };
