@@ -37,6 +37,8 @@ let
     wl-clipboard
     zip
     zoom-us
+    basedpyright
+    ruff
   ];
 in
 [
