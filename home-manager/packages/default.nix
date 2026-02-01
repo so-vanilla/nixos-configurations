@@ -4,80 +4,43 @@
 }:
 let
   frompkgs = with pkgs; [
-    babashka
-    basedpyright
-    bitwarden-cli
-    black
     brightnessctl
-    cargo
-    clang-tools
-    claude-code
-    clojure
-    clojure-lsp
-    cmake
+    comma
     copilot-language-server
-    deno
-    dockerfile-language-server
-    efm-langserver
-    eslint
+    devenv
     enchant
     fd
-    gcc
     gh
     ghq
     git-credential-manager
     github-copilot-cli
-    gnumake
-    gopls
-    gotools
-    graphviz
     hunspellDicts.en_US-large
     hyprcursor
     hyprpaper
     hyprland-qtutils
-    jdt-language-server
     killall
     leiningen
     libnotify
-    lua
-    lua-language-server
     marksman
     networkmanagerapplet
     nixd
     nixfmt
-    nodePackages.bash-language-server
-    nodejs_22
     pinentry-curses
     playerctl
-    (python3.withPackages (ps: with ps; [ numpy pandas matplotlib ]))
-    ruff
-    rust-analyzer
-    rustc
-    rustfmt
     slack
     spice
-    spotify
-    svelte-language-server
-    texlab
-    texliveFull
     thunderbird
     traceroute
     trash-cli
-    typescript-language-server
     unzip
-    vim-language-server
     virt-viewer
-    vscode-langservers-extracted
-    whois
     wl-clipboard
-    yaml-language-server
-    zed-editor
     zip
     zoom-us
   ];
 in
 [
   {
-    home.packages = frompkgs ++ [zen-browser-pkg];
+    home.packages = frompkgs ++ [ zen-browser-pkg ];
   }
 ]
