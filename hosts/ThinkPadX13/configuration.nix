@@ -1,4 +1,10 @@
-{ nixpkgs, nixpkgs-stable, system, username, ... }:
+{
+  nixpkgs,
+  nixpkgs-stable,
+  system,
+  username,
+  ...
+}:
 let
   hostname = "vanilla";
   pkgs = import nixpkgs {
@@ -34,9 +40,11 @@ services
         substituters = [
           "https://nix-community.cachix.org"
           "https://cache.nixos.org/"
+          "https://devenv.cachix.org"
         ];
         trusted-public-keys = [
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
         ];
       };
       gc = {
@@ -53,7 +61,8 @@ services
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
       };
-      initrd.luks.devices."luks-6c4149ed-e1a9-4702-bdfc-745f13702367".device = "/dev/disk/by-uuid/6c4149ed-e1a9-4702-bdfc-745f13702367";
+      initrd.luks.devices."luks-6c4149ed-e1a9-4702-bdfc-745f13702367".device =
+        "/dev/disk/by-uuid/6c4149ed-e1a9-4702-bdfc-745f13702367";
     };
 
     i18n.defaultLocale = "en_US.UTF-8";
@@ -74,7 +83,14 @@ services
 
     users.users."${username}" = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "libvirtd" "wireshark" "docker" "disk"];
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+        "libvirtd"
+        "wireshark"
+        "docker"
+        "disk"
+      ];
       ignoreShellProgramCheck = true;
       shell = pkgs.fish;
     };
