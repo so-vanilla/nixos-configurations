@@ -3,7 +3,6 @@
 }:
 let
   frompkgs = with pkgs; [
-    comma
     copilot-language-server
     devenv
     enchant

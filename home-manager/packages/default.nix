@@ -5,7 +5,6 @@
 let
   frompkgs = with pkgs; [
     brightnessctl
-    comma
     copilot-language-server
     devenv
     enchant

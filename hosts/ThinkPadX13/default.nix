@@ -1,12 +1,14 @@
 {
-  inputs
+  inputs,
 }:
 let
   inherit (inputs)
     nixpkgs
     nixpkgs-stable
+    nix-index-database
     catppuccin
-    agenix;
+    agenix
+    ;
   username = "somura";
   system = "x86_64-linux";
 in
@@ -14,7 +16,14 @@ nixpkgs.lib.nixosSystem {
   inherit system;
   specialArgs = { inherit username; };
   modules =
-    import ./configuration.nix { inherit nixpkgs nixpkgs-stable system username; }
+    import ./configuration.nix {
+      inherit
+        nixpkgs
+        nixpkgs-stable
+        system
+        username
+        ;
+    }
     ++ [
       ./hardware-configuration.nix
       catppuccin.nixosModules.catppuccin
@@ -25,7 +34,14 @@ nixpkgs.lib.nixosSystem {
         home-manager.useUserPackages = true;
         home-manager.users."${username}" = import ../../home-manager {
           inherit username system;
-          inherit (inputs) nixpkgs nixpkgs-stable zen-browser catppuccin my-emacs;
+          inherit (inputs)
+            nixpkgs
+            nixpkgs-stable
+            nix-index-database
+            zen-browser
+            catppuccin
+            my-emacs
+            ;
         };
       }
     ];

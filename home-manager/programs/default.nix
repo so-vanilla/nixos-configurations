@@ -18,6 +18,7 @@ let
   hyprlock = import ./hyprlock;
   mullvad-vpn = import ./mullvad-vpn { inherit pkgs-stable; };
   neovim = import ./neovim { inherit pkgs; };
+  nix-index-database = import ./nix-index-database;
   ripgrep = import ./ripgrep;
   tofi = import ./tofi { inherit catppuccin-flavor; };
   vscode = import ./vscode;
@@ -38,6 +39,7 @@ in
   hyprlock
   mullvad-vpn
   neovim
+  nix-index-database
   ripgrep
   tofi
   vscode

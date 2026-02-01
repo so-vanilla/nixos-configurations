@@ -14,6 +14,7 @@ let
   gpg = import ./gpg;
   home-manager = import ./home-manager;
   neovim = import ./neovim { inherit pkgs; };
+  nix-index-database = import ./nix-index-database;
   ripgrep = import ./ripgrep;
 in
 [
@@ -28,5 +29,6 @@ in
   gpg
   home-manager
   neovim
+  nix-index-database
   ripgrep
 ]
