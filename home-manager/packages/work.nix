@@ -10,24 +10,22 @@ let
     browsh
     cargo
     clang-tools
-    claude-code
     clojure
     clojure-lsp
     copilot-language-server
     devcontainer
     dockerfile-language-server
     dot-language-server
-    firefox
     enchant
     eslint
     fd
+    gawk
     gcc
     gh
     ghq
     git-credential-manager
     github-copilot-cli
     gnumake
-    gopls
     graphviz
     hunspellDicts.en_US-large
     jdt-language-server
@@ -41,7 +39,13 @@ let
     nixfmt
     nodePackages.bash-language-server
     nodejs_22
-    (python3.withPackages (ps: with ps; [ numpy pandas matplotlib ]))
+    (python3.withPackages (
+      ps: with ps; [
+        numpy
+        pandas
+        matplotlib
+      ]
+    ))
     ruff
     rust-analyzer
     rustc
@@ -57,7 +61,6 @@ let
     vscode-langservers-extracted
     whois
     yaml-language-server
-    zed-editor
     zip
   ];
 in

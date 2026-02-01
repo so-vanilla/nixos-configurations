@@ -8,11 +8,12 @@ let
   awscli = import ./awscli;
   bat = import ./bat { inherit catppuccin-flavor; };
   btop = import ./btop { inherit catppuccin-flavor; };
+  claude-code = import ./claude-code;
   direnv = import ./direnv;
   discord = import ./discord;
   eza = import ./eza;
   fish = import ./fish { inherit pkgs catppuccin-flavor; };
-  git = import ./git;
+  git = import ./git { email = "somura-vanilla@so-icecream.com"; };
   go = import ./go;
   gpg = import ./gpg;
   gradle = import ./gradle;
@@ -27,13 +28,13 @@ let
   tofi = import ./tofi { inherit catppuccin-flavor; };
   vscode = import ./vscode;
   waybar = import ./waybar;
-  zed-editor = import ./zed-editor;
 in
 [
   alacritty
   awscli
   bat
   btop
+  claude-code
   direnv
   discord
   eza

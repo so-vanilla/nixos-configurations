@@ -1,13 +1,18 @@
 {
+  email,
+}:
+{
   programs.git = {
     enable = true;
     settings = {
       core = {
         editor = "nvim";
+        commentChar = ";";
+        excludesFile = "~/.gitignore_global";
       };
       user = {
         name = "somura";
-        email = "somura-vanilla@so-icecream.com";
+        email = email;
       };
       init = {
         defaultbranch = "main";
@@ -15,9 +20,14 @@
       credential = {
         helper = "store";
       };
+      github = {
+        user = "so-vanilla";
+      };
       ghq = {
         root = "~/repos";
       };
     };
   };
+
+  home.file.".gitignore_global".source = ./gitignore_global;
 }
