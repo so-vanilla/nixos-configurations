@@ -86,7 +86,6 @@
     "Unknown-1,disable"
   ];
 
-  windowrulev2 = "opacity 0.7 0.7,class:^(org.wezfurlong.wezterm)$";
   windowrule = [
     "match:class thunderbird, workspace 3"
     "match:class Slack, workspace 4"

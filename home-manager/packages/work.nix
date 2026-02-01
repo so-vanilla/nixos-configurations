@@ -3,64 +3,22 @@
 }:
 let
   frompkgs = with pkgs; [
-    awscli2
-    babashka
-    basedpyright
-    black
-    browsh
-    cargo
-    clang-tools
-    clojure
-    clojure-lsp
     copilot-language-server
-    devcontainer
-    dockerfile-language-server
-    dot-language-server
+    devenv
     enchant
-    eslint
     fd
     gawk
-    gcc
     gh
-    ghq
     git-credential-manager
     github-copilot-cli
-    gnumake
-    graphviz
     hunspellDicts.en_US-large
-    jdt-language-server
     killall
-    kotlin-language-server
-    leiningen
-    lua
-    lua-language-server
     marksman
     nixd
     nixfmt
-    nodePackages.bash-language-server
-    nodejs_22
-    (python3.withPackages (
-      ps: with ps; [
-        numpy
-        pandas
-        matplotlib
-      ]
-    ))
-    ruff
-    rust-analyzer
-    rustc
-    rustfmt
-    svelte-language-server
     tenv
-    texlab
-    terraform-ls
     trash-cli
-    typescript-language-server
     unzip
-    vim-language-server
-    vscode-langservers-extracted
-    whois
-    yaml-language-server
     zip
   ];
 in

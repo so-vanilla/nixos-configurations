@@ -3,6 +3,7 @@
   system,
   nixpkgs,
   nixpkgs-stable,
+  nix-index-database,
   zen-browser,
   catppuccin,
   my-emacs,
@@ -47,6 +48,7 @@ in
 
   imports = [
     catppuccin.homeModules.catppuccin
+    nix-index-database.homeModules.default
     emacs-config
   ]
   ++ programs

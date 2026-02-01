@@ -5,7 +5,6 @@
 let
   catppuccin-flavor = "latte";
   alacritty = import ./alacritty { inherit catppuccin-flavor; };
-  awscli = import ./awscli;
   bat = import ./bat { inherit catppuccin-flavor; };
   btop = import ./btop { inherit catppuccin-flavor; };
   claude-code = import ./claude-code;
@@ -14,16 +13,12 @@ let
   eza = import ./eza;
   fish = import ./fish { inherit pkgs catppuccin-flavor; };
   git = import ./git { email = "somura-vanilla@so-icecream.com"; };
-  go = import ./go;
   gpg = import ./gpg;
-  gradle = import ./gradle;
   home-manager = import ./home-manager;
   hyprlock = import ./hyprlock;
-  java = import ./java;
-  jq = import ./jq;
   mullvad-vpn = import ./mullvad-vpn { inherit pkgs-stable; };
   neovim = import ./neovim { inherit pkgs; };
-  pandoc = import ./pandoc;
+  nix-index-database = import ./nix-index-database;
   ripgrep = import ./ripgrep;
   tofi = import ./tofi { inherit catppuccin-flavor; };
   vscode = import ./vscode;
@@ -31,7 +26,6 @@ let
 in
 [
   alacritty
-  awscli
   bat
   btop
   claude-code
@@ -40,16 +34,12 @@ in
   eza
   fish
   git
-  go
   gpg
-  gradle
   home-manager
   hyprlock
-  java
-  jq
   mullvad-vpn
   neovim
-  pandoc
+  nix-index-database
   ripgrep
   tofi
   vscode

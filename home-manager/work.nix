@@ -6,7 +6,9 @@ let
     nixpkgs
     home-manager
     catppuccin
-    my-emacs;
+    nix-index-database
+    my-emacs
+    ;
   username = builtins.getEnv "HM_USERNAME";
   system = "aarch64-darwin";
 
@@ -23,19 +25,19 @@ let
 in
 home-manager.lib.homeManagerConfiguration {
   pkgs = pkgs;
-  
-  modules =
-    [
-      {
-        home = {
-          username = username;
-          homeDirectory = "/Users/${username}";
-          stateVersion = "23.11";
-        };
-      }
-      catppuccin.homeModules.catppuccin
-      my-emacs.homeManagerModules.${system}.macport
-    ]
-    ++ programs
-    ++ packages;
+
+  modules = [
+    {
+      home = {
+        username = username;
+        homeDirectory = "/Users/${username}";
+        stateVersion = "23.11";
+      };
+    }
+    catppuccin.homeModules.catppuccin
+    nix-index-database.homeModules.default
+    my-emacs.homeManagerModules.${system}.macport
+  ]
+  ++ programs
+  ++ packages;
 }
