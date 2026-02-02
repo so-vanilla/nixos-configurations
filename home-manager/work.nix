@@ -36,7 +36,7 @@ home-manager.lib.homeManagerConfiguration {
     }
     catppuccin.homeModules.catppuccin
     nix-index-database.homeModules.default
-    my-emacs.homeManagerModules.${system}.macport
+    my-emacs.homeManagerModules.${system}.stable
   ]
   ++ programs
   ++ packages;

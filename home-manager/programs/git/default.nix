@@ -1,4 +1,5 @@
 {
+  pkgs,
   email,
 }:
 {
@@ -29,5 +30,6 @@
     };
   };
 
-  home.file.".gitignore_global".source = ./gitignore_global;
+  home.file.".gitignore_global".source =
+    if pkgs.stdenv.isDarwin then ./gitignore_global_work else ./gitignore_global_private;
 }

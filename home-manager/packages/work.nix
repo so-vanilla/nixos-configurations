@@ -9,13 +9,14 @@ let
     fd
     gawk
     gh
-    git-credential-manager
+    # git-credential-manager
     github-copilot-cli
     hunspellDicts.en_US-large
     killall
-    marksman
+    # marksman
     nixd
     nixfmt
+    nodejs_25
     tenv
     trash-cli
     unzip
