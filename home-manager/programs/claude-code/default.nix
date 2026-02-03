@@ -3,5 +3,5 @@
     enable = true;
   };
 
-  home.file.".claude/CLAUDE.md" = ./global-CLAUDE.md;
+  home.file.".claude/CLAUDE.md".source = ./global-CLAUDE.md;
 }
