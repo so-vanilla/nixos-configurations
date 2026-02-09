@@ -16,7 +16,7 @@ let
     marksman
     nixd
     nixfmt
-    nodejs_25
+    nodejs_24
     tenv
     trash-cli
     unzip

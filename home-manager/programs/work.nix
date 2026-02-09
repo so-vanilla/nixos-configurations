@@ -31,7 +31,6 @@ in
   git
   gpg
   home-manager
-  neovim
   nix-index-database
   ripgrep
 ]

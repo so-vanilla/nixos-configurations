@@ -3,8 +3,8 @@
 }:
 let
   inherit (inputs)
-    nixpkgs
-    home-manager
+    nixpkgs-stable
+    home-manager-stable
     catppuccin
     nix-index-database
     my-emacs
@@ -12,7 +12,7 @@ let
   username = builtins.getEnv "HM_USERNAME";
   system = "aarch64-darwin";
 
-  pkgs = import nixpkgs {
+  pkgs = import nixpkgs-stable {
     inherit system;
     config.allowUnfree = true;
   };
@@ -23,7 +23,7 @@ let
     inherit pkgs;
   };
 in
-home-manager.lib.homeManagerConfiguration {
+home-manager-stable.lib.homeManagerConfiguration {
   pkgs = pkgs;
 
   modules = [
