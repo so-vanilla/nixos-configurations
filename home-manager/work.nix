@@ -3,6 +3,7 @@
 }:
 let
   inherit (inputs)
+    nixpkgs
     nixpkgs-stable
     home-manager-stable
     catppuccin
@@ -16,8 +17,12 @@ let
     inherit system;
     config.allowUnfree = true;
   };
+  pkgs-unstable = import nixpkgs {
+    inherit system;
+    config.allowUnfree = true;
+  };
   programs = import ./programs/work.nix {
-    inherit pkgs;
+    inherit pkgs pkgs-unstable;
   };
   packages = import ./packages/work.nix {
     inherit pkgs;
