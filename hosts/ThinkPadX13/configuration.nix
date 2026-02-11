@@ -18,7 +18,7 @@ let
 
   services = import ./services { inherit pkgs-stable; };
   programs = import ./programs { inherit pkgs; };
-  networking = import ./networkig { inherit pkgs hostname; };
+  networking = import ./networking { inherit pkgs hostname; };
   security = import ./security;
   virtualization = import ./virtualization;
   agenix = import ./agenix;
