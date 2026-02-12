@@ -7,7 +7,7 @@ let
   alacritty = import ./alacritty { inherit catppuccin-flavor; };
   bat = import ./bat { inherit catppuccin-flavor; };
   btop = import ./btop { inherit catppuccin-flavor; };
-  claude-code = import ./claude-code;
+  claude-code = import ./claude-code { inherit pkgs; };
   direnv = import ./direnv;
   discord = import ./discord;
   eza = import ./eza;
