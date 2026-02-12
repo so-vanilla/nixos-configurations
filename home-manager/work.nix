@@ -29,7 +29,7 @@ let
   };
 in
 home-manager-stable.lib.homeManagerConfiguration {
-  pkgs = pkgs;
+  inherit pkgs;
 
   modules = [
     {
