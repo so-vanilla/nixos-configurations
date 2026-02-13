@@ -49,6 +49,12 @@
       grep = "rg";
       rm = "trash-put";
     };
+    functions = {
+      update-emacs = {
+        body = builtins.readFile ./update-emacs.fish;
+        description = "Update emacs config cascade (aide → flake-my-emacs → nixos-configurations)";
+      };
+    };
     shellAliases = {
       h = "cd";
       q = "exit";
