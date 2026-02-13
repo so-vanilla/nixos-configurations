@@ -54,6 +54,10 @@
         body = builtins.readFile ./update-emacs.fish;
         description = "Update emacs config cascade (aide → flake-my-emacs → nixos-configurations)";
       };
+      update-nix = {
+        body = builtins.readFile ./update-nix.fish;
+        description = "Update nix environment (flake update → rebuild → commit & push)";
+      };
     };
     shellAliases = {
       h = "cd";
