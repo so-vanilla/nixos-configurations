@@ -15,6 +15,7 @@
       set fish_greeting
       set pure_enable_nixdevshell true
       set -x PYTHON_HOME $(, python3 -c 'import sys; print(sys.prefix, end="")')
+      set -x GITHUB_PERSONAL_ACCESS_TOKEN $(, gh auth token)
       set -x HM_USERNAME $(uname -n)
       set -x HM_GIT_EMAIL $(git config user.email)
 
