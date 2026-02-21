@@ -1,6 +1,0 @@
-.envrc
-.dir-locals.el
-devenv.nix
-devenv.yaml
-devenv.lock
-.devenv.flake.nix

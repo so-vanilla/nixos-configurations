@@ -5,11 +5,29 @@
 {
   programs.git = {
     enable = true;
+    ignores =
+      [
+        ".claude"
+        "claude-plans"
+        "result"
+      ]
+      ++ (
+        if pkgs.stdenv.isDarwin then
+          [
+            ".envrc"
+            ".dir-locals.el"
+            "devenv.nix"
+            "devenv.yaml"
+            "devenv.lock"
+            ".devenv.flake.nix"
+          ]
+        else
+          [ ]
+      );
     settings = {
       core = {
         editor = "nvim";
         commentChar = ";";
-        excludesFile = "~/.gitignore_global";
       };
       user = {
         name = "somura";
@@ -29,7 +47,4 @@
       };
     };
   };
-
-  home.file.".gitignore_global".source =
-    if pkgs.stdenv.isDarwin then ./gitignore_global_work else ./gitignore_global_private;
 }
