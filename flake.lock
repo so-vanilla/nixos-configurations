@@ -214,11 +214,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1771551134,
-        "narHash": "sha256-AFIOTAU4w0PUfq3tulxXY8NKv6Bp3KNbDPFQnUo9In8=",
+        "lastModified": 1771662522,
+        "narHash": "sha256-14ZkKA2o9tYSZepmsYkDeW7G1Bz04QoV/cGdSs12GEY=",
         "owner": "so-vanilla",
         "repo": "flake-my-emacs",
-        "rev": "e1e04692e23a018dea6e827a553463d73aaafbd8",
+        "rev": "ab1a3d02e397df13eb0fe8ecec0069bbc8b30abd",
         "type": "github"
       },
       "original": {
