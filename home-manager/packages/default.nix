@@ -5,6 +5,7 @@
 let
   frompkgs = with pkgs; [
     brightnessctl
+    bubblewrap
     copilot-language-server
     devenv
     enchant
@@ -27,6 +28,7 @@ let
     pinentry-curses
     playerctl
     slack
+    socat
     spice
     thunderbird
     traceroute
