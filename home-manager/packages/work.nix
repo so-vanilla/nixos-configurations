@@ -2,29 +2,56 @@
   pkgs,
 }:
 let
+  kotlin-lsp = pkgs.callPackage ./kotlin-lsp.nix { };
   frompkgs = with pkgs; [
+    basedpyright
+    clojure-lsp
     copilot-language-server
     devenv
+    dockerfile-language-server
     enchant
+    eslint
     fd
     gawk
     gh
     git-credential-manager
     github-copilot-cli
+    google-java-format
+    hadolint
     hunspellDicts.en_US-large
+    jdt-language-server
     killall
+    ktlint
+    lua-language-server
     marksman
     nixd
     nixfmt
+    nodePackages.bash-language-server
     nodejs_24
+    prettier
+    ruff
+    rust-analyzer
+    rustfmt
+    shellcheck
+    shfmt
+    sqls
+    stylua
+    svelte-language-server
+    taplo
     tenv
+    terraform-ls
+    tflint
     trash-cli
+    typescript-language-server
     unzip
+    vim-language-server
+    vscode-langservers-extracted
+    yaml-language-server
     zip
   ];
 in
 [
   {
-    home.packages = frompkgs;
+    home.packages = frompkgs ++ [ kotlin-lsp ];
   }
 ]
