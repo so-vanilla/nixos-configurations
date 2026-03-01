@@ -74,7 +74,7 @@
     };
 
     udev.extraRules = ''
-      ACTION=="add", SUBSYSTEM=="usb", KERNEL=="5-1.4", ATTR{power/wakeup}="disabled"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c547", ATTR{power/wakeup}="disabled"
     '';
   };
 
