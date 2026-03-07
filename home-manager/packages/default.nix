@@ -4,42 +4,68 @@
 }:
 let
   frompkgs = with pkgs; [
+    basedpyright
     brightnessctl
     bubblewrap
+    clojure-lsp
     copilot-language-server
     devenv
+    dockerfile-language-server
     enchant
+    eslint
     fd
+    gawk
     gh
     ghq
     git-credential-manager
     github-copilot-cli
+    google-java-format
+    hadolint
     hunspellDicts.en_US-large
     hyprcursor
-    hyprpaper
     hyprland-qtutils
+    hyprpaper
+    jdt-language-server
     killall
     leiningen
     libnotify
+    lua-language-server
     marksman
     networkmanagerapplet
     nixd
     nixfmt
+    nodePackages.bash-language-server
+    nodejs_24
     pinentry-curses
     playerctl
+    prettier
+    ruff
+    rust-analyzer
+    rustfmt
+    shellcheck
+    shfmt
     slack
     socat
     spice
+    sqls
+    stylua
+    svelte-language-server
+    taplo
+    tenv
+    terraform-ls
+    tflint
     thunderbird
     traceroute
     trash-cli
+    typescript-language-server
     unzip
+    vim-language-server
     virt-viewer
+    vscode-langservers-extracted
     wl-clipboard
+    yaml-language-server
     zip
     zoom-us
-    basedpyright
-    ruff
   ];
 in
 [
