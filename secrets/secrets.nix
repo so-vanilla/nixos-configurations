@@ -10,4 +10,5 @@ in
 {
   "general.fish.age".publicKeys = users ++ systems;
   "links.fish.age".publicKeys = users ++ systems;
+  "emacs-private.el.age".publicKeys = users ++ [ vanilla ];
 }
