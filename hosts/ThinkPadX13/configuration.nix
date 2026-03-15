@@ -1,6 +1,5 @@
 {
   nixpkgs,
-  nixpkgs-stable,
   system,
   username,
   ...
@@ -11,12 +10,7 @@ let
     inherit system;
     config.allowUnfree = true;
   };
-  pkgs-stable = import nixpkgs-stable {
-    inherit system;
-    config.allowUnfree = true;
-  };
-
-  services = import ./services { inherit pkgs-stable; };
+  services = import ./services;
   programs = import ./programs { inherit pkgs; };
   networking = import ./networking { inherit pkgs hostname; };
   security = import ./security;

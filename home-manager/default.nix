@@ -2,7 +2,6 @@
   username,
   system,
   nixpkgs,
-  nixpkgs-stable,
   nix-index-database,
   zen-browser,
   catppuccin,
@@ -13,14 +12,10 @@ let
     inherit system;
     config.allowUnfree = true;
   };
-  pkgs-stable = import nixpkgs-stable {
-    inherit system;
-    config.allowUnfree = true;
-  };
   zen-browser-pkg = zen-browser.packages.${system}.default;
   emacs-config = my-emacs.homeManagerModules.${system}.pgtk;
   programs = import ./programs {
-    inherit pkgs pkgs-stable;
+    inherit pkgs;
   };
   services = import ./services {
     inherit pkgs;

@@ -4,7 +4,6 @@
 let
   inherit (inputs)
     nixpkgs
-    nixpkgs-stable
     nix-index-database
     catppuccin
     agenix
@@ -19,7 +18,6 @@ nixpkgs.lib.nixosSystem {
     import ./configuration.nix {
       inherit
         nixpkgs
-        nixpkgs-stable
         system
         username
         ;
@@ -36,7 +34,6 @@ nixpkgs.lib.nixosSystem {
           inherit username system;
           inherit (inputs)
             nixpkgs
-            nixpkgs-stable
             nix-index-database
             zen-browser
             catppuccin

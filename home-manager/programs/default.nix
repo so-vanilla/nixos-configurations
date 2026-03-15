@@ -1,7 +1,4 @@
-{
-  pkgs,
-  pkgs-stable,
-}:
+{ pkgs }:
 let
   catppuccin-flavor = "latte";
   alacritty = import ./alacritty { inherit catppuccin-flavor; };
@@ -19,7 +16,6 @@ let
   gpg = import ./gpg;
   home-manager = import ./home-manager;
   hyprlock = import ./hyprlock;
-  mullvad-vpn = import ./mullvad-vpn { inherit pkgs-stable; };
   neovim = import ./neovim { inherit pkgs; };
   nix-index-database = import ./nix-index-database;
   ripgrep = import ./ripgrep;
@@ -40,7 +36,6 @@ in
   gpg
   home-manager
   hyprlock
-  mullvad-vpn
   neovim
   nix-index-database
   ripgrep
