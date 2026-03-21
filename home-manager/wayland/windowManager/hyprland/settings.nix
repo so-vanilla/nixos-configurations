@@ -112,7 +112,7 @@
     ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
 
     "$mod SHIFT, Q, exit, "
-    "$mod SHIFT, Delete, exec, hyprlock & systemctl suspend"
+
     "$mod, C, killactive, "
     "$mod, V, togglefloating, "
     "$mod, T, togglesplit,"
@@ -161,6 +161,10 @@
     # scratch pad
     "$mod, O, togglespecialworkspace"
     "$mod SHIFT, O, movetoworkspace, special"
+  ];
+
+  bindl = [
+    "$mod SHIFT, Delete, exec, pgrep -x hyprlock && systemctl suspend || hyprlock"
   ];
 
   bindm = [
