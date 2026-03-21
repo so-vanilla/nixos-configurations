@@ -47,6 +47,7 @@ let
     slack
     socat
     spice
+    spotify
     sqls
     stylua
     svelte-language-server
