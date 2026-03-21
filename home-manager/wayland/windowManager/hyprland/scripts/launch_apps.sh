@@ -3,3 +3,4 @@
 thunderbird &
 slack &
 discord --ozone-platform-hint=wayland &
+spotify &

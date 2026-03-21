@@ -17,6 +17,7 @@ let
     gawk
     gh
     ghq
+    grimblast
     git-credential-manager
     github-copilot-cli
     google-java-format

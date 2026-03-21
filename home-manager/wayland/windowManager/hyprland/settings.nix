@@ -90,6 +90,7 @@
     "match:class thunderbird, workspace 3"
     "match:class Slack, workspace 4"
     "match:class discord, workspace 5"
+    "match:class spotify, workspace 6"
   ];
 
   exec-once = [
@@ -110,6 +111,12 @@
     ",XF86AudioPrev, exec, playerctl previous"
     ",XF86MonBrightnessUp, exec, brightnessctl set +5%"
     ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+    ",XF86KbdBrightnessUp, exec, brightnessctl -d *::kbd_backlight set +10%"
+    ",XF86KbdBrightnessDown, exec, brightnessctl -d *::kbd_backlight set 10%-"
+    ",XF86AudioStop, exec, playerctl stop"
+    ", Print, exec, grimblast --notify copysave screen"
+    "$mod, Print, exec, grimblast --notify copysave area"
+    "$mod SHIFT, Print, exec, grimblast --notify copysave active"
 
     "$mod SHIFT, Q, exit, "
 
