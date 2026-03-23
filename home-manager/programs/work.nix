@@ -22,7 +22,6 @@ let
   ripgrep = import ./ripgrep;
 in
 [
-  alacritty
   bat
   btop
   claude-code
@@ -31,7 +30,7 @@ in
   fish
   git
   gpg
-  # home-manager
+  home-manager
   nix-index-database
   ripgrep
 ]

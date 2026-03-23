@@ -2,7 +2,6 @@
   pkgs,
 }:
 let
-  kotlin-lsp = pkgs.callPackage ./kotlin-lsp.nix { };
   frompkgs = with pkgs; [
     basedpyright
     clojure-lsp
@@ -12,7 +11,6 @@ let
     enchant
     eslint
     fd
-    gawk
     gh
     git-credential-manager
     github-copilot-cli
@@ -21,7 +19,6 @@ let
     hunspellDicts.en_US-large
     jdt-language-server
     killall
-    ktlint
     lua-language-server
     marksman
     nixd
@@ -47,11 +44,10 @@ let
     vim-language-server
     vscode-langservers-extracted
     yaml-language-server
-    zip
   ];
 in
 [
   {
-    home.packages = frompkgs ++ [ kotlin-lsp ];
+    home.packages = frompkgs;
   }
 ]

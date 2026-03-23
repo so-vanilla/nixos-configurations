@@ -11,7 +11,7 @@ let
     my-emacs
     ;
   username = builtins.getEnv "HM_USERNAME";
-  system = "aarch64-darwin";
+  system = "x86_64-linux";
 
   pkgs = import nixpkgs-stable {
     inherit system;
@@ -35,13 +35,13 @@ home-manager-stable.lib.homeManagerConfiguration {
     {
       home = {
         username = username;
-        homeDirectory = "/Users/${username}";
+        homeDirectory = "/home/${username}";
         stateVersion = "23.11";
       };
     }
     catppuccin.homeModules.catppuccin
     nix-index-database.homeModules.default
-    my-emacs.homeManagerModules.${system}.stable
+    my-emacs.homeManagerModules.${system}.pgtk
   ]
   ++ programs
   ++ packages;
