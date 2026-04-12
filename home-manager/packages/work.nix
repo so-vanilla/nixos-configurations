@@ -23,7 +23,7 @@ let
     marksman
     nixd
     nixfmt
-    nodePackages.bash-language-server
+    bash-language-server
     nodejs_24
     prettier
     ruff

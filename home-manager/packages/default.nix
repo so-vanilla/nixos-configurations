@@ -35,7 +35,7 @@ let
     networkmanagerapplet
     nixd
     nixfmt
-    nodePackages.bash-language-server
+    bash-language-server
     nodejs_24
     pinentry-curses
     playerctl
