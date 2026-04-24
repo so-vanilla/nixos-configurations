@@ -215,11 +215,11 @@
         "persp-utils": "persp-utils"
       },
       "locked": {
-        "lastModified": 1776994462,
-        "narHash": "sha256-jhAkqFqjkSDkLUEv0lTN3uTjk8BI4Vkm82txdlMAoOo=",
+        "lastModified": 1776995081,
+        "narHash": "sha256-chkJqBRN87ZPcVSzFT8A7aOC+L7T0Cxu7I7L1YBpBw4=",
         "owner": "so-vanilla",
         "repo": "flake-my-emacs",
-        "rev": "324c9364aeb10bac00c15bd0040543c0b669c3ef",
+        "rev": "3ca50d01748dd5b12071c59ca63cd821ea7684e4",
         "type": "github"
       },
       "original": {
