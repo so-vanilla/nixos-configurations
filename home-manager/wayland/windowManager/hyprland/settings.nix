@@ -15,6 +15,8 @@
     "col.inactive_border" = "0xff313244";
     layout = "dwindle";
     allow_tearing = false;
+    resize_on_border = true;
+    extend_border_grab_area = 15;
   };
 
   decoration = {
