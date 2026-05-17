@@ -13,6 +13,9 @@
       "zen"
       "aerospace"
       "raycast"
+      "aquaskk"
+      "discord"
+      "thunderbird"
     ];
     masApps = { };
   };
