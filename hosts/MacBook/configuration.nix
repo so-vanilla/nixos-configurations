@@ -54,6 +54,8 @@ in
       shell = pkgs.fish;
     };
 
+    environment.shells = [ pkgs.fish ];
+
     programs.fish.enable = true;
 
     system.primaryUser = "shuto-vanilla";
