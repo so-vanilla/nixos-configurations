@@ -1,7 +1,7 @@
 {
   nixpkgs,
   system,
-  ...
+  username,
 }:
 let
   hostname = "chocolate";
@@ -48,6 +48,11 @@ in
       noto-fonts-color-emoji
       ipafont
     ];
+
+    users.users."${username}" = {
+      home = "/Users/${username}";
+      shell = pkgs.fish;
+    };
 
     programs.fish.enable = true;
 
