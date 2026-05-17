@@ -13,7 +13,6 @@
       "zen"
       "aerospace"
       "raycast"
-      "realforce"
     ];
     masApps = { };
   };
