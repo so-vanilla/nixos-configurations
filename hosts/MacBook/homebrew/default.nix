@@ -9,7 +9,7 @@
     };
     taps = [ ];
     brews = [ ];
-    casks = [ zen ];
+    casks = [ "zen" ];
     masApps = { };
   };
 }
