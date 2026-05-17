@@ -12,7 +12,7 @@ let
     inherit system;
     config.allowUnfree = true;
   };
-  emacs-config = my-emacs.homeManagerModules.${system}.pgtk;
+  emacs-config = my-emacs.homeManagerModules.${system}.stable;
   programs = import ./programs/chocolate.nix { inherit pkgs; };
   packages = import ./packages/chocolate.nix { inherit pkgs zen-browser system; };
 in
