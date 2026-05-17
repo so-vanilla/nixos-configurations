@@ -25,6 +25,7 @@ nix-darwin.lib.darwinSystem {
         ;
     }
     ++ [
+      ./homebrew
       inputs.home-manager.darwinModules.home-manager
       {
         home-manager.useUserPackages = true;
