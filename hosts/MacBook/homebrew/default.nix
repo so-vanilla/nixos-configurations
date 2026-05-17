@@ -7,9 +7,13 @@
       cleanup = "zap";
       upgrade = true;
     };
-    taps = [ ];
+    taps = [ "nikitabobko/tap" ];
     brews = [ ];
-    casks = [ "zen" ];
+    casks = [
+      "zen"
+      "aerospace"
+      "raycast"
+    ];
     masApps = { };
   };
 }
