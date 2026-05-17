@@ -56,6 +56,8 @@ in
 
     programs.fish.enable = true;
 
+    system.primaryUser = "shuto-vanilla";
+
     system.stateVersion = 5;
   }
 ]
