@@ -1,13 +1,12 @@
 {
   pkgs,
-  pkgs-unstable,
 }:
 let
   catppuccin-flavor = "latte";
   alacritty = import ./alacritty { inherit catppuccin-flavor; };
   bat = import ./bat { inherit catppuccin-flavor; };
   btop = import ./btop { inherit catppuccin-flavor; };
-  claude-code = import ./claude-code { pkgs = pkgs-unstable; };
+  claude-code = import ./claude-code { inherit pkgs; };
   direnv = import ./direnv;
   eza = import ./eza;
   fish = import ./fish { inherit pkgs catppuccin-flavor; };

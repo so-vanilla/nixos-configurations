@@ -4,8 +4,7 @@
 let
   inherit (inputs)
     nixpkgs
-    nixpkgs-stable
-    home-manager-stable
+    home-manager
     catppuccin
     nix-index-database
     my-emacs
@@ -13,22 +12,18 @@ let
   username = builtins.getEnv "HM_USERNAME";
   system = "x86_64-linux";
 
-  pkgs = import nixpkgs-stable {
-    inherit system;
-    config.allowUnfree = true;
-  };
-  pkgs-unstable = import nixpkgs {
+  pkgs = import nixpkgs {
     inherit system;
     config.allowUnfree = true;
   };
   programs = import ./programs/work.nix {
-    inherit pkgs pkgs-unstable;
+    inherit pkgs;
   };
   packages = import ./packages/work.nix {
     inherit pkgs;
   };
 in
-home-manager-stable.lib.homeManagerConfiguration {
+home-manager.lib.homeManagerConfiguration {
   inherit pkgs;
 
   modules = [
