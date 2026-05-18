@@ -1,0 +1,67 @@
+{
+  pkgs,
+  zen-browser,
+  system,
+}:
+let
+  zen-browser-pkg =
+    if zen-browser.packages ? ${system} then zen-browser.packages.${system}.default else null;
+  frompkgs = with pkgs; [
+    basedpyright
+    clojure-lsp
+    copilot-language-server
+    devenv
+    dockerfile-language-server
+    enchant
+    eslint
+    fd
+    gawk
+    gh
+    ghq
+    git-credential-manager
+    github-copilot-cli
+    google-java-format
+    hadolint
+    hunspellDicts.en_US-large
+    jdt-language-server
+    killall
+    leiningen
+    lua-language-server
+    marksman
+    nixd
+    nixfmt
+    bash-language-server
+    nodejs_24
+    pinentry_mac
+    prettier
+    ruff
+    rust-analyzer
+    rustfmt
+    shellcheck
+    shfmt
+    slack
+    socat
+    spotify
+    sqls
+    stylua
+    svelte-language-server
+    taplo
+    tenv
+    terraform-ls
+    tflint
+    thunderbird
+    trash-cli
+    typescript-language-server
+    unzip
+    vim-language-server
+    vscode-langservers-extracted
+    yaml-language-server
+    zip
+    zoom-us
+  ];
+in
+[
+  {
+    home.packages = frompkgs ++ pkgs.lib.optional (zen-browser-pkg != null) zen-browser-pkg;
+  }
+]

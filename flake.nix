@@ -18,6 +18,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix.url = "github:ryantm/agenix";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,6 +45,9 @@
       flake = {
         nixosConfigurations = {
           vanilla = import ./hosts/ThinkPadX13 { inherit inputs; };
+        };
+        darwinConfigurations = {
+          chocolate = import ./hosts/MacBook { inherit inputs; };
         };
         homeConfigurations = {
           "work" = import ./home-manager/work.nix { inherit inputs; };
