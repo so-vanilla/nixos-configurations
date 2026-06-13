@@ -51,9 +51,9 @@
       rm = "trash-put";
     };
     functions = {
-      update-emacs = {
-        body = builtins.readFile ./update-emacs.fish;
-        description = "Update emacs config cascade (aide → flake-my-emacs → nixos-configurations)";
+      update-neovim = {
+        body = builtins.readFile ./update-neovim.fish;
+        description = "Update Neovim config cascade (flake-my-neovim → nixos-configurations)";
       };
       update-nix = {
         body = builtins.readFile ./update-nix.fish;
@@ -63,10 +63,8 @@
     shellAliases = {
       h = "cd";
       q = "exit";
-      v = "emacsclient -nc";
-      ed = "XMODIFIERS= GTK_IM_MODULE= QT_IM_MODULE= emacs --daemon";
-      ek = "emacsclient -e \"(kill-emacs)\"";
-      ec = "emacsclient -c";
+      v = "nvim";
+      ec = "nvim";
       kills = "killall slack .Discord-wrapped";
     };
   };

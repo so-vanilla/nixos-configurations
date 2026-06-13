@@ -38,6 +38,7 @@ nixpkgs.lib.nixosSystem {
             zen-browser
             catppuccin
             my-emacs
+            my-neovim
             ;
         };
       }

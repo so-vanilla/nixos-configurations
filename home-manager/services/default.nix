@@ -2,7 +2,6 @@
   pkgs,
 }:
 let
-  emacs = import ./emacs;
   gpg-agent = import ./gpg-agent { inherit pkgs; };
   hyprpaper = import ./hyprpaper;
   playerctld = import ./playerctld;
@@ -12,7 +11,6 @@ let
   kdeconnect = import ./kdeconnect;
 in
 [
-  # emacs
   gpg-agent
   hyprpaper
   playerctld

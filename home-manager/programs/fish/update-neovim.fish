@@ -1,5 +1,5 @@
 set -l base (ghq root)/github.com/so-vanilla
-set -l repos aide flake-my-emacs nixos-configurations
+set -l repos flake-my-neovim nixos-configurations
 set -l last_index (count $repos)
 set -l original_dir (pwd)
 
@@ -25,8 +25,8 @@ for i in (seq (count $repos))
 
     # nix flake update
     if test $repo = nixos-configurations
-        if not nix flake update my-emacs
-            echo "Error: nix flake update my-emacs に失敗しました ($repo)"
+        if not nix flake update my-neovim
+            echo "Error: nix flake update my-neovim に失敗しました ($repo)"
             if test (count $staged) -gt 0
                 git add $staged
             end

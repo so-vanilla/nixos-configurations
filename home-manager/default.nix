@@ -6,6 +6,7 @@
   zen-browser,
   catppuccin,
   my-emacs,
+  my-neovim,
 }:
 let
   pkgs = import nixpkgs {
@@ -14,6 +15,7 @@ let
   };
   zen-browser-pkg = zen-browser.packages.${system}.default;
   emacs-config = my-emacs.homeManagerModules.${system}.pgtk;
+  neovim-config = my-neovim.homeManagerModules.${system}.default;
   programs = import ./programs {
     inherit pkgs;
   };
@@ -45,6 +47,7 @@ in
     catppuccin.homeModules.catppuccin
     nix-index-database.homeModules.default
     emacs-config
+    neovim-config
   ]
   ++ programs
   ++ services

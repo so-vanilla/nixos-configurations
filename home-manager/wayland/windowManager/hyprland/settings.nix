@@ -1,6 +1,6 @@
 {
   "$mod" = "SUPER";
-  "$terminal" = "alacritty";
+  "$terminal" = "wezterm";
   "$fileManager" = "dolphin";
   "$menu" = "tofi-drun --drun-launch=true";
   "$www_client" = "zen";
@@ -126,8 +126,8 @@
     "$mod, V, togglefloating, "
     "$mod, T, togglesplit,"
     "$mod, F, fullscreen,"
-    "$mod, E, exec, emacsclient -c"
-    "$mod SHIFT, E, exec, emacs"
+    "$mod, E, exec, $terminal start -- nvim"
+    "$mod SHIFT, E, exec, $terminal start -- nvim ."
     "$mod, RETURN, exec, $terminal"
     "$mod, B, exec, $www_client"
     "$mod SHIFT, B, exec, $www_client_private"

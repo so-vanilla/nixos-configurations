@@ -7,7 +7,7 @@ let
     home-manager
     catppuccin
     nix-index-database
-    my-emacs
+    my-neovim
     ;
   username = builtins.getEnv "HM_USERNAME";
   system = "x86_64-linux";
@@ -36,7 +36,7 @@ home-manager.lib.homeManagerConfiguration {
     }
     catppuccin.homeModules.catppuccin
     nix-index-database.homeModules.default
-    my-emacs.homeManagerModules.${system}.pgtk
+    my-neovim.homeManagerModules.${system}.default
   ]
   ++ programs
   ++ packages;

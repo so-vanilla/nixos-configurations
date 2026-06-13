@@ -1,7 +1,6 @@
 { pkgs }:
 let
   catppuccin-flavor = "latte";
-  alacritty = import ./alacritty { inherit catppuccin-flavor; };
   bat = import ./bat { inherit catppuccin-flavor; };
   btop = import ./btop { inherit catppuccin-flavor; };
   claude-code = import ./claude-code { inherit pkgs; };
@@ -14,13 +13,11 @@ let
   };
   gpg = import ./gpg;
   home-manager = import ./home-manager;
-  neovim = import ./neovim { inherit pkgs; };
   nix-index-database = import ./nix-index-database;
   ripgrep = import ./ripgrep;
   vscode = import ./vscode;
 in
 [
-  alacritty
   bat
   btop
   claude-code
@@ -30,7 +27,6 @@ in
   git
   gpg
   home-manager
-  neovim
   nix-index-database
   ripgrep
   vscode

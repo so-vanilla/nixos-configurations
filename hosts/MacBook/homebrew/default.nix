@@ -18,6 +18,7 @@
       "aquaskk"
       "discord"
       "thunderbird"
+      "vivaldi"
     ];
     masApps = { };
   };
