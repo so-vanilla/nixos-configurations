@@ -11,6 +11,7 @@
     brews = [ ];
     casks = [
       "codex"
+      "codex-app"
       "zen"
       "aerospace"
       "raycast"
