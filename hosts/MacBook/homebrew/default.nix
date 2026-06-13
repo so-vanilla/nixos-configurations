@@ -10,6 +10,7 @@
     taps = [ "nikitabobko/tap" ];
     brews = [ ];
     casks = [
+      "codex"
       "zen"
       "aerospace"
       "raycast"
