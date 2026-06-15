@@ -65,6 +65,12 @@ in
         '';
         description = "Open Magit for the current shell directory";
       };
+      cy = {
+        body = ''
+          command claude --dangerously-skip-permissions $argv
+        '';
+        description = "Start Claude Code with permission prompts bypassed";
+      };
     };
     shellAliases = {
       h = "cd";
