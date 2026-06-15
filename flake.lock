@@ -246,11 +246,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781365335,
-        "narHash": "sha256-zqDBhXMzfbdlO7F2bGHe7MOtB3xngd/+4ieMHDC+ZXo=",
+        "lastModified": 1781477932,
+        "narHash": "sha256-7EZqIpytCiWoVsUQIRytWr2H0esy2xuntQHjG4Hb/48=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "5b6f5733726a1b2ccafb5dec6ac4ca7299fad66c",
+        "rev": "ed8263e7d7813ec8f447e78e5dcd7f94f333f1d5",
         "type": "github"
       },
       "original": {
@@ -287,14 +287,15 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nixvim": "nixvim"
+        "nixvim": "nixvim",
+        "softpair": "softpair"
       },
       "locked": {
-        "lastModified": 1781401663,
-        "narHash": "sha256-fmgZewlG1aDQCCPNStvb29jyjhPCe/cVDnxq3bMo2Ho=",
+        "lastModified": 1781485990,
+        "narHash": "sha256-su9KEO7JXyOMm85bgKZZfQhqgQNVyAfhnIe9UxQljdw=",
         "owner": "so-vanilla",
         "repo": "flake-my-neovim",
-        "rev": "e785c61b1d80d964c6f769eff49aac2db9a7ce23",
+        "rev": "9489470ab7be9993d8fb204a4d48329be4159eef",
         "type": "github"
       },
       "original": {
@@ -313,11 +314,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781395489,
-        "narHash": "sha256-ld6NO2vmsMlhIWR0FiErScDwAPU/qoklYIO3RH1Cja8=",
+        "lastModified": 1781481888,
+        "narHash": "sha256-ZWkwNgZ/qnhV2Fg9kb5HFkLTMyp7MifN3Z4geoIezzg=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "f76ad0e7ec9d947dcdfe3a511ace2f346994b4a0",
+        "rev": "7eaab028e4c35b2fe6b35884fccd78703b9ebbdf",
         "type": "github"
       },
       "original": {
@@ -329,11 +330,11 @@
     "neovim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1781386628,
-        "narHash": "sha256-4gqN17Kuob9x+mGmbBLLj3Jg1Ean/HPvRiY6M/GWgnk=",
+        "lastModified": 1781471086,
+        "narHash": "sha256-pcUOaNjOkMSLjVFRyNqQPM6S36Tgnv96WnXkb10h+Ek=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "37239e724e9362c11fcd6c4e0af73bf74ff1c295",
+        "rev": "8b5d80ab44e27c1374d7be8c904e26cf39b66acd",
         "type": "github"
       },
       "original": {
@@ -369,11 +370,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780816331,
-        "narHash": "sha256-0BYqs8yKWkOz2Q7+SP18N5E5gmDKSo6LSxIVIa0wWes=",
+        "lastModified": 1781422160,
+        "narHash": "sha256-W7S8O86bVrw2gaomEwkHStOzmPpnFIHQ6lS4Q2HffJ0=",
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "1a2ea89c917781e88508d9fd2b507f2d2a0e173c",
+        "rev": "854d04e2368fb2e9c328a36b3c0a04cd713bfae1",
         "type": "github"
       },
       "original": {
@@ -529,6 +530,31 @@
         "zen-browser": "zen-browser"
       }
     },
+    "softpair": {
+      "inputs": {
+        "flake-utils": [
+          "my-neovim",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "my-neovim",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1781442499,
+        "narHash": "sha256-0x3EUgtjjTw8OpOUW4QtMXijhfspr4F17t+mhm1NbGs=",
+        "owner": "so-vanilla",
+        "repo": "softpair.nvim",
+        "rev": "1bc5009372ee8ecb4d0961b6e654e0f4f5aae7e7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "so-vanilla",
+        "repo": "softpair.nvim",
+        "type": "github"
+      }
+    },
     "systems": {
       "locked": {
         "lastModified": 1681028828,
@@ -597,11 +623,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781242638,
-        "narHash": "sha256-n0s/QM5ZJl3/v4tgDLsATIHR2dC+4+Aa2BT6FnthGy4=",
+        "lastModified": 1781415399,
+        "narHash": "sha256-t7l/1scSsVAlw1r/vjEIX+SquZa/z6ibcOLBuXdJH7E=",
         "owner": "youwen5",
         "repo": "zen-browser-flake",
-        "rev": "79f7cca35f9e4e38d1f8767bac130159f60866cc",
+        "rev": "83ab3c3da2ba1a76a20882dbd253711d2cb8dcba",
         "type": "github"
       },
       "original": {
