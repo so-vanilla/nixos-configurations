@@ -28,7 +28,10 @@
     };
     catppuccin.url = "github:catppuccin/nix";
 
-    my-emacs.url = "github:so-vanilla/flake-my-emacs";
+    my-emacs = {
+      url = "github:so-vanilla/flake-my-emacs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     my-neovim = {
       url = "github:so-vanilla/flake-my-neovim";
       inputs.nixpkgs.follows = "nixpkgs";

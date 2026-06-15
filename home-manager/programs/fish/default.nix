@@ -2,6 +2,9 @@
   pkgs,
   catppuccin-flavor,
 }:
+let
+  editorCommand = "emacsclient -t";
+in
 {
   programs.fish = {
     enable = true;
@@ -51,20 +54,23 @@
       rm = "trash-put";
     };
     functions = {
-      update-neovim = {
-        body = builtins.readFile ./update-neovim.fish;
-        description = "Update Neovim config cascade (flake-my-neovim → nixos-configurations)";
-      };
       update-nix = {
         body = builtins.readFile ./update-nix.fish;
         description = "Update nix environment (flake update → rebuild → commit & push)";
+      };
+      magit = {
+        body = ''
+          set -l cwd_b64 (printf '%s' (pwd) | base64 | tr -d '\n')
+          ${editorCommand} --eval "(progn (require 'magit) (let ((default-directory (file-name-as-directory (decode-coding-string (base64-decode-string \"$cwd_b64\") 'utf-8)))) (magit-status default-directory)))"
+        '';
+        description = "Open Magit for the current shell directory";
       };
     };
     shellAliases = {
       h = "cd";
       q = "exit";
-      v = "nvim";
-      ec = "nvim";
+      e = editorCommand;
+      ec = editorCommand;
       kills = "killall slack .Discord-wrapped";
     };
   };
