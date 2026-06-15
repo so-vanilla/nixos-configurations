@@ -291,11 +291,11 @@
         "softpair": "softpair"
       },
       "locked": {
-        "lastModified": 1781487297,
-        "narHash": "sha256-ad4mQre23W7U5SISql1aT+nci3c64ZiFxb7qMXx+riY=",
+        "lastModified": 1781495565,
+        "narHash": "sha256-On6clpbp7jhpnKnNAGRjO2cPRfknPk8Wug8FRethuV8=",
         "owner": "so-vanilla",
         "repo": "flake-my-neovim",
-        "rev": "fda66969e803b1b146c39890744fbca5844ea310",
+        "rev": "0fb9b4b67d3d0500a75bf3c0e5c3e579f320d9e9",
         "type": "github"
       },
       "original": {
