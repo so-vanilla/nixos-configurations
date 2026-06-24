@@ -28,7 +28,9 @@ nixpkgs.lib.nixosSystem {
       {
         catppuccin = {
           enable = true;
-          autoEnable = false;
+          autoEnable = true;
+          flavor = "latte";
+          accent = "pink";
         };
       }
       agenix.nixosModules.default
