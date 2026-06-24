@@ -4,9 +4,6 @@
     wayland.enable = true;
     # theme = "catppuccin-latte";
   };
-  catppuccin.sddm = {
-    enable = true;
-    flavor = "latte";
-    assertQt6Sddm = false;
-  };
+
+  catppuccin.sddm.assertQt6Sddm = false;
 }
