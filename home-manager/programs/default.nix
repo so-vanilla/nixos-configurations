@@ -1,13 +1,12 @@
 { pkgs }:
 let
-  catppuccin-flavor = "latte";
-  bat = import ./bat { inherit catppuccin-flavor; };
-  btop = import ./btop { inherit catppuccin-flavor; };
+  bat = import ./bat;
+  btop = import ./btop;
   claude-code = import ./claude-code { inherit pkgs; };
   direnv = import ./direnv;
   discord = import ./discord;
   eza = import ./eza;
-  fish = import ./fish { inherit pkgs catppuccin-flavor; };
+  fish = import ./fish { inherit pkgs; };
   git = import ./git {
     inherit pkgs;
     email = "somura-vanilla@so-icecream.com";
@@ -17,7 +16,7 @@ let
   hyprlock = import ./hyprlock;
   nix-index-database = import ./nix-index-database;
   ripgrep = import ./ripgrep;
-  tofi = import ./tofi { inherit catppuccin-flavor; };
+  tofi = import ./tofi;
   vscode = import ./vscode;
   waybar = import ./waybar;
 in

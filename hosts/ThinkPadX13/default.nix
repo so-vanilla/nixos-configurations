@@ -25,6 +25,14 @@ nixpkgs.lib.nixosSystem {
     ++ [
       ./hardware-configuration.nix
       catppuccin.nixosModules.catppuccin
+      {
+        catppuccin = {
+          enable = true;
+          autoEnable = true;
+          flavor = "latte";
+          accent = "pink";
+        };
+      }
       agenix.nixosModules.default
 
       inputs.home-manager.nixosModules.home-manager

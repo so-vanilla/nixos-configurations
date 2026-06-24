@@ -37,6 +37,13 @@ in
 {
   nixpkgs.config.allowUnfree = true;
 
+  catppuccin = {
+    enable = true;
+    autoEnable = true;
+    flavor = "latte";
+    accent = "pink";
+  };
+
   home = {
     username = username;
     homeDirectory = "/home/${username}";

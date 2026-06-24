@@ -33,6 +33,13 @@ home-manager.lib.homeManagerConfiguration {
         homeDirectory = "/home/${username}";
         stateVersion = "23.11";
       };
+
+      catppuccin = {
+        enable = true;
+        autoEnable = true;
+        flavor = "latte";
+        accent = "pink";
+      };
     }
     catppuccin.homeModules.catppuccin
     nix-index-database.homeModules.default

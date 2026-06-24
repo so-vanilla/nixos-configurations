@@ -1,12 +1,11 @@
 { pkgs }:
 let
-  catppuccin-flavor = "latte";
-  bat = import ./bat { inherit catppuccin-flavor; };
-  btop = import ./btop { inherit catppuccin-flavor; };
+  bat = import ./bat;
+  btop = import ./btop;
   claude-code = import ./claude-code { inherit pkgs; };
   direnv = import ./direnv;
   eza = import ./eza;
-  fish = import ./fish { inherit pkgs catppuccin-flavor; };
+  fish = import ./fish { inherit pkgs; };
   git = import ./git {
     inherit pkgs;
     email = "shuto-vanilla@so-icecream.com";
