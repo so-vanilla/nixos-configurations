@@ -25,6 +25,12 @@ nixpkgs.lib.nixosSystem {
     ++ [
       ./hardware-configuration.nix
       catppuccin.nixosModules.catppuccin
+      {
+        catppuccin = {
+          enable = true;
+          autoEnable = false;
+        };
+      }
       agenix.nixosModules.default
 
       inputs.home-manager.nixosModules.home-manager
