@@ -26,11 +26,6 @@ in
     extraConfig = extraConfigs;
   };
 
-  catppuccin.hyprland = {
-    enable = true;
-    flavor = "latte";
-    accent = "pink";
-  };
   home.file = {
     ".config/hypr/scripts" = {
       source = ./scripts;
