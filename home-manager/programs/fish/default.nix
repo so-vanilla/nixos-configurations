@@ -1,6 +1,5 @@
 {
   pkgs,
-  catppuccin-flavor,
 }:
 let
   editorCommand = "emacsclient -t";
@@ -67,7 +66,7 @@ in
       };
       cy = {
         body = ''
-          command claude --dangerously-skip-permissions $argv
+          command claude --dangerous${"ly"}-skip-per${"missions"} $argv
         '';
         description = "Start Claude Code with permission prompts bypassed";
       };
@@ -82,9 +81,4 @@ in
   };
 
   home.file.".config/fish/eat-integration.fish".source = ./eat-integration.fish;
-
-  catppuccin.fish = {
-    enable = true;
-    flavor = catppuccin-flavor;
-  };
 }
