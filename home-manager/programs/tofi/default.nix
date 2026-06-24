@@ -1,3 +1,7 @@
 {
-  programs."tofi".enable = true;
+  programs = {
+    tofi = {
+      enable = true;
+    };
+  };
 }
