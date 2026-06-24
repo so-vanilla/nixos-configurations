@@ -39,7 +39,9 @@ in
 
   catppuccin = {
     enable = true;
-    autoEnable = false;
+    autoEnable = true;
+    flavor = "latte";
+    accent = "pink";
   };
 
   home = {
