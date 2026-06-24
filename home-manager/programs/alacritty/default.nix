@@ -1,3 +1,7 @@
 {
-  programs.${"ala" + "critty"}.enable = true;
+  programs = {
+    ${"ala" + "critty"} = {
+      enable = true;
+    };
+  };
 }
