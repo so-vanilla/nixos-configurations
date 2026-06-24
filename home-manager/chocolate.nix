@@ -19,6 +19,11 @@ in
 {
   nixpkgs.config.allowUnfree = true;
 
+  catppuccin = {
+    enable = true;
+    autoEnable = false;
+  };
+
   home = {
     username = username;
     homeDirectory = "/Users/${username}";
