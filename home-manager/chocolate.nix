@@ -19,6 +19,11 @@ in
 {
   nixpkgs.config.allowUnfree = true;
 
+  targets.darwin = {
+    linkApps.enable = false;
+    copyApps.enable = true;
+  };
+
   catppuccin = {
     enable = true;
     autoEnable = true;
