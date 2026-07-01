@@ -29,15 +29,6 @@ in
           "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
         ];
       };
-      gc = {
-        automatic = true;
-        interval = {
-          Weekday = 0;
-          Hour = 2;
-          Minute = 0;
-        };
-        options = "--delete-older-than 7d";
-      };
     };
 
     networking.hostName = hostname;
