@@ -18,7 +18,6 @@ let
     gawk
     gh
     ghq
-    git-credential-manager
     github-copilot-cli
     google-java-format
     hadolint
