@@ -14,6 +14,7 @@ let
   };
   gpg = import ./gpg;
   home-manager = import ./home-manager;
+  marksman = import ./marksman;
   nix-index-database = import ./nix-index-database;
   ripgrep = import ./ripgrep;
 in
@@ -27,6 +28,7 @@ in
   git
   gpg
   home-manager
+  marksman
   nix-index-database
   ripgrep
 ]
