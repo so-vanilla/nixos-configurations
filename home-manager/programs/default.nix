@@ -14,6 +14,7 @@ let
   gpg = import ./gpg;
   home-manager = import ./home-manager;
   hyprlock = import ./hyprlock;
+  marksman = import ./marksman;
   nix-index-database = import ./nix-index-database;
   ripgrep = import ./ripgrep;
   tofi = import ./tofi;
@@ -32,6 +33,7 @@ in
   gpg
   home-manager
   hyprlock
+  marksman
   nix-index-database
   ripgrep
   tofi
