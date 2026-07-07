@@ -34,6 +34,8 @@ home-manager.lib.homeManagerConfiguration {
         stateVersion = "23.11";
       };
 
+      nix.package = pkgs.nix;
+
       catppuccin = {
         enable = true;
         autoEnable = true;
