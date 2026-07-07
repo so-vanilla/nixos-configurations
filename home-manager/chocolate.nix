@@ -29,6 +29,7 @@ in
     autoEnable = true;
     flavor = "latte";
     accent = "pink";
+    cache.enable = true;
   };
 
   home = {
