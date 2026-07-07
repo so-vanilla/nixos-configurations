@@ -34,12 +34,17 @@ home-manager.lib.homeManagerConfiguration {
         stateVersion = "23.11";
       };
 
+      home.file.".config/nix/nix.conf".text = ''
+        extra-experimental-features = nix-command flakes
+        extra-substituters = https://nix-community.cachix.org https://catppuccin.cachix.org
+        extra-trusted-public-keys = nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU=
+      '';
+
       catppuccin = {
         enable = true;
         autoEnable = true;
         flavor = "latte";
         accent = "pink";
-        cache.enable = true;
       };
     }
     catppuccin.homeModules.catppuccin
