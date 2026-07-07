@@ -31,6 +31,7 @@ nixpkgs.lib.nixosSystem {
           autoEnable = true;
           flavor = "latte";
           accent = "pink";
+          cache.enable = true;
         };
       }
       agenix.nixosModules.default
