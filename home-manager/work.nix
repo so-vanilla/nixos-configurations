@@ -39,6 +39,7 @@ home-manager.lib.homeManagerConfiguration {
         autoEnable = true;
         flavor = "latte";
         accent = "pink";
+        cache.enable = true;
       };
     }
     catppuccin.homeModules.catppuccin
