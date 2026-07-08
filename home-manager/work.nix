@@ -7,6 +7,7 @@ let
     home-manager
     catppuccin
     nix-index-database
+    my-claude
     my-emacs
     ;
   username = builtins.getEnv "HM_USERNAME";
@@ -49,6 +50,7 @@ home-manager.lib.homeManagerConfiguration {
     }
     catppuccin.homeModules.catppuccin
     nix-index-database.homeModules.default
+    my-claude.homeManagerModules.default
     my-emacs.homeManagerModules.${system}.default
   ]
   ++ programs
