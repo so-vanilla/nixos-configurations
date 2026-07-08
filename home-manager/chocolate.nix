@@ -5,6 +5,7 @@
   nix-index-database,
   zen-browser,
   catppuccin,
+  my-claude,
   my-emacs,
 }:
 let
@@ -12,6 +13,7 @@ let
     inherit system;
     config.allowUnfree = true;
   };
+  claude-config = my-claude.homeManagerModules.default;
   emacs-config = my-emacs.homeManagerModules.${system}.default;
   programs = import ./programs/chocolate.nix { inherit pkgs; };
   packages = import ./packages/chocolate.nix { inherit pkgs zen-browser system; };
@@ -40,6 +42,7 @@ in
   imports = [
     catppuccin.homeModules.catppuccin
     nix-index-database.homeModules.default
+    claude-config
     emacs-config
   ]
   ++ programs
