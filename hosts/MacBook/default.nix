@@ -7,6 +7,7 @@ let
     nix-darwin
     nix-index-database
     catppuccin
+    my-claude
     my-emacs
     zen-browser
     ;
@@ -36,6 +37,7 @@ nix-darwin.lib.darwinSystem {
             nix-index-database
             zen-browser
             catppuccin
+            my-claude
             my-emacs
             ;
         };
