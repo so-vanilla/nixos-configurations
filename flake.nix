@@ -29,7 +29,7 @@
     catppuccin.url = "github:catppuccin/nix";
 
     my-claude = {
-      url = "github:so-vanilla/flake-my-claude?ref=claude-config-skills";
+      url = "github:so-vanilla/flake-my-claude";
     };
     my-emacs = {
       url = "github:so-vanilla/flake-my-emacs";
