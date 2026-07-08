@@ -28,6 +28,9 @@
     };
     catppuccin.url = "github:catppuccin/nix";
 
+    my-claude = {
+      url = "github:so-vanilla/flake-my-claude?ref=claude-config-skills";
+    };
     my-emacs = {
       url = "github:so-vanilla/flake-my-emacs";
       inputs.nixpkgs.follows = "nixpkgs";
