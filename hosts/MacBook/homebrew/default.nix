@@ -7,18 +7,23 @@
       cleanup = "zap";
       upgrade = true;
     };
-    taps = [ "nikitabobko/tap" ];
+    taps = [
+      {
+        name = "nikitabobko/tap";
+        trusted = true;
+      }
+    ];
     brews = [ ];
     casks = [
       "codex"
       "codex-app"
-      "zen"
       "aerospace"
       "raycast"
       "aquaskk"
       "discord"
       "thunderbird"
       "vivaldi"
+      "steam"
     ];
     masApps = { };
   };

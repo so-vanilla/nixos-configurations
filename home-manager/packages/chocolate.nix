@@ -61,6 +61,6 @@ let
 in
 [
   {
-    home.packages = frompkgs ++ pkgs.lib.optional (zen-browser-pkg != null) zen-browser-pkg;
+    home.packages = frompkgs;
   }
 ]
