@@ -1,5 +1,6 @@
 { pkgs }:
 let
+  aerospace = import ./aerospace;
   bat = import ./bat;
   btop = import ./btop;
   claude-code = import ./claude-code { inherit pkgs; };
@@ -18,6 +19,7 @@ let
   vscode = import ./vscode;
 in
 [
+  aerospace
   bat
   btop
   claude-code
