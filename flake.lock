@@ -245,11 +245,11 @@
     },
     "my-claude": {
       "locked": {
-        "lastModified": 1783488731,
-        "narHash": "sha256-OSJgiolX9Dfg9JQ3AfcEiUuvwl8hMwpg4jETnqBoMuE=",
+        "lastModified": 1783843815,
+        "narHash": "sha256-dKfsY8OSio43pTGzCAvRyRxkfRu2Gp6qr9LV8o0yk0o=",
         "owner": "so-vanilla",
         "repo": "flake-my-claude",
-        "rev": "5977e3165389bb5c4bf006a4b972c042ff63b98e",
+        "rev": "6f1fc7d299edaef59c12ce7223c789d71a9497c8",
         "type": "github"
       },
       "original": {
@@ -370,11 +370,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783414108,
-        "narHash": "sha256-RY8e+gR2/DhXsYDxGDL6Hhe9+POD9u4+llwxMBqMQDs=",
+        "lastModified": 1783835045,
+        "narHash": "sha256-yL4Ptl/aH7kJK/4HtLEzpSE40zdMNdXolfgwwGY3bmk=",
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "96d6de10eb281b98f5cfcd1841394c03da5df77c",
+        "rev": "9b7545740d701a28a6d46de0665a685191205ba1",
         "type": "github"
       },
       "original": {
