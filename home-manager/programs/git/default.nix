@@ -43,7 +43,7 @@ in
     );
     settings = {
       core = {
-        editor = "nvim";
+        editor = "emacsclient-smart -t";
         commentChar = ";";
       };
       user = {

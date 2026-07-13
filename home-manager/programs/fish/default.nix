@@ -2,7 +2,7 @@
   pkgs,
 }:
 let
-  editorCommand = "emacsclient -t";
+  editorCommand = "emacsclient-smart -t";
 in
 {
   programs.fish = {
@@ -63,6 +63,36 @@ in
           ${editorCommand} --eval "(progn (require 'magit) (let ((default-directory (file-name-as-directory (decode-coding-string (base64-decode-string \"$cwd_b64\") 'utf-8)))) (magit-status default-directory)))"
         '';
         description = "Open Magit for the current shell directory";
+      };
+      fish_right_prompt = {
+        body = ''
+          set -l now (${pkgs.coreutils}/bin/date +%s)
+
+          if not set -q __emacs_project_daemon_prompt_pwd
+            set -g __emacs_project_daemon_prompt_pwd
+            set -g __emacs_project_daemon_prompt_expires 0
+            set -g __emacs_project_daemon_prompt_running 0
+          end
+
+          if test "$PWD" != "$__emacs_project_daemon_prompt_pwd" \
+              -o "$now" -ge "$__emacs_project_daemon_prompt_expires"
+            set -g __emacs_project_daemon_prompt_pwd "$PWD"
+            set -g __emacs_project_daemon_prompt_expires (math "$now + 2")
+            set -g __emacs_project_daemon_prompt_running 0
+
+            if type -q emacs-project-daemon
+              if ${pkgs.coreutils}/bin/timeout 0.15s \
+                  emacs-project-daemon status --quiet >/dev/null 2>&1
+                set -g __emacs_project_daemon_prompt_running 1
+              end
+            end
+          end
+
+          if test "$__emacs_project_daemon_prompt_running" = 1
+            printf emacs
+          end
+        '';
+        description = "Show a responsive project Emacs daemon";
       };
       cy = {
         body = ''

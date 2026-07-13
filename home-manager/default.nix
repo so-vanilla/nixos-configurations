@@ -14,7 +14,7 @@ let
     config.allowUnfree = true;
   };
   zen-browser-pkg = zen-browser.packages.${system}.default;
-  emacs-config = my-emacs.homeManagerModules.${system}.pgtk;
+  emacs-config = my-emacs.homeManagerModules.${system}.default;
   neovim-config = my-neovim.homeManagerModules.${system}.default;
   programs = import ./programs {
     inherit pkgs;
@@ -48,6 +48,10 @@ in
     username = username;
     homeDirectory = "/home/${username}";
     stateVersion = "23.11";
+    sessionVariables = {
+      EDITOR = "emacsclient-smart -t";
+      VISUAL = "emacsclient-smart -t";
+    };
   };
 
   imports = [
