@@ -106,6 +106,9 @@ in
       q = "exit";
       e = editorCommand;
       ec = editorCommand;
+      eds = "emacs-project-daemon start";
+      edt = "emacs-project-daemon stop";
+      edq = "emacs-project-daemon status";
       kills = "killall slack .Discord-wrapped";
     };
   };
