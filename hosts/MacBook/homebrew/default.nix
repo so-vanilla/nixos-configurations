@@ -15,8 +15,7 @@
     ];
     brews = [ ];
     casks = [
-      "codex"
-      "codex-app"
+      "chatgpt"
       "aerospace"
       "raycast"
       "aquaskk"
