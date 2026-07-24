@@ -5,7 +5,6 @@ let
   frompkgs = with pkgs; [
     basedpyright
     clojure-lsp
-    copilot-language-server
     devenv
     dockerfile-language-server
     enchant
