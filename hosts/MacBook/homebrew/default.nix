@@ -23,6 +23,7 @@
       "thunderbird"
       "vivaldi"
       "steam"
+      "mullvad-vpn"
     ];
     masApps = { };
   };
