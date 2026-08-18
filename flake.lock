@@ -21,6 +21,23 @@
         "type": "github"
       }
     },
+    "aihero-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786611981,
+        "narHash": "sha256-jsXcMkhu15MxR0zXnLLJeni0q0Aew2UxUSojl6zmOvg=",
+        "owner": "mattpocock",
+        "repo": "skills",
+        "rev": "8b78b531ab965735c5dc74f6f7a219e1e37326df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mattpocock",
+        "repo": "skills",
+        "rev": "8b78b531ab965735c5dc74f6f7a219e1e37326df",
+        "type": "github"
+      }
+    },
     "catppuccin": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
@@ -244,12 +261,18 @@
       }
     },
     "my-claude": {
+      "inputs": {
+        "aihero-skills": "aihero-skills",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "lastModified": 1784856515,
-        "narHash": "sha256-O7RsGozpMPqG9VUoKV0ojkqpW/bHT5pZcfpyW4x5QMk=",
+        "lastModified": 1787016441,
+        "narHash": "sha256-Vy9yQL9W2OV4ujG0tXKxAbCyeI43BKvzmDNzPTKYjHI=",
         "owner": "so-vanilla",
         "repo": "flake-my-claude",
-        "rev": "e3ae5784dd701ba32384f427e24f2ecd60580787",
+        "rev": "fc723829de6d06e828397c310c05970fae450761",
         "type": "github"
       },
       "original": {

@@ -26,6 +26,7 @@ in
     ignores = [
       ".claude"
       "claude-plans"
+      "/.local/"
       "result"
     ]
     ++ (
