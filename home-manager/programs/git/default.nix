@@ -24,9 +24,10 @@ in
   programs.git = {
     enable = true;
     ignores = [
-      ".claude"
-      "claude-plans"
+      "/.claude/"
+      "/.agent/"
       "/.local/"
+      "/claude-plans/"
       "result"
     ]
     ++ (

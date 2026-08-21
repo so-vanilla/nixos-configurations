@@ -268,11 +268,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787016441,
-        "narHash": "sha256-Vy9yQL9W2OV4ujG0tXKxAbCyeI43BKvzmDNzPTKYjHI=",
+        "lastModified": 1787328741,
+        "narHash": "sha256-9ed5Fhuw6rkhKRb6kyFB5JiR3mvkATZtyuB5W65T1j8=",
         "owner": "so-vanilla",
         "repo": "flake-my-claude",
-        "rev": "fc723829de6d06e828397c310c05970fae450761",
+        "rev": "8760cab552212bd73ca557cd60e9e8e23e9b6a11",
         "type": "github"
       },
       "original": {
