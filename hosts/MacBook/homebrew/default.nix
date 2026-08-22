@@ -24,6 +24,7 @@
       "vivaldi"
       "steam"
       "mullvad-vpn"
+      "sparrow"
     ];
     masApps = { };
   };
