@@ -100,6 +100,24 @@ in
         '';
         description = "Start Claude Code with permission prompts bypassed";
       };
+      aidlc-init-codex = {
+        body = ''
+          set -l source_dir "$HOME/repos/github.com/awslabs/aidlc-workflows/dist/codex"
+
+          if not test -d "$source_dir"
+            echo "Error: AI-DLC Codex distribution not found: $source_dir" >&2
+            return 1
+          end
+
+          if test "$PWD" = "$source_dir"
+            echo "Error: current directory is the AI-DLC Codex distribution" >&2
+            return 1
+          end
+
+          cp -R "$source_dir"/. .
+        '';
+        description = "Copy the AI-DLC Codex distribution into the current directory";
+      };
     };
     shellAliases = {
       h = "cd";
