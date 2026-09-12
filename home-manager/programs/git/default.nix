@@ -45,7 +45,7 @@ in
     );
     settings = {
       core = {
-        editor = "emacsclient-smart -t";
+        editor = "emacsclient -t";
         commentChar = ";";
       };
       user = {

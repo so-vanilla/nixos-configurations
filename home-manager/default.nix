@@ -49,8 +49,8 @@ in
     homeDirectory = "/home/${username}";
     stateVersion = "23.11";
     sessionVariables = {
-      EDITOR = "emacsclient-smart -t";
-      VISUAL = "emacsclient-smart -t";
+      EDITOR = "emacsclient -t";
+      VISUAL = "emacsclient -t";
     };
   };
 
