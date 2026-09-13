@@ -1,0 +1,324 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {}
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "ctrl-a": [
+        "editor::MoveToBeginningOfLine",
+        {
+          "stop_at_soft_wraps": false,
+          "stop_at_indent": true
+        }
+      ],
+      "ctrl-e": [
+        "editor::MoveToEndOfLine",
+        {
+          "stop_at_soft_wraps": false
+        }
+      ],
+      "ctrl-k": "editor::KillRingCut",
+      "alt-b": "editor::MoveToPreviousWordStart",
+      "alt-f": "editor::MoveToNextWordEnd",
+      "ctrl-d": "editor::Delete",
+      "ctrl-m": "editor::Newline",
+      "ctrl-y": "editor::Paste"
+    }
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-j": "editor::JoinLines"
+    }
+  },
+  {
+    "context": "VimControl && !menu",
+    "unbind": {
+      "ctrl-j": "vim::Down"
+    }
+  },
+  {
+    "context": "vim_mode == literal",
+    "unbind": {
+      "ctrl-j": [
+        "vim::Literal",
+        [
+          "ctrl-j",
+          "\n"
+        ]
+      ]
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-b": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "alt-b": [
+        "terminal::SendText",
+        "\u001bb"
+      ]
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "alt-f": [
+        "terminal::SendText",
+        "\u001bf"
+      ]
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-shift-v": "terminal::Paste"
+    }
+  },
+  {
+    "context": "Terminal",
+    "unbind": {
+      "ctrl-v": "terminal::Paste"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-shift-c": "terminal::Copy"
+    }
+  },
+  {
+    "context": "Terminal && selection",
+    "unbind": {
+      "ctrl-c": "terminal::Copy"
+    }
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "f2": "editor::Rename"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "unbind": {
+      "f2": "project_panel::Rename"
+    }
+  },
+  {
+    "unbind": {
+      "f4": "debugger::Start"
+    }
+  },
+  {
+    "context": "Workspace && debugger_stopped",
+    "unbind": {
+      "f5": "debugger::Continue"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "f5": "debugger::Rerun"
+    }
+  },
+  {
+    "context": "Workspace && debugger_session",
+    "unbind": {
+      "f6": "debugger::Pause"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "f6": "workspace::FocusNextPart"
+    }
+  },
+  {
+    "context": "Workspace && debugger_stopped",
+    "unbind": {
+      "f7": "debugger::StepOver"
+    }
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "f8": [
+        "editor::GoToDiagnostic",
+        {
+          "severity": {
+            "min": "hint",
+            "max": "error"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "f9": "editor::ToggleBreakpoint"
+    }
+  },
+  {
+    "context": "Workspace && debugger_stopped",
+    "unbind": {
+      "f10": "debugger::StepOver"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "f1": "multi_workspace::ToggleWorkspaceSidebar"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-alt-j": "multi_workspace::ToggleWorkspaceSidebar"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-alt-;": "multi_workspace::FocusWorkspaceSidebar"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "f2": "agent::Toggle"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-shift-/": "agent::ToggleFocus"
+    }
+  },
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "ctrl-i": "editor::ConfirmCompletion"
+    }
+  },
+  {
+    "context": "Editor && showing_completions",
+    "unbind": {
+      "enter": "editor::ConfirmCompletion"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-alt-l": "workspace::ActivatePaneRight"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-alt-h": "workspace::ActivatePaneLeft"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-alt-k": "workspace::ActivatePaneUp"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-alt-j": "workspace::ActivatePaneDown"
+    }
+  },
+  {
+    "context": "AgentPanel",
+    "unbind": {
+      "ctrl-shift-e": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-shift-e": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "f3": "project_panel::Toggle"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-shift-g": "git_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "f4": "git_panel::Toggle"
+    }
+  },
+  {
+    "context": "CollabPanel && not_editing",
+    "unbind": {
+      "ctrl-backspace": "collab_panel::Remove"
+    }
+  },
+  {
+    "context": "CollabPanel && editing > Editor",
+    "unbind": {
+      "space": "collab_panel::InsertSpace"
+    }
+  },
+  {
+    "unbind": {
+      "ctrl-shift-c": "collab_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "CollabPanel",
+    "unbind": {
+      "alt-up": "collab_panel::MoveChannelUp"
+    }
+  },
+  {
+    "context": "CollabPanel",
+    "unbind": {
+      "alt-down": "collab_panel::MoveChannelDown"
+    }
+  },
+  {
+    "context": "CollabPanel",
+    "unbind": {
+      "alt-enter": "collab_panel::OpenSelectedChannelNotes"
+    }
+  },
+  {
+    "context": "CollabPanel",
+    "unbind": {
+      "shift-enter": "collab_panel::ToggleSelectedChannelFavorite"
+    }
+  },
+  {
+    "context": "Workspace && debugger_running",
+    "bindings": {
+      "f12": null
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "f5": "outline_panel::Toggle"
+    }
+  }
+]

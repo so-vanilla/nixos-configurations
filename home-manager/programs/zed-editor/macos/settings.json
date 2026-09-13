@@ -1,0 +1,83 @@
+{
+  "collaboration_panel": {
+    "button": false
+  },
+  "terminal": {
+    "option_as_meta": true
+  },
+  "proxy": "",
+  "search": {
+    "regex": true
+  },
+  "diagnostics": {
+    "inline": {
+      "enabled": true
+    }
+  },
+  "prettier": {
+    "allowed": true
+  },
+  "ui_font_family": "DejaVuSansM Nerd Font Mono",
+  "on_last_window_closed": "quit_app",
+  "when_closing_with_no_tabs": "keep_window_open",
+  "icon_theme": "Catppuccin Latte",
+  "buffer_font_family": "DejaVuSansM Nerd Font Mono",
+  "agent": {
+    "tool_permissions": {
+      "default": "allow",
+      "tools": {}
+    },
+    "sandbox_permissions": {
+      "network_hosts": [
+        "zed.dev",
+        "docs.helix-editor.com",
+        "github.com"
+      ]
+    },
+    "default_model": {
+      "provider": "openai-subscribed",
+      "model": "gpt-5.6-luna",
+      "enable_thinking": true,
+      "effort": "max"
+    },
+    "sidebar_side": "left",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "project_panel": {
+    "dock": "right"
+  },
+  "which_key": {
+    "enabled": true
+  },
+  "accessible_mode": false,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+    "anthropic_retention": false
+  },
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "always"
+  },
+  "agent_servers": {
+    "codex-acp": {
+      "type": "registry"
+    }
+  },
+  "base_keymap": "Zed",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "One Dark"
+  },
+  "active_pane_modifiers": {
+    "border_size": 2,
+    "inactive_opacity": 0.8
+  }
+}

@@ -17,6 +17,7 @@ let
   nix-index-database = import ./nix-index-database;
   ripgrep = import ./ripgrep;
   vscode = import ./vscode;
+  zed-editor = import ./zed-editor;
 in
 [
   aerospace
@@ -33,4 +34,5 @@ in
   nix-index-database
   ripgrep
   vscode
+  zed-editor
 ]

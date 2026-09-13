@@ -25,6 +25,7 @@
       "steam"
       "mullvad-vpn"
       "sparrow"
+      "zed"
     ];
     masApps = { };
   };
