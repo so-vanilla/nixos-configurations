@@ -1,6 +1,7 @@
 {
   pkgs,
   email,
+  editor ? "emacsclient -t",
 }:
 let
   credentialSettings =
@@ -45,7 +46,7 @@ in
     );
     settings = {
       core = {
-        editor = "emacsclient -t";
+        editor = editor;
         commentChar = ";";
       };
       user = {

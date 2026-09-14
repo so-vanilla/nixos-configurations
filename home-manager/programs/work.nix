@@ -8,7 +8,7 @@ let
   direnv = import ./direnv;
   eza = import ./eza;
   fish = import ./fish { inherit pkgs; };
-  git = import ./git {
+  git = import ./git/work.nix {
     inherit pkgs;
     email = builtins.getEnv "HM_GIT_EMAIL";
   };

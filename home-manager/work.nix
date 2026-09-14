@@ -8,7 +8,6 @@ let
     catppuccin
     nix-index-database
     my-claude
-    my-emacs
     ;
   username = builtins.getEnv "HM_USERNAME";
   system = "x86_64-linux";
@@ -33,6 +32,7 @@ home-manager.lib.homeManagerConfiguration {
         username = username;
         homeDirectory = "/home/${username}";
         stateVersion = "23.11";
+        sessionVariables.EDITOR = "zed.exe --wait";
       };
 
       home.file.".config/nix/nix.conf".text = ''
@@ -51,7 +51,6 @@ home-manager.lib.homeManagerConfiguration {
     catppuccin.homeModules.catppuccin
     nix-index-database.homeModules.default
     my-claude.homeManagerModules.default
-    my-emacs.homeManagerModules.${system}.default
   ]
   ++ programs
   ++ packages;
