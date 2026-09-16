@@ -1,11 +1,11 @@
 {
   pkgs,
   email,
-  editor ? "emacsclient -t",
+  editor ? "zed --wait",
 }:
 let
   credentialSettings =
-    if pkgs.stdenv.isDarwin then
+    if pkgs.stdenv.hostPlatform.isDarwin then
       {
         credential = {
           helper = "";
@@ -32,10 +32,9 @@ in
       "result"
     ]
     ++ (
-      if pkgs.stdenv.isDarwin then
+      if pkgs.stdenv.hostPlatform.isDarwin then
         [
           ".envrc"
-          ".dir-locals.el"
           "devenv.nix"
           "devenv.yaml"
           "devenv.lock"

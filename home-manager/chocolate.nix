@@ -6,7 +6,6 @@
   zen-browser,
   catppuccin,
   my-claude,
-  my-emacs,
 }:
 let
   pkgs = import nixpkgs {
@@ -14,7 +13,6 @@ let
     config.allowUnfree = true;
   };
   claude-config = my-claude.homeManagerModules.default;
-  emacs-config = my-emacs.homeManagerModules.${system}.default;
   programs = import ./programs/chocolate.nix { inherit pkgs; };
   packages = import ./packages/chocolate.nix { inherit pkgs zen-browser system; };
 in
@@ -37,13 +35,16 @@ in
     username = username;
     homeDirectory = "/Users/${username}";
     stateVersion = "23.11";
+    sessionVariables = {
+      EDITOR = nixpkgs.lib.mkForce "zed --wait";
+      VISUAL = nixpkgs.lib.mkForce "zed --wait";
+    };
   };
 
   imports = [
     catppuccin.homeModules.catppuccin
     nix-index-database.homeModules.default
     claude-config
-    emacs-config
   ]
   ++ programs
   ++ packages;

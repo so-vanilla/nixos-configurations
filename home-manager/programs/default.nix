@@ -20,6 +20,7 @@ let
   tofi = import ./tofi;
   vscode = import ./vscode;
   waybar = import ./waybar;
+  zed-editor = import ./zed-editor;
 in
 [
   bat
@@ -39,4 +40,5 @@ in
   tofi
   vscode
   waybar
+  zed-editor
 ]

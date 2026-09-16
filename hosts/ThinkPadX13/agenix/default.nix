@@ -13,12 +13,6 @@
         owner = "somura";
         group = "users";
       };
-      emacs_private = {
-        file = ../../../secrets/emacs-private.el.age;
-        path = "/home/somura/.emacs.d/private.el";
-        owner = "somura";
-        group = "users";
-      };
     };
   }
 ]

@@ -7,7 +7,10 @@ let
   claude-code = import ./claude-code { inherit pkgs; };
   direnv = import ./direnv;
   eza = import ./eza;
-  fish = import ./fish { inherit pkgs; };
+  fish = import ./fish {
+    inherit pkgs;
+    editorCommand = "zed.exe";
+  };
   git = import ./git/work.nix {
     inherit pkgs;
     email = builtins.getEnv "HM_GIT_EMAIL";

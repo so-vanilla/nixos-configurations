@@ -1,8 +1,9 @@
 {
   pkgs,
+  editorCommand ? "zed",
 }:
 let
-  editorCommand = "emacsclient -t";
+  waitEditorCommand = "${editorCommand} --wait";
 in
 {
   programs.fish = {
@@ -29,11 +30,6 @@ in
         source ~/.config/fish/links.fish
       end
 
-      if status is-interactive; and test -n $EAT_SHELL_INTEGRATION_DIR
-        set -g fish_autosuggestion_enabled 0
-        source ~/.config/fish/eat-integration.fish
-      end
-
       if test -d ~/.local/bin
         set -x PATH $HOME/.local/bin $PATH
       end
@@ -57,13 +53,6 @@ in
         body = builtins.readFile ./update-nix.fish;
         description = "Update nix environment (flake update → rebuild → commit & push)";
       };
-      magit = {
-        body = ''
-          set -l cwd_b64 (printf '%s' (pwd) | base64 | tr -d '\n')
-          ${editorCommand} --eval "(progn (require 'magit) (let ((default-directory (file-name-as-directory (decode-coding-string (base64-decode-string \"$cwd_b64\") 'utf-8)))) (magit-status default-directory)))"
-        '';
-        description = "Open Magit for the current shell directory";
-      };
       cy = {
         body = ''
           command claude --dangerous${"ly"}-skip-per${"missions"} $argv
@@ -75,10 +64,8 @@ in
       h = "cd";
       q = "exit";
       e = editorCommand;
-      ec = editorCommand;
+      ec = waitEditorCommand;
       kills = "killall slack .Discord-wrapped";
     };
   };
-
-  home.file.".config/fish/eat-integration.fish".source = ./eat-integration.fish;
 }

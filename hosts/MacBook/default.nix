@@ -8,7 +8,6 @@ let
     nix-index-database
     catppuccin
     my-claude
-    my-emacs
     zen-browser
     ;
   username = "shuto-vanilla";
@@ -38,7 +37,6 @@ nix-darwin.lib.darwinSystem {
             zen-browser
             catppuccin
             my-claude
-            my-emacs
             ;
         };
       }

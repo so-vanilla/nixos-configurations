@@ -46,7 +46,6 @@ nixpkgs.lib.nixosSystem {
             nix-index-database
             zen-browser
             catppuccin
-            my-emacs
             my-neovim
             ;
         };

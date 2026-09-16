@@ -5,7 +5,6 @@
   nix-index-database,
   zen-browser,
   catppuccin,
-  my-emacs,
   my-neovim,
 }:
 let
@@ -14,7 +13,6 @@ let
     config.allowUnfree = true;
   };
   zen-browser-pkg = zen-browser.packages.${system}.default;
-  emacs-config = my-emacs.homeManagerModules.${system}.default;
   neovim-config = my-neovim.homeManagerModules.${system}.default;
   programs = import ./programs {
     inherit pkgs;
@@ -49,15 +47,14 @@ in
     homeDirectory = "/home/${username}";
     stateVersion = "23.11";
     sessionVariables = {
-      EDITOR = "emacsclient -t";
-      VISUAL = "emacsclient -t";
+      EDITOR = nixpkgs.lib.mkForce "zed --wait";
+      VISUAL = nixpkgs.lib.mkForce "zed --wait";
     };
   };
 
   imports = [
     catppuccin.homeModules.catppuccin
     nix-index-database.homeModules.default
-    emacs-config
     neovim-config
   ]
   ++ programs

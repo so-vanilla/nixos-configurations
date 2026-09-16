@@ -32,7 +32,10 @@ home-manager.lib.homeManagerConfiguration {
         username = username;
         homeDirectory = "/home/${username}";
         stateVersion = "23.11";
-        sessionVariables.EDITOR = "zed.exe --wait";
+        sessionVariables = {
+          EDITOR = "zed.exe --wait";
+          VISUAL = "zed.exe --wait";
+        };
       };
 
       home.file.".config/nix/nix.conf".text = ''

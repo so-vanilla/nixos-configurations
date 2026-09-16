@@ -20,11 +20,13 @@
       "raycast"
       "aquaskk"
       "discord"
+      "karabiner-elements"
       "thunderbird"
       "vivaldi"
       "steam"
-      "mullvad-vpn"
       "sparrow"
+      "todoist-app"
+      "zed"
     ];
     masApps = { };
   };
