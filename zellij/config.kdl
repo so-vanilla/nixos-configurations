@@ -1,0 +1,94 @@
+theme "catppuccin-latte"
+theme_light "catppuccin-latte"
+theme_dark "catppuccin-mocha"
+
+default_layout "workspace"
+default_mode "locked"
+
+pane_frames false
+mouse_mode true
+copy_on_select true
+copy_clipboard "system"
+
+show_startup_tips false
+show_release_notes false
+
+advanced_mouse_actions false
+mouse_hover_effects false
+
+on_force_close "detach"
+session_serialization true
+
+support_kitty_keyboard_protocol false
+
+keybinds clear-defaults=true {
+    locked {
+        bind "Alt z" { SwitchToMode "Normal"; }
+    }
+
+    normal {
+        bind "Esc" { SwitchToMode "Locked"; }
+
+        bind "Alt z" {
+            LaunchOrFocusPlugin "file:~/.config/zellij/plugins/room.wasm" {
+                floating true
+                ignore_case true
+            };
+            SwitchToMode "Locked";
+        }
+
+        bind "t" { NewTab; SwitchToMode "Locked"; }
+        bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "x" { CloseTab; SwitchToMode "Locked"; }
+
+        bind "2" { NewPane "Down"; SwitchToMode "Locked"; }
+        bind "3" { NewPane "Right"; SwitchToMode "Locked"; }
+        bind "0" { CloseFocus; SwitchToMode "Locked"; }
+
+        bind "h" { MoveFocus "Left"; SwitchToMode "Locked"; }
+        bind "j" { MoveFocus "Down"; SwitchToMode "Locked"; }
+        bind "k" { MoveFocus "Up"; SwitchToMode "Locked"; }
+        bind "l" { MoveFocus "Right"; SwitchToMode "Locked"; }
+
+        bind "[" { FocusNextPane; SwitchToMode "Locked"; }
+
+        bind "w" {
+            LaunchOrFocusPlugin "zellij:session-manager" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "Locked";
+        }
+
+        bind "s" { EditScrollback; SwitchToMode "Locked"; }
+    }
+
+    renametab {
+        bind "Enter" { SwitchToMode "Locked"; }
+        bind "Esc" "Ctrl c" { UndoRenameTab; SwitchToMode "Locked"; }
+    }
+
+    scroll {
+        bind "Esc" "Enter" { SwitchToMode "Locked"; }
+        bind "j" "Down" { ScrollDown; }
+        bind "k" "Up" { ScrollUp; }
+        bind "Ctrl f" "PageDown" { PageScrollDown; }
+        bind "Ctrl b" "PageUp" { PageScrollUp; }
+        bind "d" { HalfPageScrollDown; }
+        bind "u" { HalfPageScrollUp; }
+        bind "y" { Copy; SwitchToMode "Locked"; }
+    }
+
+    shared_except "renametab" {
+        bind "Alt 1" { GoToTab 1; SwitchToMode "Locked"; }
+        bind "Alt 2" { GoToTab 2; SwitchToMode "Locked"; }
+        bind "Alt 3" { GoToTab 3; SwitchToMode "Locked"; }
+        bind "Alt 4" { GoToTab 4; SwitchToMode "Locked"; }
+        bind "Alt 5" { GoToTab 5; SwitchToMode "Locked"; }
+        bind "Alt 6" { GoToTab 6; SwitchToMode "Locked"; }
+        bind "Alt 7" { GoToTab 7; SwitchToMode "Locked"; }
+        bind "Alt 8" { GoToTab 8; SwitchToMode "Locked"; }
+        bind "Alt 9" { GoToTab 9; SwitchToMode "Locked"; }
+        bind "Alt 0" { GoToTab 10; SwitchToMode "Locked"; }
+    }
+}
