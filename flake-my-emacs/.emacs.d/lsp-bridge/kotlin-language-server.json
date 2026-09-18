@@ -1,0 +1,42 @@
+{
+  "name": "kotlin-language-server",
+  "languageId": "kotlin",
+  "command": ["kotlin-lsp"],
+  "forceInlayHint": true,
+  "settings": {
+    "kotlin": {
+      "externalSources": {
+        "autoConvertToKotlin": true,
+        "useKlsScheme": true
+      },
+      "debugAdapter": {
+        "path": "",
+        "enabled": true
+      },
+      "completion": {
+        "snippets": {
+          "enabled": true
+        }
+      },
+      "linting": {
+        "debounceTime": 250
+      },
+      "compiler": {
+        "jvm": {
+          "target": "11"
+        }
+      },
+      "trace": {
+        "server": "off"
+      },
+      "languageServer": {
+        "path": "kotlin-lsp"
+      },
+      "inlayHints": {
+        "typeHints": true,
+        "parameterHints": true,
+        "chainedHints": true
+      }
+    }
+  }
+}

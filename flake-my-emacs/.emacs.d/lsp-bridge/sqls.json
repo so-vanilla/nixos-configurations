@@ -1,0 +1,6 @@
+{
+  "name": "sqls",
+  "languageId": "sql",
+  "command": ["sqls"],
+  "fileExtensions": ["sql"]
+}
