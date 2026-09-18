@@ -210,18 +210,14 @@
         ]
       },
       "locked": {
-        "lastModified": 1789648603,
-        "narHash": "sha256-m1oz+YoOW0p66bUffHh27VtcHgJp5jHaP6NAqd+P0o0=",
-        "owner": "so-vanilla",
-        "repo": "flake-my-claude",
-        "rev": "e7ba03a15e2c9ad5c92803f6ebed30cae2645502",
-        "type": "github"
+        "path": "./flake-my-claude",
+        "type": "path"
       },
       "original": {
-        "owner": "so-vanilla",
-        "repo": "flake-my-claude",
-        "type": "github"
-      }
+        "path": "./flake-my-claude",
+        "type": "path"
+      },
+      "parent": []
     },
     "my-neovim": {
       "inputs": {

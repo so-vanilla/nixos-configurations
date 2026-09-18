@@ -29,7 +29,7 @@
     catppuccin.url = "github:catppuccin/nix";
 
     my-claude = {
-      url = "github:so-vanilla/flake-my-claude";
+      url = "./flake-my-claude";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     my-neovim = {
