@@ -48,7 +48,6 @@ let
     tenv
     terraform-ls
     tflint
-    thunderbird
     trash-cli
     typescript-language-server
     unzip

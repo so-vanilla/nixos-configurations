@@ -5,7 +5,6 @@
   "$menu" = "tofi-drun --drun-launch=true";
   "$www_client" = "zen";
   "$www_client_private" = "zen --private-window";
-  "$mail_client" = "command -v thunderbird > /dev/null 2>&1 && thunderbird || thunderbird-bin";
 
   general = {
     gaps_in = 5;
@@ -89,7 +88,6 @@
   ];
 
   windowrule = [
-    "match:class thunderbird, workspace 3"
     "match:class Slack, workspace 4"
     "match:class discord, workspace 5"
     "match:class spotify, workspace 6"
@@ -133,7 +131,6 @@
     "$mod SHIFT, B, exec, $www_client_private"
     "$mod, SPACE, exec, $menu"
     "$mod, S, exec, slack"
-    "$mod, M, exec, $mail_client"
     "$mod, A, exec, ~/.config/hypr/scripts/launch_apps.sh"
 
     "$mod, l, movefocus, r"

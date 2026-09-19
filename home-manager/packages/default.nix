@@ -56,7 +56,6 @@ let
     tenv
     terraform-ls
     tflint
-    thunderbird
     traceroute
     trash-cli
     typescript-language-server

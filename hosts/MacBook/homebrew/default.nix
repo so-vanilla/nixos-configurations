@@ -21,7 +21,6 @@
       "aquaskk"
       "discord"
       "karabiner-elements"
-      "thunderbird"
       "vivaldi"
       "steam"
       "sparrow"
