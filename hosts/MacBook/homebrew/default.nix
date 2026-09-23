@@ -20,6 +20,7 @@
       "raycast"
       "aquaskk"
       "discord"
+      "espanso"
       "karabiner-elements"
       "vivaldi"
       "steam"
