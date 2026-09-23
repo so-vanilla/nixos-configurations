@@ -23,6 +23,8 @@
           }) supportedSystems
         );
       agentInstructions = ./AGENTS.md;
+      initLunaSkill = ./skills/init-luna;
+      initSolSkill = ./skills/init-sol;
       rubberDuckSkill = ./skills/rubber-duck;
     in
     {
@@ -37,7 +39,12 @@
         {
           minimal-agent-config =
             assert codex.context == agentInstructions;
-            assert builtins.attrNames codex.skills == [ "rubber-duck" ];
+            assert
+              builtins.attrNames codex.skills == [
+                "init-luna"
+                "init-sol"
+                "rubber-duck"
+              ];
             assert claude.context == agentInstructions;
             assert builtins.attrNames claude.skills == [ "rubber-duck" ];
             assert claude.settings.skillOverrides.rubber-duck == "user-invocable-only";
@@ -45,6 +52,10 @@
             assert !(module ? home);
             pkgs.runCommand "minimal-agent-config" { } ''
               test -f ${agentInstructions}
+              test -f ${initLunaSkill}/SKILL.md
+              test -f ${initLunaSkill}/agents/openai.yaml
+              test -f ${initSolSkill}/SKILL.md
+              test -f ${initSolSkill}/agents/openai.yaml
               test -f ${rubberDuckSkill}/SKILL.md
               test -f ${rubberDuckSkill}/agents/openai.yaml
               touch "$out"
@@ -66,7 +77,11 @@
             enable = true;
             package = pkgs.codex;
             context = agentInstructions;
-            skills.rubber-duck = rubberDuckSkill;
+            skills = {
+              init-luna = initLunaSkill;
+              init-sol = initSolSkill;
+              rubber-duck = rubberDuckSkill;
+            };
           };
         };
     };

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Init Luna"
+  short_description: "Delegate retrieval while allowing main-session writes"
+  default_prompt: "Use $init-luna to initialize this session for context-light orchestration."
+policy:
+  allow_implicit_invocation: false

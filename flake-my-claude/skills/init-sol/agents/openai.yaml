@@ -1,0 +1,6 @@
+interface:
+  display_name: "Init Sol"
+  short_description: "Delegate retrieval and writes to Luna workers"
+  default_prompt: "Use $init-sol to initialize this session for Luna-worker orchestration."
+policy:
+  allow_implicit_invocation: false
