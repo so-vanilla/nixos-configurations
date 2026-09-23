@@ -1,6 +1,6 @@
 ---
 name: init-sol
-description: 強いモデルのメインセッションを判断とオーケストレーションに限定し、情報取得とWriteをGPT-5.6 Luna workerへ委任する。明示呼び出し時のみ使用する。
+description: 強いモデルのメインセッションを判断とオーケストレーションに限定し、情報取得とWriteをGPT-6 Luna workerへ委任する。明示呼び出し時のみ使用する。
 ---
 
 # Init Sol
@@ -11,7 +11,7 @@ description: 強いモデルのメインセッションを判断とオーケス�
 
 - メインエージェントは、思考、判断、作業分解、委任、worker結果の評価、競合解消、承認の取得、最終回答に専念する。
 - 作業はsub-agent主体で進める。実行前に、依存関係、対象範囲、Write対象を含む作業計画を作り、適切な粒度のwork packageへ分解する。
-- 情報取得、実装、検証などのworkerは`gpt-5.6-luna`、reasoning effort `max`で起動する。モデルまたはeffortを指定できない場合は、別の設定へ黙って代替せず、制約をユーザーへ報告する。
+- 情報取得、実装、検証などのworkerは`gpt-6-luna`、reasoning effort `max`で起動する。モデルまたはeffortを指定できない場合は、別の設定へ黙って代替せず、制約をユーザーへ報告する。
 
 ## Context routing
 
