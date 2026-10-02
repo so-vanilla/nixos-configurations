@@ -34,6 +34,10 @@ in
         set -x PATH $HOME/.local/bin $PATH
       end
 
+      if test -x "$HOME/.local/bin/mise"
+        "$HOME/.local/bin/mise" activate fish | source
+      end
+
       if test -d /opt/homebrew/bin
         set -x PATH /opt/homebrew/bin $PATH
       end

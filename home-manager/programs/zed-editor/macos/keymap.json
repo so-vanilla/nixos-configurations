@@ -1461,5 +1461,62 @@
     "bindings": {
       "cmd-f": "buffer_search::Deploy"
     }
+  },
+  {
+    "context": "AgentPanel > Terminal",
+    "unbind": {
+      "ctrl-n": "agent::NewThread"
+    }
+  },
+  {
+    "context": "AcpThread",
+    "unbind": {
+      "ctrl-n": "agent::NewThread"
+    }
+  },
+  {
+    "context": "AgentPanel",
+    "unbind": {
+      "ctrl-n": "agent::NewThread"
+    }
+  },
+  {
+    "context": "AcpThread",
+    "unbind": {
+      "ctrl-f": "agent::ToggleSearch"
+    }
+  },
+  {
+    "context": "AcpThread > Editor",
+    "unbind": {
+      "ctrl-f": "agent::ToggleSearch"
+    }
+  },
+  {
+    "context": "AgentPanel > Terminal",
+    "unbind": {
+      "ctrl-f": "agent::ToggleSearch"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-shift-v": "editor::Paste"
+    }
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-s": "vim::PushAddSurrounds"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-/": [
+        "terminal::SendKeystroke",
+        "ctrl-_"
+      ]
+    }
   }
 ]
