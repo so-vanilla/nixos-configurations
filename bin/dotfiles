@@ -1,0 +1,5 @@
+#!/usr/bin/env bb
+(require '[babashka.fs :as fs])
+(let [repo-root (fs/parent (fs/parent (fs/real-path *file*)))]
+  (load-file (str (fs/path repo-root "src/dotfiles/core.clj")))
+  (System/exit ((resolve 'dotfiles.core/-main) repo-root *command-line-args*)))

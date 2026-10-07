@@ -1,0 +1,6 @@
+{:paths ["src" "test"]
+ :tasks {test {:doc "Run isolated filesystem and CLI tests"
+               :task (do (require 'dotfiles.core-test)
+                         (let [result (clojure.test/run-tests 'dotfiles.core-test)]
+                           (when (pos? (+ (:fail result) (:error result)))
+                             (System/exit 1))))}}}

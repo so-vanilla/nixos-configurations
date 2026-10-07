@@ -1,0 +1,7 @@
+{:version 1,
+ :id "bat",
+ :platforms [:macos :linux],
+ :default "default",
+ :roots {:macos [[:config "bat"]], :linux [[:config "bat"]]},
+ :links [{:source "shared", :target [:config "bat"], :tree true}],
+ :variants {"default" {:links []}}}

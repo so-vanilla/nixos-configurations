@@ -12,3 +12,6 @@ devenv.local.yaml
 
 # Claude Code
 .claude
+
+# Local development artifacts
+/.local/

@@ -24,23 +24,25 @@ jobs:
         id: save-1day
         run: |
           if git show-ref --verify --quiet refs/remotes/origin/lock/1-day-ago; then
-            git show origin/lock/1-day-ago:flake.lock > /tmp/lock-1day.lock
+            git show origin/lock/1-day-ago:nixos-configuration/flake.lock > /tmp/lock-1day.lock ||
+              git show origin/lock/1-day-ago:flake.lock > /tmp/lock-1day.lock
             echo "exists=true" >> "$GITHUB_OUTPUT"
           else
             echo "exists=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Save main flake.lock (for 1-day-ago)
-        run: cp flake.lock /tmp/lock-main.lock
+        run: cp nixos-configuration/flake.lock /tmp/lock-main.lock
 
       # --- Update flake.lock on main ---
       - name: Run nix flake update
+        working-directory: nixos-configuration
         run: nix flake update
 
       - name: Check for changes
         id: check
         run: |
-          if git diff --quiet flake.lock; then
+          if git diff --quiet nixos-configuration/flake.lock; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -51,7 +53,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add flake.lock
+          git add nixos-configuration/flake.lock
           git commit -m "flake lock $(date -u +%Y%m%d)"
           git push origin main
 
@@ -60,11 +62,7 @@ jobs:
         if: steps.check.outputs.changed == 'true'
         run: |
           OLD_LOCK_HASH=$(git hash-object -w /tmp/lock-main.lock)
-          NEW_LOCK_HASH=$(git rev-parse HEAD:flake.lock)
-
-          # Replace only the flake.lock line in the tree
-          TREE=$(git ls-tree HEAD | awk -v old="$NEW_LOCK_HASH" -v new="$OLD_LOCK_HASH" \
-            '$4 == "flake.lock" { sub(old, new) } { print }' | git mktree)
+          TREE=$(bash scripts/lock-snapshot-tree.sh HEAD "$OLD_LOCK_HASH")
 
           COMMIT=$(git commit-tree "$TREE" -m "lock snapshot: 1 day ago" -p HEAD)
           git update-ref refs/heads/lock/1-day-ago "$COMMIT"
@@ -74,10 +72,7 @@ jobs:
         if: steps.check.outputs.changed == 'true' && steps.save-1day.outputs.exists == 'true'
         run: |
           OLD_LOCK_HASH=$(git hash-object -w /tmp/lock-1day.lock)
-          NEW_LOCK_HASH=$(git rev-parse HEAD:flake.lock)
-
-          TREE=$(git ls-tree HEAD | awk -v old="$NEW_LOCK_HASH" -v new="$OLD_LOCK_HASH" \
-            '$4 == "flake.lock" { sub(old, new) } { print }' | git mktree)
+          TREE=$(bash scripts/lock-snapshot-tree.sh HEAD "$OLD_LOCK_HASH")
 
           COMMIT=$(git commit-tree "$TREE" -m "lock snapshot: 2 days ago" -p HEAD)
           git update-ref refs/heads/lock/2-days-ago "$COMMIT"

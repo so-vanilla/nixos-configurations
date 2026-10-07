@@ -1,0 +1,22 @@
+{:version 1,
+ :id "claude-code",
+ :platforms [:macos :linux],
+ :default "default",
+ :roots
+ {:macos
+  [[:home ".claude/CLAUDE.md"]
+   [:home ".claude/settings.json"]
+   [:home ".claude/skills"]],
+  :linux
+  [[:home ".claude/CLAUDE.md"]
+   [:home ".claude/settings.json"]
+   [:home ".claude/skills"]]},
+ :links
+ [{:source "shared/CLAUDE.md", :target [:home ".claude/CLAUDE.md"]}
+  {:source "shared/settings.json",
+   :target [:home ".claude/settings.json"]}
+  {:source "shared/skills",
+   :target [:home ".claude/skills"],
+   :tree true,
+   :optional true}],
+ :variants {"default" {:links []}}}

@@ -1,0 +1,16 @@
+{:version 1,
+ :id "marksman",
+ :platforms [:macos :linux],
+ :default "default",
+ :roots
+ {:macos [[:home "Library/Application Support/marksman"]],
+  :linux [[:config "marksman"]]},
+ :links [],
+ :variants {"default" {:links []}},
+ :platform-links
+ {:macos
+  [{:source "shared",
+    :target [:home "Library/Application Support/marksman"],
+    :tree true}],
+  :linux
+  [{:source "shared", :target [:config "marksman"], :tree true}]}}

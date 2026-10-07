@@ -1,0 +1,10 @@
+{:version 1,
+ :id "vscode",
+ :platforms [:macos],
+ :default "default",
+ :roots {:macos [[:home "Library/Application Support/Code/User"]]},
+ :links
+ [{:source "shared",
+   :target [:home "Library/Application Support/Code/User"],
+   :tree true}],
+ :variants {"default" {:links []}}}

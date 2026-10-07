@@ -1,0 +1,7 @@
+{:version 1,
+ :id "zed",
+ :platforms [:macos],
+ :default "default",
+ :roots {:macos [[:config "zed"]]},
+ :links [{:source "macos", :target [:config "zed"], :tree true}],
+ :variants {"default" {:links []}}}

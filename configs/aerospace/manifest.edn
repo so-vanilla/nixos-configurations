@@ -1,0 +1,8 @@
+{:version 1,
+ :id "aerospace",
+ :platforms [:macos],
+ :default "default",
+ :roots {:macos [[:config "aerospace"]]},
+ :links
+ [{:source "shared", :target [:config "aerospace"], :tree true}],
+ :variants {"default" {:links []}}}

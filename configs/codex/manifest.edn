@@ -1,0 +1,14 @@
+{:version 1,
+ :id "codex",
+ :platforms [:macos :linux],
+ :default "default",
+ :roots
+ {:macos [[:home ".codex/AGENTS.md"] [:home ".codex/skills"]],
+  :linux [[:home ".codex/AGENTS.md"] [:home ".codex/skills"]]},
+ :links
+ [{:source "shared/AGENTS.md", :target [:home ".codex/AGENTS.md"]}
+  {:source "shared/skills",
+   :target [:home ".codex/skills"],
+   :tree true,
+   :optional true}],
+ :variants {"default" {:links []}}}

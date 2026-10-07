@@ -1,0 +1,7 @@
+{:version 1,
+ :id "btop",
+ :platforms [:macos :linux],
+ :default "default",
+ :roots {:macos [[:config "btop"]], :linux [[:config "btop"]]},
+ :links [{:source "shared", :target [:config "btop"], :tree true}],
+ :variants {"default" {:links []}}}

@@ -1,0 +1,8 @@
+{
+  "catppuccin.accentColor": "pink",
+  "editor.semanticHighlighting.enabled": true,
+  "terminal.integrated.minimumContrastRatio": 1,
+  "window.titleBarStyle": "custom",
+  "workbench.colorTheme": "Catppuccin Latte",
+  "workbench.iconTheme": "catppuccin-latte"
+}

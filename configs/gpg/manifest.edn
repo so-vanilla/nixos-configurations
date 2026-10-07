@@ -1,0 +1,10 @@
+{:version 1,
+ :id "gpg",
+ :platforms [:macos :linux],
+ :default "default",
+ :roots
+ {:macos [[:home ".gnupg/gpg.conf"]],
+  :linux [[:home ".gnupg/gpg.conf"]]},
+ :links
+ [{:source "shared/gpg.conf", :target [:home ".gnupg/gpg.conf"]}],
+ :variants {"default" {:links []}}}

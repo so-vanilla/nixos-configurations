@@ -1,0 +1,14 @@
+{:version 1,
+ :id "git",
+ :platforms [:macos :linux],
+ :default "default",
+ :roots {:macos [[:config "git"]], :linux [[:config "git"]]},
+ :links [{:source "shared", :target [:config "git"], :tree true}],
+ :variants
+ {"default"
+  {:links [{:source "default", :target [:config "git"], :tree true}]},
+  "work"
+  {:links [{:source "work", :target [:config "git"], :tree true}]}},
+ :platform-links
+ {:macos [{:source "macos", :target [:config "git"], :tree true}],
+  :linux [{:source "linux", :target [:config "git"], :tree true}]}}

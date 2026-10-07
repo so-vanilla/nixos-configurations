@@ -1,0 +1,18 @@
+[core]
+    commentChar = ";"
+    editor = "zed.exe --wait"
+[user]
+    name = "somura"
+    email = "shuto-vanilla@so-icecream.com"
+[init]
+    defaultBranch = "main"
+[github]
+    user = "so-vanilla"
+[ghq]
+    root = "~/repos"
+[gpg]
+    format = "openpgp"
+[gpg "openpgp"]
+    program = "gpg"
+[include]
+    path = "platform.gitconfig"

@@ -1,0 +1,18 @@
+{:version 1,
+ :id "fish",
+ :platforms [:macos :linux],
+ :default "default",
+ :roots {:macos [[:config "fish"]], :linux [[:config "fish"]]},
+ :links
+ [{:source "shared", :target [:config "fish"], :tree true}
+  {:source "vendor/pure/functions",
+   :target [:config "fish/functions"],
+   :tree true}
+  {:source "vendor/pure/conf.d",
+   :target [:config "fish/conf.d"],
+   :tree true}],
+ :variants
+ {"default"
+  {:links [{:source "default", :target [:config "fish"], :tree true}]},
+  "work"
+  {:links [{:source "work", :target [:config "fish"], :tree true}]}}}

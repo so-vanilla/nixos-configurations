@@ -12,8 +12,8 @@ SNAPSHOTS=(
 git fetch origin
 
 MAIN_REF=$(git rev-parse origin/main)
-MAIN_LOCK=$(git rev-parse origin/main:flake.lock)
-MAIN_TREE_LINES=$(git ls-tree origin/main)
+MAIN_LOCK=$(git rev-parse origin/main:nixos-configuration/flake.lock)
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 
 echo "main: $MAIN_REF"
 
@@ -26,7 +26,8 @@ for entry in "${SNAPSHOTS[@]}"; do
     continue
   fi
 
-  OLD_LOCK=$(git rev-parse "origin/$BRANCH:flake.lock")
+  OLD_LOCK=$(git rev-parse "origin/$BRANCH:nixos-configuration/flake.lock" 2>/dev/null ||
+    git rev-parse "origin/$BRANCH:flake.lock")
 
   if [ "$OLD_LOCK" = "$MAIN_LOCK" ]; then
     echo "skip: $BRANCH (flake.lock is identical to main)"
@@ -39,10 +40,7 @@ for entry in "${SNAPSHOTS[@]}"; do
     continue
   fi
 
-  TREE=$(echo "$MAIN_TREE_LINES" \
-    | awk -v old="$MAIN_LOCK" -v new="$OLD_LOCK" \
-        '$4 == "flake.lock" { sub(old, new) } { print }' \
-    | git mktree)
+  TREE=$(bash "$SCRIPT_DIR/lock-snapshot-tree.sh" "$MAIN_REF" "$OLD_LOCK")
 
   COMMIT=$(git commit-tree "$TREE" -m "$MESSAGE" -p "$MAIN_REF")
   git push -f origin "$COMMIT:refs/heads/$BRANCH"

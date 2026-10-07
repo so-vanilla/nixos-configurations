@@ -1,0 +1,7 @@
+{:version 1,
+ :id "eza",
+ :platforms [:macos :linux],
+ :default "default",
+ :roots {:macos [[:config "eza"]], :linux [[:config "eza"]]},
+ :links [{:source "shared", :target [:config "eza"], :tree true}],
+ :variants {"default" {:links []}}}
