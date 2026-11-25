@@ -1,7 +1,7 @@
 // Windows keymap based on the live macOS Vim/Emacs setup.
 // Zed v1.21.0 Windows defaults were matched by action and context for unbinds.
 // Alt is the primary physical Meta position; Ctrl-Shift-C copies Terminal output.
-// Function keys F1-F5 switch visible panels; core Zed function-key defaults are removed.
+// Function keys F1-F6 toggle panels (F5 focuses the center pane); core Zed function-key defaults are removed.
 // Thread-specific defaults remain where the macOS setup leaves them.
 [
   {
@@ -1214,7 +1214,7 @@
   {
     "context": "Workspace",
     "bindings": {
-      "f5": "outline_panel::Toggle"
+      "f6": "outline_panel::Toggle"
     }
   },
   {
@@ -1325,8 +1325,6 @@
   {
     "context": "Workspace",
     "bindings": {
-      "alt-shift-p": "command_palette::Toggle",
-      "alt-p": "file_finder::Toggle",
       "alt-o": "workspace::Open",
       "alt-n": "workspace::NewFile",
       "alt-s": "workspace::Save",
@@ -1346,9 +1344,218 @@
     }
   },
   {
-    "context": "Editor && mode == full",
+    "context": "AgentPanel > Terminal",
+    "unbind": {
+      "ctrl-n": "agent::NewThread"
+    }
+  },
+  {
+    "context": "AcpThread",
+    "unbind": {
+      "ctrl-n": "agent::NewThread"
+    }
+  },
+  {
+    "context": "AgentPanel",
+    "unbind": {
+      "ctrl-n": "agent::NewThread"
+    }
+  },
+  {
+    "context": "AcpThread",
+    "unbind": {
+      "ctrl-f": "agent::ToggleSearch"
+    }
+  },
+  {
+    "context": "AcpThread > Editor",
+    "unbind": {
+      "ctrl-f": "agent::ToggleSearch"
+    }
+  },
+  {
+    "context": "AgentPanel > Terminal",
+    "unbind": {
+      "ctrl-f": "agent::ToggleSearch"
+    }
+  },
+  {
+    "context": "Editor",
     "bindings": {
-      "alt-f": "buffer_search::Deploy"
+      "ctrl-shift-v": "editor::Paste"
+    }
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-s": "vim::PushAddSurrounds"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-/": [
+        "terminal::SendKeystroke",
+        "ctrl-_"
+      ]
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "shift-enter": [
+        "terminal::SendKeystroke",
+        "alt-enter"
+      ]
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-alt-s": "pane::DeploySearch"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "alt-h": "editor::Hover",
+      "alt-l d": "editor::GoToDefinition",
+      "alt-l shift-d": "editor::GoToDeclaration",
+      "alt-l t": "editor::GoToTypeDefinition",
+      "alt-l i": "editor::GoToImplementation",
+      "alt-l r": "editor::FindAllReferences",
+      "alt-l shift-r": "editor::Rename",
+      "alt-l a": "editor::ToggleCodeActions",
+      "alt-l n": "editor::GoToDiagnostic",
+      "alt-l p": "editor::GoToPreviousDiagnostic",
+      "alt-l s": "outline::Toggle",
+      "alt-l shift-s": "project_symbols::Toggle",
+      "alt-l c": "call_hierarchy::ShowIncomingCalls",
+      "alt-l shift-c": "call_hierarchy::ShowOutgoingCalls",
+      "alt-l alt-l d": "editor::GoToDefinitionSplit",
+      "alt-l alt-l t": "editor::GoToTypeDefinitionSplit",
+      "alt-l alt-l o": "editor::OrganizeImports",
+      "alt-l alt-l f": "editor::Format",
+      "alt-l alt-l h": "editor::ToggleInlayHints",
+      "alt-l alt-l s": "editor::ShowSignatureHelp",
+      "alt-l alt-l r": "editor::RestartLanguageServer"
+    }
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "alt-l": "search::ToggleSelection"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "f5": "workspace::FocusCenterPane"
+    }
+  },
+  {
+    "context": "GitPicker",
+    "unbind": {
+      "alt-1": "git_picker::ActivateBranchesTab"
+    }
+  },
+  {
+    "context": "RunModal",
+    "unbind": {
+      "alt-1": "new_process_modal::ActivateTaskTab"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-1": "workspace::ZoomIn"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-g g": "git_panel::ToggleFocus",
+      "alt-g c": "git::Commit",
+      "alt-g p": "git::Push",
+      "alt-g shift-p": "git::Pull",
+      "alt-g f": "git::Fetch",
+      "alt-g b": "git::Branch",
+      "alt-g w": "git::Worktree",
+      "alt-g d": "git::Diff",
+      "alt-g s": "git::ToggleStaged",
+      "alt-g a": "git::StageAll",
+      "alt-g shift-a": "git::UnstageAll",
+      "alt-g o": "editor::ToggleSelectedDiffHunks",
+      "alt-g l": "git::Blame",
+      "alt-g shift-l": "editor::ToggleGitBlameInline",
+      "alt-g h": "git::FileHistory",
+      "alt-g alt-g r": "git::Restore",
+      "alt-g alt-g shift-r": "git::RestoreFile",
+      "alt-g alt-g z": "git::StashAll",
+      "alt-g alt-g shift-z": "git::StashPop",
+      "alt-g alt-g v": "git::ViewStash",
+      "alt-g alt-g a": "git::Amend",
+      "alt-g alt-g p": "git::ForcePush",
+      "alt-g alt-g e": "editor::ExpandAllDiffHunks"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-x ctrl-f": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-alt-f": "workspace::ToggleZoom"
+    }
+  },
+  {
+    "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
+    "unbind": {
+      "alt-p": "editor::SelectPreviousSyntaxNode"
+    }
+  },
+  {
+    "context": "AcpThread",
+    "unbind": {
+      "alt-shift-p": "agent::ManageProfiles"
+    }
+  },
+  {
+    "context": "Picker && with_preview > Editor",
+    "unbind": {
+      "ctrl-alt-p": "picker::TogglePreview"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-alt-n": "multi_workspace::NextProject",
+      "ctrl-alt-p": "multi_workspace::PreviousProject",
+      "alt-shift-n": "multi_workspace::NextThread",
+      "alt-shift-p": "multi_workspace::PreviousThread",
+      "alt-p p": "projects::OpenRecent",
+      "alt-p n": "multi_workspace::NewThread",
+      "alt-p s": "multi_workspace::FocusWorkspaceSidebar",
+      "alt-p o": "projects::OpenFolderInWsl",
+      "alt-p a": "workspace::AddFolderToProject",
+      "alt-p r": "projects::OpenRemote",
+      "alt-p w": "workspace::ActivateNextWindow",
+      "alt-p shift-w": "workspace::ActivatePreviousWindow",
+      "alt-p q": "workspace::CloseProject",
+      "alt-p alt-p o": "workspace::Open",
+      "alt-p alt-p l": "projects::OpenWsl",
+      "alt-p alt-p c": "projects::OpenDevContainer",
+      "alt-p alt-p j": "multi_workspace::MoveProjectDown",
+      "alt-p alt-p k": "multi_workspace::MoveProjectUp",
+      "alt-p alt-p m": "multi_workspace::MoveProjectToNewWindow",
+      "alt-p alt-p n": "workspace::NewWindow",
+      "alt-p alt-p s": "zed::OpenProjectSettings",
+      "alt-p alt-p t": "zed::OpenProjectTasks",
+      "alt-p alt-p x": "workspace::ToggleWorktreeSecurity",
+      "alt-p alt-p shift-q": "workspace::CloseWindow"
     }
   }
 ]
